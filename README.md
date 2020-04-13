@@ -6,6 +6,7 @@ Managener, buy and store your food
 Todo
 -------------
 
+- Access levels
 - Class for models, views, JControllerAdmin
 - Frontend
 - Logger for errors
