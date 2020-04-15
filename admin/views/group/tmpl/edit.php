@@ -60,7 +60,7 @@ JFactory::getDocument()->addScriptDeclaration('
 		<?php echo JHtml::_('bootstrap.addTab', 'groupTab', 'details', JText::_('COM_FOODMAN_LABEL_DETAILS')); ?>
 	<div class="row-fluid">
 	    <div class="span9">
-				<?php echo $this->form->renderField('userid'); ?>
+
 		<div id="image">
 					<?php echo $this->form->renderFieldset('image'); ?>
 		</div>
@@ -74,9 +74,7 @@ JFactory::getDocument()->addScriptDeclaration('
 		<?php echo JHtml::_('bootstrap.endTab'); ?>
 
 		<?php echo JHtml::_('bootstrap.addTab', 'groupTab', 'otherparams', JText::_('COM_FOODMAN_GROUP_LABEL_DETAILS')); ?>
-		<?php echo $this->form->renderField('expiration'); ?>
-		<?php echo $this->form->renderField('locations'); ?>
-		<?php echo $this->form->renderField('shops'); ?>
+	    <?php echo $this->form->renderField('users'); ?>
 		<?php echo JHtml::_('bootstrap.endTab'); ?>
 
 

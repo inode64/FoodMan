@@ -59,18 +59,6 @@
 	</field>
 
 	<field
-		name="expiration"
-		type="radio"
-		label="COM_FOODMAN_FIELD_EXPIRATION_LABEL"
-		description="COM_FOODMAN_FIELD_EXPIRATION_DESC"
-		default="0"
-		class="btn-group btn-group-yesno"
-	>
-	    <option value="1">JYES</option>
-	    <option value="0">JNO</option>
-	</field>
-
-	<field
 		name="description"
 		type="editor"
 		label="JGLOBAL_DESCRIPTION"
@@ -81,25 +69,10 @@
 	/>
 
 	<field
-		name="userid"
+		name="users"
 		type="fmusers"
 		label="COM_FOODMAN_FIELD_USER_LABEL"
 		description="COM_FOODMAN_FIELD_USER_DESC"
-	/>
-
-	<field
-		name="locations"
-		type="fmlocation"
-		label="COM_FOODMAN_FIELD_LOCATIONS_LABEL"
-		description="COM_FOODMAN_FIELD_LOCATIONS_DESC"
-		required="true"
-		multiple="true"
-	/>
-	<field
-		name="shops"
-		type="fmshop"
-		label="COM_FOODMAN_FIELD_SHOPS_LABEL"
-		description="COM_FOODMAN_FIELD_SHOPS_DESC"
 		multiple="true"
 	/>
 

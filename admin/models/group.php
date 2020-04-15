@@ -79,20 +79,12 @@ class FoodManModelGroup extends JModelAdmin
 			$db = $this->getDbo();
 
 			$query = $db->getQuery(true);
-			$query->select($db->quoteName('locid'))
-				->from($db->quoteName('#__foodman_group_location'))
-				->where($db->quoteName('catid') . ' = ' . $result->id);
+			$query->select($db->quoteName('userid'))
+				->from($db->quoteName('#__foodman_group_user'))
+				->where($db->quoteName('groupid') . ' = ' . $result->id);
 
 			$db->setQuery((string) $query);
-			$result->locations = $db->loadColumn() ?: array(0);
-
-			$query->clear()
-				->select($db->quoteName('shopid'))
-				->from($db->quoteName('#__foodman_group_shop'))
-				->where($db->quoteName('catid') . ' = ' . $result->id);
-
-			$db->setQuery((string) $query);
-			$result->shops = $db->loadColumn() ?: array(0);
+			$result->users = $db->loadColumn() ?: array(0);
 		}
 
 		return $result;
@@ -319,36 +311,22 @@ class FoodManModelGroup extends JModelAdmin
 
 		if ($data['id'] > 0)
 		{
-			$this->DeleteLocations($data['id']);
-			$this->DeleteShops($data['id']);
+			$this->DeleteUsers($data['id']);
 		}
 
 		$item	    = $this->getItem();
 		$data['id'] = $item->get('id');
 
-		if (isset($data['locations']))
+		if (isset($data['users']))
 		{
-			foreach ($data['locations'] as $item)
+			foreach ($data['users'] as $item)
 			{
 				$row = (object) array(
-					'catid' => $data['id'],
-					'locid' => $item
+					'groupid' => $data['id'],
+					'userid' => $item
 				);
 
-				JFactory::getDbo()->insertObject('#__foodman_group_location', $row);
-			}
-		}
-
-		if (isset($data['shops']))
-		{
-			foreach ($data['shops'] as $item)
-			{
-				$row = (object) array(
-					'catid'	 => $data['id'],
-					'shopid' => $item
-				);
-
-				JFactory::getDbo()->insertObject('#__foodman_group_shop', $row);
+				JFactory::getDbo()->insertObject('#__foodman_group_user', $row);
 			}
 		}
 
@@ -378,8 +356,7 @@ class FoodManModelGroup extends JModelAdmin
 			{
 				foreach ($pks as $id)
 				{
-					$this->DeleteLocations($id);
-					$this->DeleteShops($id);
+					$this->DeleteUsers($id);
 				}
 			}
 		}
@@ -387,22 +364,12 @@ class FoodManModelGroup extends JModelAdmin
 		return $success;
 	}
 
-	private function DeleteLocations(int $id)
+	private function DeleteUsers(int $id)
 	{
 		$db    = $this->getDbo();
 		$query = $db->getQuery(true)
-			->delete($db->quoteName('#__foodman_group_location'))
-			->where($db->quoteName('catid') . ' = ' . $id);
-		$db->setQuery($query);
-		$db->execute();
-	}
-
-	private function DeleteShops(int $id)
-	{
-		$db    = $this->getDbo();
-		$query = $db->getQuery(true)
-			->delete($db->quoteName('#__foodman_group_shop'))
-			->where($db->quoteName('catid') . ' = ' . $id);
+			->delete($db->quoteName('#__foodman_group_user'))
+			->where($db->quoteName('groupid') . ' = ' . $id);
 		$db->setQuery($query);
 		$db->execute();
 	}
