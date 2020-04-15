@@ -14,7 +14,7 @@
 
         <field
                 name="state"
-                type="list"
+                type="fmstate"
                 label="JSTATUS"
                 description="COM_FOODMAN_FIELD_STATE_DESC"
                 class="chzn-color-state"
