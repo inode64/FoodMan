@@ -75,8 +75,11 @@ class FoodManModelGroups extends JModelList
 		$query->from($db->quoteName('#__foodman_groups', 'a'));
 
 		// Join over the user
-		$query->select($db->quoteName('u.name', 'user_name'))
-			->join('LEFT', $db->quoteName('#__users', 'u') . ' ON u.id = a.userid');
+		$query->select('group_concat(' . $db->quoteName('u.name') .')' . ' AS user_name')
+			->join('LEFT', $db->quoteName('#__foodman_group_user', 'g') . ' ON g.groupid = a.id');
+		$query->select($db->quoteName('u.name'))
+			->join('LEFT', $db->quoteName('#__users', 'u') . ' ON u.id = g.userid');
+		$query->group($db->quoteName('a.id'));
 
 		// Join over the language
 		$query->select('l.title AS language_title, l.image AS language_image')
@@ -103,7 +106,7 @@ class FoodManModelGroups extends JModelList
 
 		if (is_numeric($userid))
 		{
-			$query->where($db->quoteName('a.userid') . ' = ' . (int) $userid);
+			$query->where($db->quoteName('u.id') . ' = ' . (int) $userid);
 		}
 
 		// Filter by search in name
