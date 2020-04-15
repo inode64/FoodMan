@@ -22,8 +22,8 @@ class FoodManModelDashBoard extends JModelLegacy
 	/**
 	 * Get number of items for given states of a table
 	 *
-	 * @param   string  $tablename	Name of the table
-	 * @param   array   $map	Maps state name to state number
+	 * @param   string  $tablename  Name of the table
+	 * @param   array   $map        Maps state name to state number
 	 *
 	 * @return stdClass
 	 */
@@ -45,7 +45,7 @@ class FoodManModelDashBoard extends JModelLegacy
 		$db->setQuery($query);
 		$result = $db->loadObjectList('state');
 
-		$data	     = new stdClass();
+		$data        = new stdClass();
 		$data->total = 0;
 
 		foreach ($map as $key => $value)

@@ -16,8 +16,8 @@ JHtml::_('bootstrap.tooltip');
 JHtml::_('behavior.multiselect');
 JHtml::_('formbehavior.chosen', 'select');
 
-$user	   = JFactory::getUser();
-$userId	   = $user->get('id');
+$user      = JFactory::getUser();
+$userId    = $user->get('id');
 $listOrder = $this->escape($this->state->get('list.ordering'));
 $listDirn  = $this->escape($this->state->get('list.direction'));
 $saveOrder = $listOrder == 'a.ordering';
@@ -39,65 +39,65 @@ if ($saveOrder)
 		echo JLayoutHelper::render('joomla.searchtools.default', array('view' => $this));
 		?>
 		<?php if (empty($this->items)) : ?>
-	    <div class="alert alert-no-items">
+            <div class="alert alert-no-items">
 				<?php echo JText::_('JGLOBAL_NO_MATCHING_RESULTS'); ?>
-	    </div>
+            </div>
 		<?php else : ?>
-	    <table class="table table-striped" id="articleList">
-		<thead>
-		<tr>
-		    <th width="1%" class="nowrap center hidden-phone">
+            <table class="table table-striped" id="articleList">
+                <thead>
+                <tr>
+                    <th width="1%" class="nowrap center hidden-phone">
 						<?php echo JHtml::_('searchtools.sort', '', 'a.ordering', $listDirn, $listOrder, null, 'asc', 'JGRID_HEADING_ORDERING', 'icon-menu-2'); ?>
-		    </th>
-		    <th width="1%" class="center">
+                    </th>
+                    <th width="1%" class="center">
 						<?php echo JHtml::_('grid.checkall'); ?>
-		    </th>
-		    <th width="1%" class="nowrap center">
+                    </th>
+                    <th width="1%" class="nowrap center">
 						<?php echo JHtml::_('searchtools.sort', 'JSTATUS', 'a.state', $listDirn, $listOrder); ?>
-		    </th>
-		    <th>
+                    </th>
+                    <th>
 						<?php echo JHtml::_('searchtools.sort', 'COM_FOODMAN_HEADING_NAME', 'a.name', $listDirn, $listOrder); ?>
-		    </th>
-		    <th width="10%" class="nowrap hidden-phone">
+                    </th>
+                    <th width="10%" class="nowrap hidden-phone">
 						<?php echo JHtml::_('searchtools.sort', 'COM_FOODMAN_HEADING_USER', 'u.name', $listDirn, $listOrder); ?>
-		    </th>
-		    <th width="1%" class="nowrap center hidden-phone hidden-tablet">
+                    </th>
+                    <th width="1%" class="nowrap center hidden-phone hidden-tablet">
 			<span class="icon-publish hasTooltip" aria-hidden="true"
-			      title="<?php echo JText::_('COM_FOODMAN_COUNT_CREATE_ITEMS'); ?>"><span
-				    class="element-invisible"><?php echo JText::_('COM_FOODMAN_COUNT_LIST_ITEMS'); ?></span></span>
-		    </th>
-		    <th width="1%" class="nowrap center hidden-phone hidden-tablet">
+                  title="<?php echo JText::_('COM_FOODMAN_COUNT_CREATE_ITEMS'); ?>"><span
+                        class="element-invisible"><?php echo JText::_('COM_FOODMAN_COUNT_LIST_ITEMS'); ?></span></span>
+                    </th>
+                    <th width="1%" class="nowrap center hidden-phone hidden-tablet">
 			<span class="icon-publish hasTooltip" aria-hidden="true"
-			      title="<?php echo JText::_('COM_FOODMAN_COUNT_BUY_ITEMS'); ?>"><span
-				    class="element-invisible"><?php echo JText::_('COM_FOODMAN_COUNT_LIST_ITEMS'); ?></span></span>
-		    </th>
-		    <th width="1%" class="nowrap center hidden-phone hidden-tablet">
+                  title="<?php echo JText::_('COM_FOODMAN_COUNT_BUY_ITEMS'); ?>"><span
+                        class="element-invisible"><?php echo JText::_('COM_FOODMAN_COUNT_LIST_ITEMS'); ?></span></span>
+                    </th>
+                    <th width="1%" class="nowrap center hidden-phone hidden-tablet">
 			<span class="icon-publish hasTooltip" aria-hidden="true"
-			      title="<?php echo JText::_('COM_FOODMAN_COUNT_STORE_ITEMS'); ?>"><span
-				    class="element-invisible"><?php echo JText::_('COM_FOODMAN_COUNT_LIST_ITEMS'); ?></span></span>
-		    </th>
-		    <th width="10%" class="nowrap hidden-phone">
+                  title="<?php echo JText::_('COM_FOODMAN_COUNT_STORE_ITEMS'); ?>"><span
+                        class="element-invisible"><?php echo JText::_('COM_FOODMAN_COUNT_LIST_ITEMS'); ?></span></span>
+                    </th>
+                    <th width="10%" class="nowrap hidden-phone">
 						<?php echo JHtml::_('searchtools.sort', 'JGRID_HEADING_LANGUAGE', 'a.language', $listDirn, $listOrder); ?>
-		    </th>
-		    <th width="1%" class="nowrap hidden-phone">
+                    </th>
+                    <th width="1%" class="nowrap hidden-phone">
 						<?php echo JHtml::_('searchtools.sort', 'JGRID_HEADING_ID', 'a.id', $listDirn, $listOrder); ?>
-		    </th>
-		</tr>
-		</thead>
-		<tfoot>
-		<tr>
-		    <td colspan="10">
+                    </th>
+                </tr>
+                </thead>
+                <tfoot>
+                <tr>
+                    <td colspan="10">
 						<?php echo $this->pagination->getListFooter(); ?>
-		    </td>
-		</tr>
-		</tfoot>
-		<tbody>
+                    </td>
+                </tr>
+                </tfoot>
+                <tbody>
 				<?php foreach ($this->items as $i => $item) :
 					$ordering = ($listOrder == 'ordering');
 					$canCheckin = $user->authorise('core.manage', 'com_checkin') || $item->checked_out == $userId || $item->checked_out == 0;
 					?>
-		    <tr class="row<?php echo $i % 2; ?>" sortable-group-id="<?php echo $item->id; ?>">
-			<td class="order nowrap center hidden-phone">
+                    <tr class="row<?php echo $i % 2; ?>" sortable-group-id="<?php echo $item->id; ?>">
+                        <td class="order nowrap center hidden-phone">
 							<?php
 							$iconClass  = '';
 							$canChange  = true;
@@ -105,19 +105,19 @@ if ($saveOrder)
 							$ItemsBuy   = FoodManHelper::CountItems($item->id, TYPE_PROCESS_BUY);
 							?>
 
-			    <span class="sortable-handler <?php echo $iconClass ?>">
+                            <span class="sortable-handler <?php echo $iconClass ?>">
 									<span class="icon-menu" aria-hidden="true"></span>
 								</span>
 							<?php if ($saveOrder) : ?>
-				<input type="text" style="display:none" name="order[]" size="5"
-				       value="<?php echo $item->ordering; ?>" class="width-20 text-area-order"/>
+                                <input type="text" style="display:none" name="order[]" size="5"
+                                       value="<?php echo $item->ordering; ?>" class="width-20 text-area-order"/>
 							<?php endif; ?>
-			</td>
-			<td class="center">
+                        </td>
+                        <td class="center">
 							<?php echo JHtml::_('grid.id', $i, $item->id); ?>
-			</td>
-			<td class="center">
-			    <div class="btn-group">
+                        </td>
+                        <td class="center">
+                            <div class="btn-group">
 								<?php echo JHtml::_('jgrid.published', $item->state, $i, 'lists.', $canChange); ?>
 								<?php echo JHtml::_('fmlist.featured', $item->featured, $i, $canChange); ?>
 								<?php // Create dropdown items and render the dropdown list.
@@ -128,85 +128,85 @@ if ($saveOrder)
 									echo JHtml::_('actionsdropdown.render', $this->escape($item->name));
 								}
 								?>
-			    </div>
-			</td>
-			<td class="has-context">
-			    <div class="pull-left break-word">
+                            </div>
+                        </td>
+                        <td class="has-context">
+                            <div class="pull-left break-word">
 								<?php if ($item->checked_out) : ?>
 									<?php echo JHtml::_('jgrid.checkedout', $i, $item->editor, $item->checked_out_time, 'lists.', $canCheckin); ?>
 								<?php endif; ?>
 
-				<a href="<?php echo JRoute::_('index.php?option=com_foodman&task=list.edit&id=' . (int) $item->id); ?>">
+                                <a href="<?php echo JRoute::_('index.php?option=com_foodman&task=list.edit&id=' . (int) $item->id); ?>">
 									<?php echo $this->escape($item->name); ?></a>
 
-				<a class="badge badge-success"
-				   href="<?php echo JRoute::_('index.php?option=com_foodman&task=shopping.' . TASK_SHOPPING_CREATE . '&layout=' . VIEW_SHOPPING[TYPE_PROCESS_CREATE] . '&id=' . (int) $item->id) ?>">
+                                <a class="badge badge-success"
+                                   href="<?php echo JRoute::_('index.php?option=com_foodman&task=shopping.' . TASK_SHOPPING_CREATE . '&layout=' . VIEW_SHOPPING[TYPE_PROCESS_CREATE] . '&id=' . (int) $item->id) ?>">
 									<?php echo JText::_('COM_FOODMAN_LIST_SHOPPING_CREATE'); ?></a>
 
 								<?php if ($item->count_list_create > 0) { ?>
-				    <a class="badge badge-success"
-				       href="<?php echo JRoute::_('index.php?option=com_foodman&task=shopping.' . TASK_SHOPPING_BUY . '&layout=' . VIEW_SHOPPING[TYPE_PROCESS_BUY] . '&id=' . (int) $item->id); ?>">
+                                    <a class="badge badge-success"
+                                       href="<?php echo JRoute::_('index.php?option=com_foodman&task=shopping.' . TASK_SHOPPING_BUY . '&layout=' . VIEW_SHOPPING[TYPE_PROCESS_BUY] . '&id=' . (int) $item->id); ?>">
 										<?php echo JText::_('COM_FOODMAN_LIST_SHOPPING_BUY'); ?></a>
 								<?php } ?>
 
 								<?php if ($item->count_list_buy > 0 || $item->count_list_store > 0) { ?>
-				    <a class="badge badge-success"
-				       href="<?php echo JRoute::_('index.php?option=com_foodman&task=shopping.' . TASK_SHOPPING_STORE . '&layout=' . VIEW_SHOPPING[TYPE_PROCESS_STORE] . '&id=' . (int) $item->id); ?>">
+                                    <a class="badge badge-success"
+                                       href="<?php echo JRoute::_('index.php?option=com_foodman&task=shopping.' . TASK_SHOPPING_STORE . '&layout=' . VIEW_SHOPPING[TYPE_PROCESS_STORE] . '&id=' . (int) $item->id); ?>">
 										<?php echo JText::_('COM_FOODMAN_LIST_SHOPPING_STORE'); ?></a>
 								<?php } ?>
 								<?php if ($item->count_list_store > 0) { ?>
 									<?php if ($item->count_list_buy > 0) { ?>
-					<span class="badge badge-important">
+                                        <span class="badge badge-important">
 					    <?php echo JText::_('COM_FOODMAN_LIST_SHOPPING_FINISH'); ?>
 					</span>
 									<?php } else { ?>
 										<?php if ($item->count_list_create > 0) { ?>
-					    <a class="badge badge-warning"
-					       href="<?php echo JRoute::_('index.php?option=com_foodman&task=shopping.' . TASK_SHOPPING_STORE . '&layout=' . VIEW_SHOPPING[TYPE_PROCESS_STORE] . '&id=' . (int) $item->id); ?>">
+                                            <a class="badge badge-warning"
+                                               href="<?php echo JRoute::_('index.php?option=com_foodman&task=shopping.' . TASK_SHOPPING_STORE . '&layout=' . VIEW_SHOPPING[TYPE_PROCESS_STORE] . '&id=' . (int) $item->id); ?>">
 												<?php echo JText::_('COM_FOODMAN_LIST_SHOPPING_FINISH'); ?></a>
 										<?php } else { ?>
-					    <a class="badge badge-info"
-					       href="<?php echo JRoute::_('index.php?option=com_foodman&task=shopping.' . TASK_SHOPPING_STORE . '&layout=' . VIEW_SHOPPING[TYPE_PROCESS_STORE] . '&id=' . (int) $item->id); ?>">
+                                            <a class="badge badge-info"
+                                               href="<?php echo JRoute::_('index.php?option=com_foodman&task=shopping.' . TASK_SHOPPING_STORE . '&layout=' . VIEW_SHOPPING[TYPE_PROCESS_STORE] . '&id=' . (int) $item->id); ?>">
 												<?php echo JText::_('COM_FOODMAN_LIST_SHOPPING_FINISH'); ?></a>
 										<?php } ?>
 									<?php } ?>
 								<?php } ?>
-			    </div>
-			</td>
+                            </div>
+                        </td>
 
-			<td class="small hidden-phone">
+                        <td class="small hidden-phone">
 							<?php echo JLayoutHelper::render('foodman.content.user', $item); ?>
-			</td>
-			<td class="center btns hidden-phone hidden-tablet">
-			    <a class="badge <?php if ($item->count_list_create > 0) echo 'badge-important'; ?>"
-			       href="<?php echo JRoute::_('index.php?option=com_foodman&view=shoppings&filter[listid]=' . (int) $item->id . '&filter[process]=' . TYPE_PROCESS_CREATE); ?>">
+                        </td>
+                        <td class="center btns hidden-phone hidden-tablet">
+                            <a class="badge <?php if ($item->count_list_create > 0) echo 'badge-important'; ?>"
+                               href="<?php echo JRoute::_('index.php?option=com_foodman&view=shoppings&filter[listid]=' . (int) $item->id . '&filter[process]=' . TYPE_PROCESS_CREATE); ?>">
 								<?php echo $item->count_list_create; ?></a>
-			</td>
-			<td class="center btns hidden-phone hidden-tablet">
-			    <a class="badge <?php if ($item->count_list_buy > 0) echo 'badge-important'; ?>"
-			       href="<?php echo JRoute::_('index.php?option=com_foodman&view=shoppings&filter[listid]=' . (int) $item->id . '&filter[process]=' . TYPE_PROCESS_BUY); ?>">
+                        </td>
+                        <td class="center btns hidden-phone hidden-tablet">
+                            <a class="badge <?php if ($item->count_list_buy > 0) echo 'badge-important'; ?>"
+                               href="<?php echo JRoute::_('index.php?option=com_foodman&view=shoppings&filter[listid]=' . (int) $item->id . '&filter[process]=' . TYPE_PROCESS_BUY); ?>">
 								<?php echo $item->count_list_buy; ?></a>
-			</td>
-			<td class="center btns hidden-phone hidden-tablet">
-			    <a class="badge <?php if ($item->count_list_store > 0) echo 'badge-important'; ?>"
-			       href="<?php echo JRoute::_('index.php?option=com_foodman&view=shoppings&filter[listid]=' . (int) $item->id . '&filter[process]=' . TYPE_PROCESS_STORE); ?>">
+                        </td>
+                        <td class="center btns hidden-phone hidden-tablet">
+                            <a class="badge <?php if ($item->count_list_store > 0) echo 'badge-important'; ?>"
+                               href="<?php echo JRoute::_('index.php?option=com_foodman&view=shoppings&filter[listid]=' . (int) $item->id . '&filter[process]=' . TYPE_PROCESS_STORE); ?>">
 								<?php echo $item->count_list_store; ?></a>
-			</td>
+                        </td>
 
-			<td class="small nowrap hidden-phone">
+                        <td class="small nowrap hidden-phone">
 							<?php echo JLayoutHelper::render('joomla.content.language', $item); ?>
-			</td>
-			<td class="hidden-phone">
+                        </td>
+                        <td class="hidden-phone">
 							<?php echo $item->id; ?>
-			</td>
-		    </tr>
+                        </td>
+                    </tr>
 				<?php endforeach; ?>
-		</tbody>
-	    </table>
+                </tbody>
+            </table>
 		<?php endif; ?>
 
-	<input type="hidden" name="task" value=""/>
-	<input type="hidden" name="boxchecked" value="0"/>
+        <input type="hidden" name="task" value=""/>
+        <input type="hidden" name="boxchecked" value="0"/>
 		<?php echo JHtml::_('form.token'); ?>
     </div>
 </form>

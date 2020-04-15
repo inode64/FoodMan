@@ -19,15 +19,15 @@ class FoodManController extends JControllerLegacy
 {
 
 	/**
-	 * @var	   string The default view.
+	 * @var       string The default view.
 	 */
 	protected $default_view = 'dashboard';
 
 	/**
 	 * Method to display a view.
 	 *
-	 * @param   boolean  $cachable	 If true, the view output will be cached
-	 * @param   array    $urlparams	 An array of safe URL parameters and their variable types, for valid values see {@link JFilterInput::clean()}.
+	 * @param   boolean  $cachable   If true, the view output will be cached
+	 * @param   array    $urlparams  An array of safe URL parameters and their variable types, for valid values see {@link JFilterInput::clean()}.
 	 *
 	 * @return  FoodManController  This object to support chaining.
 	 *
@@ -35,9 +35,9 @@ class FoodManController extends JControllerLegacy
 	 */
 	public function display($cachable = false, $urlparams = array())
 	{
-		$view	= $this->input->get('view', 'dashboard');
+		$view   = $this->input->get('view', 'dashboard');
 		$layout = $this->input->get('layout', 'default');
-		$id	= $this->input->getInt('id');
+		$id     = $this->input->getInt('id');
 
 		// Check for edit forms.
 

@@ -22,7 +22,7 @@ class FoodManModelGroup extends JModelAdmin
 	/**
 	 * The prefix to use with controller messages.
 	 *
-	 * @var	      string
+	 * @var          string
 	 * @since  1.6
 	 */
 	protected $text_prefix = 'COM_FOODMAN_GROUP';
@@ -109,8 +109,8 @@ class FoodManModelGroup extends JModelAdmin
 	/**
 	 * Method to get the record form.
 	 *
-	 * @param   array    $data	Data for the form. [optional]
-	 * @param   boolean  $loadData	True if the form is to load its own data (default case), false if not. [optional]
+	 * @param   array    $data      Data for the form. [optional]
+	 * @param   boolean  $loadData  True if the form is to load its own data (default case), false if not. [optional]
 	 *
 	 * @return  JForm|boolean  A JForm object on success, false on failure
 	 *
@@ -199,7 +199,7 @@ class FoodManModelGroup extends JModelAdmin
 		if (empty($table->id))
 		{
 			// Set the values
-			$table->created	   = $date->toSql();
+			$table->created    = $date->toSql();
 			$table->created_by = $user->id;
 
 			// Set ordering to the last item if not set
@@ -314,7 +314,7 @@ class FoodManModelGroup extends JModelAdmin
 			$this->DeleteUsers($data['id']);
 		}
 
-		$item	    = $this->getItem();
+		$item       = $this->getItem();
 		$data['id'] = $item->get('id');
 
 		if (isset($data['users']))
@@ -323,7 +323,7 @@ class FoodManModelGroup extends JModelAdmin
 			{
 				$row = (object) array(
 					'groupid' => $data['id'],
-					'userid' => $item
+					'userid'  => $item
 				);
 
 				JFactory::getDbo()->insertObject('#__foodman_group_user', $row);
@@ -336,7 +336,7 @@ class FoodManModelGroup extends JModelAdmin
 	/**
 	 * Method to delete one or more records.
 	 *
-	 * @param   array  $pks	 An array of record primary keys.
+	 * @param   array  $pks  An array of record primary keys.
 	 *
 	 * @return  boolean  True if successful, false if an error occurs.
 	 *

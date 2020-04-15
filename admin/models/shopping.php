@@ -23,7 +23,7 @@ class FoodManModelShopping extends JModelAdmin
 	/**
 	 * The prefix to use with controller messages.
 	 *
-	 * @var	      string
+	 * @var          string
 	 * @since  1.6
 	 */
 	protected $text_prefix = 'COM_FOODMAN_SHOPPING';
@@ -95,8 +95,8 @@ class FoodManModelShopping extends JModelAdmin
 
 		# TODO: Non support change attribute for subform (setFieldAttribute)
 
-		$app	= JFactory::getApplication();
-		$task	= $app->getUserState('com_foodman.edit.shopping.task');
+		$app    = JFactory::getApplication();
+		$task   = $app->getUserState('com_foodman.edit.shopping.task');
 		$layout = $app->getUserState('com_foodman.edit.shopping.layout', TASK_SHOPPING_EDIT);
 
 		if (FoodManHelper::DefaultTask($task))
@@ -183,7 +183,7 @@ class FoodManModelShopping extends JModelAdmin
 		if (empty($table->id))
 		{
 			// Set the values
-			$table->created	   = $date->toSql();
+			$table->created    = $date->toSql();
 			$table->created_by = $user->id;
 
 			// Set ordering to the last item if not set
@@ -351,14 +351,14 @@ class FoodManModelShopping extends JModelAdmin
 	 */
 	public function getItem($pk = null)
 	{
-		$app	= JFactory::getApplication();
+		$app    = JFactory::getApplication();
 		$listid = $app->getUserState('com_foodman.edit.shopping.listid');
 
 		$task = $app->getUserState('com_foodman.edit.shopping.task');
 
 		if (FoodManHelper::DefaultTask($task))
 		{
-			$result		  = parent::getItem($listid);
+			$result           = parent::getItem($listid);
 			$result->process  = $result->process ?? TYPE_PROCESS_CREATE;
 			$result->products = array();
 			foreach (array('bought', 'comments', 'price', 'id', 'quantity', 'locid', 'proid', 'process') as $key)
@@ -372,7 +372,7 @@ class FoodManModelShopping extends JModelAdmin
 			return $result;
 		}
 
-		$db	= $this->getDbo();
+		$db     = $this->getDbo();
 		$layout = $app->getUserState('com_foodman.edit.shopping.layout');
 
 		switch ($layout)
@@ -432,9 +432,9 @@ class FoodManModelShopping extends JModelAdmin
 		// Not exist, create new
 		if (!$rows)
 		{
-			$result		  = parent::getItem();
-			$result->listid	  = $list->id;
-			$result->userid	  = $list->userid;
+			$result           = parent::getItem();
+			$result->listid   = $list->id;
+			$result->userid   = $list->userid;
 			$result->language = $list->language;
 			$result->process  = TYPE_PROCESS_CREATE;
 

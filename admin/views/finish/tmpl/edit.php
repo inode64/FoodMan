@@ -35,14 +35,14 @@ JFactory::getDocument()->addScriptDeclaration('
 		<?php echo $this->form->renderField('userid'); ?>
 		<?php echo $this->form->renderField('shopid'); ?>
 
-	<div class="form-horizontal">
+        <div class="form-horizontal">
 			<?php echo $this->form->renderField('products'); ?>
 			<?php echo $this->form->renderField('proid'); ?>
 			<?php echo $this->form->renderField('quantity'); ?>
 			<?php echo $this->form->renderField('bought'); ?>
 			<?php echo $this->form->renderField('comments'); ?>
 			<?php echo $this->form->renderField('shops'); ?>
-	</div>
+        </div>
 
 
     </div>

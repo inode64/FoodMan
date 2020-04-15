@@ -21,21 +21,21 @@ class FoodManViewShoppings extends JViewLegacy
 	/**
 	 * An array of items
 	 *
-	 * @var	    array
+	 * @var        array
 	 */
 	protected $items;
 
 	/**
 	 * The pagination object
 	 *
-	 * @var	    JPagination
+	 * @var        JPagination
 	 */
 	protected $pagination;
 
 	/**
 	 * The model state
 	 *
-	 * @var	    object
+	 * @var        object
 	 */
 	protected $state;
 
@@ -51,9 +51,9 @@ class FoodManViewShoppings extends JViewLegacy
 	 */
 	public function display($tpl = null)
 	{
-		$this->items	     = $this->get('Items');
+		$this->items         = $this->get('Items');
 		$this->pagination    = $this->get('Pagination');
-		$this->state	     = $this->get('State');
+		$this->state         = $this->get('State');
 		$this->filterForm    = $this->get('FilterForm');
 		$this->activeFilters = $this->get('ActiveFilters');
 
@@ -162,7 +162,7 @@ class FoodManViewShoppings extends JViewLegacy
 			'a.featured' => JText::_('JFEATURED'),
 			'u.name'     => JText::_('COM_FOODMAN_HEADING_USER'),
 			'a.language' => JText::_('JGRID_HEADING_LANGUAGE'),
-			'a.id'	     => JText::_('JGRID_HEADING_ID'),
+			'a.id'       => JText::_('JGRID_HEADING_ID'),
 		);
 	}
 }

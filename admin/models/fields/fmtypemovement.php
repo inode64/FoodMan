@@ -23,7 +23,7 @@ class JFormFieldFMTypeMovement extends JFormFieldList
 	/**
 	 * The form field type.
 	 *
-	 * @var	      string
+	 * @var          string
 	 * @since  11.1
 	 */
 	protected $type = 'FMTypeMovement';

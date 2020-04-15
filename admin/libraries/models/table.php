@@ -44,8 +44,8 @@ abstract class FoodManTable extends \Joomla\CMS\Table\Table
 	 *
 	 * @return  boolean
 	 *
-	 * @see	       JTable::check
-	 * @since      1.5
+	 * @see           JTable::check
+	 * @since         1.5
 	 */
 	public function check()
 	{

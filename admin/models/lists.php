@@ -24,8 +24,8 @@ class FoodManModelLists extends JModelList
 	 *
 	 * @param   array  $config  An optional associative array of configuration settings.
 	 *
-	 * @see	       JControllerLegacy
-	 * @since      1.6
+	 * @see           JControllerLegacy
+	 * @since         1.6
 	 */
 	public function __construct($config = array())
 	{
@@ -147,7 +147,7 @@ class FoodManModelLists extends JModelList
 	 * different modules that might need different sets of data or different
 	 * ordering requirements.
 	 *
-	 * @param   string  $id	 A prefix for the store id.
+	 * @param   string  $id  A prefix for the store id.
 	 *
 	 * @return  string  A store id.
 	 *
@@ -185,8 +185,8 @@ class FoodManModelLists extends JModelList
 	 *
 	 * Note. Calling getState in this method will result in recursion.
 	 *
-	 * @param   string  $ordering	An optional ordering field.
-	 * @param   string  $direction	An optional direction (asc|desc).
+	 * @param   string  $ordering   An optional ordering field.
+	 * @param   string  $direction  An optional direction (asc|desc).
 	 *
 	 * @return  void
 	 *
@@ -236,7 +236,7 @@ class FoodManModelLists extends JModelList
 		}
 
 		// Get the items in the list.
-		$db	   = $this->getDbo();
+		$db       = $this->getDbo();
 		$itemsIds = ArrayHelper::getColumn($items, 'id');
 
 		$itemsIds = implode(',', $itemsIds);
@@ -307,8 +307,8 @@ class FoodManModelLists extends JModelList
 		foreach ($items as $item)
 		{
 			$item->count_list_create = $count_list_create[$item->id] ?? 0;
-			$item->count_list_buy	 = $count_list_buy[$item->id] ?? 0;
-			$item->count_list_store	 = $count_list_store[$item->id] ?? 0;
+			$item->count_list_buy    = $count_list_buy[$item->id] ?? 0;
+			$item->count_list_store  = $count_list_store[$item->id] ?? 0;
 		}
 
 		// Add the items to the internal cache.

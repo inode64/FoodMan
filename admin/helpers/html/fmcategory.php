@@ -24,9 +24,9 @@ abstract class JHtmlFMCategory
 	/**
 	 * Show the featured/not-featured icon.
 	 *
-	 * @param   integer  $value	 The featured value.
-	 * @param   integer  $i		 Id of the item.
-	 * @param   boolean  $canChange	 Whether the value can be changed or not.
+	 * @param   integer  $value      The featured value.
+	 * @param   integer  $i          Id of the item.
+	 * @param   boolean  $canChange  Whether the value can be changed or not.
 	 *
 	 * @return  string    The anchor tag to toggle featured/unfeatured contacts.
 	 *
@@ -40,8 +40,8 @@ abstract class JHtmlFMCategory
 			0 => array('unfeatured', 'categories.featured', 'COM_FOODMAN_CATEGORY_UNFEATURED', 'JGLOBAL_TOGGLE_FEATURED'),
 			1 => array('featured', 'categories.unfeatured', 'COM_FOODMAN_CATEGORY_FEATURED', 'JGLOBAL_TOGGLE_FEATURED'),
 		);
-		$state	= ArrayHelper::getValue($states, (int) $value, $states[1]);
-		$icon	= $state[0];
+		$state  = ArrayHelper::getValue($states, (int) $value, $states[1]);
+		$icon   = $state[0];
 
 		if ($canChange)
 		{

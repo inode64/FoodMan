@@ -20,7 +20,7 @@ abstract class FoodManControllerForm extends \Joomla\CMS\MVC\Controller\FormCont
 	/**
 	 * The prefix to use with controller messages.
 	 *
-	 * @var	      string
+	 * @var          string
 	 * @since  1.6
 	 */
 	protected $text_prefix = 'COM_FOODMAN';

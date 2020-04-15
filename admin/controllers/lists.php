@@ -22,7 +22,7 @@ class FoodManControllerLists extends JControllerAdmin
 	/**
 	 * The prefix to use with controller messages.
 	 *
-	 * @var	      string
+	 * @var          string
 	 * @since  1.6
 	 */
 	protected $text_prefix = 'COM_FOODMAN_LIST';
@@ -33,8 +33,8 @@ class FoodManControllerLists extends JControllerAdmin
 	 * @param   array  $config  An optional associative array of configuration settings.
 	 *
 	 * @throws Exception
-	 * @see	       JControllerLegacy
-	 * @since      1.6
+	 * @see           JControllerLegacy
+	 * @since         1.6
 	 */
 	public function __construct($config = array())
 	{
@@ -56,12 +56,12 @@ class FoodManControllerLists extends JControllerAdmin
 		// Check for request forgeries
 		$this->checkToken();
 
-		$ids	= $this->input->get('cid', array(), 'array');
+		$ids    = $this->input->get('cid', array(), 'array');
 		$values = array('featured' => 1, 'unfeatured' => 0);
-		$task	= $this->getTask();
-		$value	= ArrayHelper::getValue($values, $task, 0, 'int');
+		$task   = $this->getTask();
+		$value  = ArrayHelper::getValue($values, $task, 0, 'int');
 
-		$model	 = $this->getModel();
+		$model   = $this->getModel();
 		$message = '';
 
 		if (empty($ids))

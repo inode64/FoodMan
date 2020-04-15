@@ -58,19 +58,19 @@ JFactory::getDocument()->addScriptDeclaration('
 		<?php echo JHtml::_('bootstrap.startTabSet', 'productTab', array('active' => 'details')); ?>
 
 		<?php echo JHtml::_('bootstrap.addTab', 'productTab', 'details', JText::_('COM_FOODMAN_LABEL_DETAILS')); ?>
-	<div class="row-fluid">
-	    <div class="span9">
+        <div class="row-fluid">
+            <div class="span9">
 				<?php echo $this->form->renderField('userid'); ?>
-		<div id="image">
+                <div id="image">
 					<?php echo $this->form->renderFieldset('image'); ?>
-		</div>
+                </div>
 				<?php echo $this->form->renderField('description'); ?>
 
-	    </div>
-	    <div class="span3">
+            </div>
+            <div class="span3">
 				<?php echo JLayoutHelper::render('joomla.edit.global', $this); ?>
-	    </div>
-	</div>
+            </div>
+        </div>
 		<?php echo JHtml::_('bootstrap.endTab'); ?>
 
 		<?php echo JHtml::_('bootstrap.addTab', 'productTab', 'otherparams', JText::_('COM_FOODMAN_PRODUCT_LABEL_DETAILS')); ?>

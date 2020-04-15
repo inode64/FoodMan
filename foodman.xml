@@ -11,110 +11,110 @@
     <description>COM_FOODMAN_DESCRIPTION</description>
 
     <install>
-	<sql>
-	    <file driver="mysqli" charset="utf8">sql/install.mysql.utf8.sql</file>
-	</sql>
+        <sql>
+            <file driver="mysqli" charset="utf8">sql/install.mysql.utf8.sql</file>
+        </sql>
     </install>
     <uninstall>
-	<sql>
-	    <file driver="mysqli" charset="utf8">sql/uninstall.mysql.utf8.sql</file>
-	</sql>
+        <sql>
+            <file driver="mysqli" charset="utf8">sql/uninstall.mysql.utf8.sql</file>
+        </sql>
     </uninstall>
 
     <media folder="media" destination="com_foodman">
-	<folder>Font-Awesome</folder>
-	<folder>images</folder>
-	<folder>css</folder>
-	<folder>js</folder>
+        <folder>Font-Awesome</folder>
+        <folder>images</folder>
+        <folder>css</folder>
+        <folder>js</folder>
     </media>
 
     <administration>
-	<menu img="class:foodman">com_foodman</menu>
-	<submenu>
-	    <menu
-		    view="groups"
-		    img="class:groups"
-		    alt="COM_FOODMAN_ALT_MENU_GROUPS"
-	    >
-		COM_FOODMAN_MENU_GROUPS
-	    </menu>
-	    <menu
-		    view="shops"
-		    img="class:shops"
-		    alt="COM_FOODMAN_ALT_MENU_SHOPS"
-	    >
-		COM_FOODMAN_MENU_SHOPS
-	    </menu>
-	    <menu
-		    view="locations"
-		    img="class:locations"
-		    alt="COM_FOODMAN_ALT_MENU_LOCATIONS"
-	    >
-		COM_FOODMAN_MENU_LOCATIONS
-	    </menu>
-	    <menu
-		    view="categories"
-		    img="class:categories"
-		    alt="COM_FOODMAN_ALT_MENU_CATEGORIES"
-	    >
-		COM_FOODMAN_MENU_CATEGORIES
-	    </menu>
-	    <menu
-		    view="lists"
-		    img="class:lists"
-		    alt="COM_FOODMAN_ALT_MENU_LISTS"
-	    >
-		COM_FOODMAN_MENU_LISTS
-	    </menu>
-	    <menu
-		    view="products"
-		    img="class:products"
-		    alt="COM_FOODMAN_ALT_MENU_PRODUCTS"
-	    >
-		COM_FOODMAN_MENU_PRODUCTS
-	    </menu>
-	    <menu
-		    view="stocks"
-		    img="class:stocks"
-		    alt="COM_FOODMAN_ALT_MENU_STOCKS"
-	    >
-		COM_FOODMAN_MENU_STOCKS
-	    </menu>
-	    <menu
-		    view="shoppings"
-		    img="class:shoppings"
-		    alt="COM_FOODMAN_ALT_MENU_SHOPPINGS"
-	    >
-		COM_FOODMAN_MENU_SHOPPINGS
-	    </menu>
-	    <menu
-		    view="movements"
-		    img="class:movements"
-		    alt="COM_FOODMAN_ALT_MENU_MOVEMENTS"
-	    >
-		COM_FOODMAN_MENU_MOVEMENTS
-	    </menu>
-	</submenu>
-	<files folder="admin">
-	    <filename>access.xml</filename>
-	    <filename>foodman.php</filename>
-	    <filename>config.xml</filename>
-	    <filename>controller.php</filename>
-	    <folder>controllers</folder>
-	    <folder>helpers</folder>
-	    <folder>includes</folder>
-	    <folder>layouts</folder>
-	    <folder>libraries</folder>
-	    <folder>models</folder>
-	    <folder>tables</folder>
-	    <folder>sql</folder>
-	    <folder>views</folder>
-	</files>
-	<languages folder="admin">
-	    <language tag="en-GB">language/en-GB/en-GB.com_foodman.ini</language>
-	    <language tag="en-GB">language/en-GB/en-GB.com_foodman.sys.ini</language>
-	    <language tag="es-ES">language/es-ES/es-ES.com_foodman.ini</language>
-	    <language tag="es-ES">language/es-ES/es-ES.com_foodman.sys.ini</language>
-	</languages>
+        <menu img="class:foodman">com_foodman</menu>
+        <submenu>
+            <menu
+                    view="groups"
+                    img="class:groups"
+                    alt="COM_FOODMAN_ALT_MENU_GROUPS"
+            >
+                COM_FOODMAN_MENU_GROUPS
+            </menu>
+            <menu
+                    view="shops"
+                    img="class:shops"
+                    alt="COM_FOODMAN_ALT_MENU_SHOPS"
+            >
+                COM_FOODMAN_MENU_SHOPS
+            </menu>
+            <menu
+                    view="locations"
+                    img="class:locations"
+                    alt="COM_FOODMAN_ALT_MENU_LOCATIONS"
+            >
+                COM_FOODMAN_MENU_LOCATIONS
+            </menu>
+            <menu
+                    view="categories"
+                    img="class:categories"
+                    alt="COM_FOODMAN_ALT_MENU_CATEGORIES"
+            >
+                COM_FOODMAN_MENU_CATEGORIES
+            </menu>
+            <menu
+                    view="lists"
+                    img="class:lists"
+                    alt="COM_FOODMAN_ALT_MENU_LISTS"
+            >
+                COM_FOODMAN_MENU_LISTS
+            </menu>
+            <menu
+                    view="products"
+                    img="class:products"
+                    alt="COM_FOODMAN_ALT_MENU_PRODUCTS"
+            >
+                COM_FOODMAN_MENU_PRODUCTS
+            </menu>
+            <menu
+                    view="stocks"
+                    img="class:stocks"
+                    alt="COM_FOODMAN_ALT_MENU_STOCKS"
+            >
+                COM_FOODMAN_MENU_STOCKS
+            </menu>
+            <menu
+                    view="shoppings"
+                    img="class:shoppings"
+                    alt="COM_FOODMAN_ALT_MENU_SHOPPINGS"
+            >
+                COM_FOODMAN_MENU_SHOPPINGS
+            </menu>
+            <menu
+                    view="movements"
+                    img="class:movements"
+                    alt="COM_FOODMAN_ALT_MENU_MOVEMENTS"
+            >
+                COM_FOODMAN_MENU_MOVEMENTS
+            </menu>
+        </submenu>
+        <files folder="admin">
+            <filename>access.xml</filename>
+            <filename>foodman.php</filename>
+            <filename>config.xml</filename>
+            <filename>controller.php</filename>
+            <folder>controllers</folder>
+            <folder>helpers</folder>
+            <folder>includes</folder>
+            <folder>layouts</folder>
+            <folder>libraries</folder>
+            <folder>models</folder>
+            <folder>tables</folder>
+            <folder>sql</folder>
+            <folder>views</folder>
+        </files>
+        <languages folder="admin">
+            <language tag="en-GB">language/en-GB/en-GB.com_foodman.ini</language>
+            <language tag="en-GB">language/en-GB/en-GB.com_foodman.sys.ini</language>
+            <language tag="es-ES">language/es-ES/es-ES.com_foodman.ini</language>
+            <language tag="es-ES">language/es-ES/es-ES.com_foodman.sys.ini</language>
+        </languages>
     </administration>
 </extension>

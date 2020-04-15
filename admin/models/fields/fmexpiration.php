@@ -28,7 +28,7 @@ class FMExpirationField extends \JFormFieldPredefinedList
 	/**
 	 * The form field type.
 	 *
-	 * @var	       string
+	 * @var           string
 	 * @since   3.2
 	 */
 	protected $type = 'FMExpiration';
@@ -36,13 +36,13 @@ class FMExpirationField extends \JFormFieldPredefinedList
 	/**
 	 * Available options
 	 *
-	 * @var	    array
+	 * @var        array
 	 * @since  3.2
 	 */
 	protected $predefinedOptions = array(
 		'last_week'   => 'COM_FOODMAN_OPTION_RANGE_LAST_WEEK',
 		'yesterday'   => 'COM_FOODMAN_OPTION_RANGE_YESTERDAY',
-		'today'	      => 'COM_FOODMAN_OPTION_RANGE_TODAY',
+		'today'       => 'COM_FOODMAN_OPTION_RANGE_TODAY',
 		'tomorrow'    => 'COM_FOODMAN_OPTION_RANGE_TOMORROW',
 		'this_week'   => 'COM_FOODMAN_OPTION_RANGE_THIS_WEEK',
 		'this_1month' => 'COM_FOODMAN_OPTION_RANGE_THIS_1MONTH'
@@ -51,7 +51,7 @@ class FMExpirationField extends \JFormFieldPredefinedList
 	/**
 	 * Method to instantiate the form field object.
 	 *
-	 * @param   Form  $form	 The form to attach to the form field object.
+	 * @param   Form  $form  The form to attach to the form field object.
 	 *
 	 * @since   1.7.0
 	 */

@@ -21,7 +21,7 @@ class JFormFieldFMShop extends JFormFMFieldList
 	/**
 	 * The form field type.
 	 *
-	 * @var		 string
+	 * @var         string
 	 * @since  11.1
 	 */
 	protected $type = 'FMShop';
@@ -29,7 +29,7 @@ class JFormFieldFMShop extends JFormFMFieldList
 	/**
 	 * The text for select in filter form
 	 *
-	 * @var		 string
+	 * @var         string
 	 * @since  11.1
 	 */
 	protected $FieldSelectText = 'SHOP';

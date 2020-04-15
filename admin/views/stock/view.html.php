@@ -22,21 +22,21 @@ class FoodManViewStock extends JViewLegacy
 	/**
 	 * The JForm object
 	 *
-	 * @var	    JForm
+	 * @var        JForm
 	 */
 	protected $form;
 
 	/**
 	 * The active item
 	 *
-	 * @var	    object
+	 * @var        object
 	 */
 	protected $item;
 
 	/**
 	 * The model state
 	 *
-	 * @var	    object
+	 * @var        object
 	 */
 	protected $state;
 

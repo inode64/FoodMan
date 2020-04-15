@@ -42,7 +42,7 @@ class FoodManControllerShopping extends FoodManControllerForm
 		$context = 'com_foodman.edit.shopping.task';
 		$app->setUserState($context, $task);
 
-		$listid	 = JFactory::getApplication()->input->get('id', '', 'int');
+		$listid  = JFactory::getApplication()->input->get('id', '', 'int');
 		$context = 'com_foodman.edit.shopping.listid';
 
 		$app->setUserState($context, $listid);
@@ -76,7 +76,7 @@ class FoodManControllerShopping extends FoodManControllerForm
 	 *
 	 * @param   string  $key     The name of the primary key of the URL variable.
 	 * @param   string  $urlVar  The name of the URL variable if different from the primary key
-	 *			     (sometimes required to avoid router collisions).
+	 *                           (sometimes required to avoid router collisions).
 	 *
 	 * @return  boolean  True if access level check and checkout passes, false otherwise.
 	 *

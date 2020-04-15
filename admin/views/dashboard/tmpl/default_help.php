@@ -10,5 +10,5 @@
 
 defined('_JEXEC') or die;
 ?>
-<div class="fm_howitworks"><?php echo JText::_('COM_FOODMAN_HOW_IT_WORKS_DESC')?></div>
+<div class="fm_howitworks"><?php echo JText::_('COM_FOODMAN_HOW_IT_WORKS_DESC') ?></div>
 <div class="clearfix"></div>

@@ -22,8 +22,8 @@ class FoodManModelGroups extends JModelList
 	 *
 	 * @param   array  $config  An optional associative array of configuration settings.
 	 *
-	 * @see	       JControllerLegacy
-	 * @since      1.6
+	 * @see           JControllerLegacy
+	 * @since         1.6
 	 */
 	public function __construct($config = array())
 	{
@@ -75,7 +75,7 @@ class FoodManModelGroups extends JModelList
 		$query->from($db->quoteName('#__foodman_groups', 'a'));
 
 		// Join over the user
-		$query->select('group_concat(' . $db->quoteName('u.name') .')' . ' AS user_name')
+		$query->select('group_concat(' . $db->quoteName('u.name') . ')' . ' AS user_name')
 			->join('LEFT', $db->quoteName('#__foodman_group_user', 'g') . ' ON g.groupid = a.id');
 		$query->select($db->quoteName('u.name'))
 			->join('LEFT', $db->quoteName('#__users', 'u') . ' ON u.id = g.userid');
@@ -147,7 +147,7 @@ class FoodManModelGroups extends JModelList
 	 * different modules that might need different sets of data or different
 	 * ordering requirements.
 	 *
-	 * @param   string  $id	 A prefix for the store id.
+	 * @param   string  $id  A prefix for the store id.
 	 *
 	 * @return  string  A store id.
 	 *
@@ -185,8 +185,8 @@ class FoodManModelGroups extends JModelList
 	 *
 	 * Note. Calling getState in this method will result in recursion.
 	 *
-	 * @param   string  $ordering	An optional ordering field.
-	 * @param   string  $direction	An optional direction (asc|desc).
+	 * @param   string  $ordering   An optional ordering field.
+	 * @param   string  $direction  An optional direction (asc|desc).
 	 *
 	 * @return  void
 	 *

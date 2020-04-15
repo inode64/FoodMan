@@ -22,7 +22,7 @@ class FoodManModelShop extends JModelAdmin
 	/**
 	 * The prefix to use with controller messages.
 	 *
-	 * @var	      string
+	 * @var          string
 	 * @since  1.6
 	 */
 	protected $text_prefix = 'COM_FOODMAN_SHOP';
@@ -80,8 +80,8 @@ class FoodManModelShop extends JModelAdmin
 	/**
 	 * Method to get the record form.
 	 *
-	 * @param   array    $data	Data for the form. [optional]
-	 * @param   boolean  $loadData	True if the form is to load its own data (default case), false if not. [optional]
+	 * @param   array    $data      Data for the form. [optional]
+	 * @param   boolean  $loadData  True if the form is to load its own data (default case), false if not. [optional]
 	 *
 	 * @return  JForm|boolean  A JForm object on success, false on failure
 	 *
@@ -170,7 +170,7 @@ class FoodManModelShop extends JModelAdmin
 		if (empty($table->id))
 		{
 			// Set the values
-			$table->created	   = $date->toSql();
+			$table->created    = $date->toSql();
 			$table->created_by = $user->id;
 
 			// Set ordering to the last item if not set

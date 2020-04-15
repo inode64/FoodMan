@@ -56,8 +56,8 @@ JFactory::getDocument()->addScriptDeclaration('
 		<?php echo JHtml::_('bootstrap.startTabSet', 'stockTab', array('active' => 'details')); ?>
 
 		<?php echo JHtml::_('bootstrap.addTab', 'stockTab', 'details', JText::_('COM_FOODMAN_LABEL_DETAILS')); ?>
-	<div class="row-fluid">
-	    <div class="span9">
+        <div class="row-fluid">
+            <div class="span9">
 				<?php echo $this->form->renderField('userid'); ?>
 				<?php echo $this->form->renderField('quantity'); ?>
 				<?php echo $this->form->renderField('proid'); ?>
@@ -65,11 +65,11 @@ JFactory::getDocument()->addScriptDeclaration('
 				<?php echo $this->form->renderField('open'); ?>
 				<?php echo $this->form->renderField('locid'); ?>
 
-	    </div>
-	    <div class="span3">
+            </div>
+            <div class="span3">
 				<?php echo JLayoutHelper::render('joomla.edit.global', $this); ?>
-	    </div>
-	</div>
+            </div>
+        </div>
 		<?php echo JHtml::_('bootstrap.endTab'); ?>
 
 		<?php echo JHtml::_('bootstrap.endTabSet'); ?>
