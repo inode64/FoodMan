@@ -12,18 +12,12 @@ namespace Joomla\CMS\Form\Field;
 
 defined('JPATH_PLATFORM') or die;
 
-use Joomla\CMS\Factory;
-use Joomla\CMS\Form\Form;
-use Joomla\CMS\Form\FormHelper;
-
-FormHelper::loadFieldClass('predefinedlist');
-
 /**
  * Registration Date Range field.
  *
  * @since  3.2
  */
-class FMExpirationField extends \JFormFieldPredefinedList
+class FMExpirationField extends JFormFMFieldPredefinedList
 {
 	/**
 	 * The form field type.
@@ -47,20 +41,4 @@ class FMExpirationField extends \JFormFieldPredefinedList
 		'this_week'   => 'COM_FOODMAN_OPTION_RANGE_THIS_WEEK',
 		'this_1month' => 'COM_FOODMAN_OPTION_RANGE_THIS_1MONTH'
 	);
-
-	/**
-	 * Method to instantiate the form field object.
-	 *
-	 * @param   Form  $form  The form to attach to the form field object.
-	 *
-	 * @since   1.7.0
-	 */
-	public function __construct($form = null)
-	{
-		parent::__construct($form);
-
-		// Load the required language
-		$lang = Factory::getLanguage();
-		$lang->load('com_foodman', JPATH_ADMINISTRATOR);
-	}
 }
