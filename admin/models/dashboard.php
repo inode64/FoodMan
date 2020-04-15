@@ -89,4 +89,4 @@ class FoodManModelDashBoard extends JModelLegacy
 	}
 }
 
-?>
+
