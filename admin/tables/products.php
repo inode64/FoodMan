@@ -19,21 +19,21 @@ class FoodManTableProducts extends FoodManTable
 {
 
 	public $name = '';
-	public $expiration = null;
-	public $catid = null;
-	public $state = null;
-	public $userid = null;
+	public $expiration;
+	public $catid;
+	public $state;
+	public $userid;
 	public $description = '';
-	public $ordering = null;
+	public $ordering;
 	public $daysopen = 0;
 	public $minstock = 0;
 	public $maxstock = 0;
-	public $featured = null;
+	public $featured;
 	public $language = '';
-	public $created = null;
-	public $created_by = null;
+	public $created;
+	public $created_by;
 	public $modified = 0;
-	public $modified_by = null;
+	public $modified_by;
 	public $checked_out = 0;
 	public $checked_out_time = 0;
 

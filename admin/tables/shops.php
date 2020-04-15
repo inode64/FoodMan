@@ -18,16 +18,16 @@ defined('_JEXEC') or die;
 class FoodManTableShops extends FoodManTable
 {
 	public $name = '';
-	public $state = null;
-	public $userid = null;
+	public $state;
+	public $userid;
 	public $description = '';
-	public $ordering = null;
-	public $featured = null;
+	public $ordering;
+	public $featured;
 	public $language = '';
-	public $created = null;
-	public $created_by = null;
+	public $created;
+	public $created_by;
 	public $modified = 0;
-	public $modified_by = null;
+	public $modified_by;
 	public $checked_out = 0;
 	public $checked_out_time = 0;
 

@@ -20,7 +20,7 @@ use Joomla\Registry\Registry;
 abstract class FoodManTable extends \Joomla\CMS\Table\Table
 {
 
-	public $id = null;
+	public $id;
 
 	/**
 	 * Constructor

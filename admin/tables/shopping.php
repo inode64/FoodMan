@@ -19,23 +19,23 @@ class FoodManTableShopping extends FoodManTable
 {
 
 	public $comments = '';
-	public $expiration = null;
-	public $state = null;
-	public $process = null;
-	public $userid = null;
-	public $proid = null;
-	public $listid = null;
-	public $locid = null;
-	public $ordering = null;
-	public $featured = null;
+	public $expiration;
+	public $state;
+	public $process;
+	public $userid;
+	public $proid;
+	public $listid;
+	public $locid;
+	public $ordering;
+	public $featured;
 	public $quantity = 0;
 	public $bought = 0;
 	public $price = 0;
 	public $language = '';
-	public $created = null;
-	public $created_by = null;
+	public $created;
+	public $created_by;
 	public $modified = 0;
-	public $modified_by = null;
+	public $modified_by;
 	public $checked_out = 0;
 	public $checked_out_time = 0;
 

@@ -20,18 +20,18 @@ class FoodManTableStocks extends FoodManTable
 
 	public $quantity = 1;
 	public $expiration = 0;
-	public $state = null;
-	public $userid = null;
-	public $proid = null;
-	public $locid = null;
-	public $ordering = null;
-	public $featured = null;
-	public $open = null;
+	public $state;
+	public $userid;
+	public $proid;
+	public $locid;
+	public $ordering;
+	public $featured;
+	public $open;
 	public $language = '';
-	public $created = null;
-	public $created_by = null;
+	public $created;
+	public $created_by;
 	public $modified = 0;
-	public $modified_by = null;
+	public $modified_by;
 	public $checked_out = 0;
 	public $checked_out_time = 0;
 
