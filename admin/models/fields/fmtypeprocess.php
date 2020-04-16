@@ -13,8 +13,7 @@ defined('JPATH_PLATFORM') or die;
 JFormHelper::loadFieldClass('list');
 
 /**
- * Form Field class for the Joomla Platform.
- * Supports a generic list of options.
+ * Field to load a list of process
  *
  * @since  11.1
  */

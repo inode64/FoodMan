@@ -13,7 +13,7 @@ namespace Joomla\CMS\Form\Field;
 defined('JPATH_PLATFORM') or die;
 
 /**
- * State field.
+ * Field to load a list of all states
  *
  * @since  3.2
  */

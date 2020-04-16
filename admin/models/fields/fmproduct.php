@@ -11,8 +11,7 @@
 defined('JPATH_PLATFORM') or die;
 
 /**
- * Form Field class for the Joomla Platform.
- * Supports a generic list of options.
+ * Field to load a list of all products
  *
  * @since  11.1
  */
