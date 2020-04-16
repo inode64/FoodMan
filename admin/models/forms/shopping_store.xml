@@ -25,7 +25,7 @@
                 type="fmlist"
                 label="COM_FOODMAN_FIELD_LIST_LABEL"
                 description="COM_FOODMAN_FIELD_LIST_DESC"
-                readonly="trues"
+                readonly="true"
         />
 
         <field
