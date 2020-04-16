@@ -52,7 +52,6 @@
                 description="COM_FOODMAN_FIELD_PRODUCTS_DESC"
                 multiple="true"
                 min="1"
-                max="100"
         >
             <form>
                 <field
