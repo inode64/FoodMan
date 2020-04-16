@@ -10,6 +10,8 @@
     <version>0.1.0</version>
     <description>COM_FOODMAN_DESCRIPTION</description>
 
+    <scriptfile>script.php</scriptfile>
+
     <install>
         <sql>
             <file driver="mysqli" charset="utf8">sql/install.mysql.utf8.sql</file>
