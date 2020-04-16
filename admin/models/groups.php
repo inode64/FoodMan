@@ -38,7 +38,6 @@ class FoodManModelGroups extends JModelList
 				'featured', 'a.featured',
 				'language', 'a.language',
 				'created', 'a.created',
-				'u.name', 'user_name',
 				'published'
 			);
 		}
@@ -75,9 +74,9 @@ class FoodManModelGroups extends JModelList
 		$query->from($db->quoteName('#__foodman_groups', 'a'));
 
 		// Join over the user
-		$query->select('group_concat(' . $db->quoteName('u.name') . ')' . ' AS user_name')
+		$query->select('group_concat(' . $db->quoteName('u.name') . ')' . ' AS users_name')
 			->join('LEFT', $db->quoteName('#__foodman_group_user', 'g') . ' ON g.groupid = a.id');
-		$query->select($db->quoteName('u.name'))
+		$query->select($db->quoteName('u.name','user_name'))
 			->join('LEFT', $db->quoteName('#__users', 'u') . ' ON u.id = g.userid');
 		$query->group($db->quoteName('a.id'));
 

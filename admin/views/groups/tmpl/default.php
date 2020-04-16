@@ -59,7 +59,7 @@ if ($saveOrder)
 						<?php echo JHtml::_('searchtools.sort', 'COM_FOODMAN_HEADING_NAME', 'a.name', $listDirn, $listOrder); ?>
                     </th>
                     <th width="10%" class="nowrap hidden-phone">
-						<?php echo JHtml::_('searchtools.sort', 'COM_FOODMAN_HEADING_USER', 'u.name', $listDirn, $listOrder); ?>
+						<?php echo JText::_('COM_FOODMAN_HEADING_USERS'); ?>
                     </th>
                     <th width="10%" class="nowrap hidden-phone">
 						<?php echo JHtml::_('searchtools.sort', 'JGRID_HEADING_LANGUAGE', 'a.language', $listDirn, $listOrder); ?>
@@ -126,7 +126,7 @@ if ($saveOrder)
                         </td>
 
                         <td class="small hidden-phone">
-							<?php echo $item->user_name; ?>
+							<?php echo $item->users_name; ?>
                         </td>
                         <td class="small nowrap hidden-phone">
 							<?php echo JLayoutHelper::render('joomla.content.language', $item); ?>
