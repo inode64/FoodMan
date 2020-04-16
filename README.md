@@ -4,6 +4,11 @@ Manage, buy and store your food, not just a shopping list.
 A website app which allows you to manage not only food, but also medical drugs or any other perishable item in your home.
 It also allows you to spare money, losing less time searching food in its correct location and helping you to better plan your shopping without any waste.  
 
+Requirements
+-------------
+- Joomla 3.9
+- PHP 7.2
+
 Todo
 -------------
 
@@ -19,3 +24,5 @@ Todo
 - Check security
 - Integration with openfoodfacts.org
 - Charts and stats graphics
+- Import / Export in csv
+- Manage menus for restaurants, gims, etc...
