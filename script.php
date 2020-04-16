@@ -31,5 +31,7 @@ class com_FoodManInstallerScript extends \Joomla\CMS\Installer\InstallerScript
 		{
 			return false;
 		}
+
+		return true;
 	}
 }
