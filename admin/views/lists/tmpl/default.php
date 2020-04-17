@@ -162,11 +162,11 @@ if ($saveOrder)
 									<?php } else { ?>
 										<?php if ($item->count_list_create > 0) { ?>
                                             <a class="badge badge-warning"
-                                               href="<?php echo JRoute::_('index.php?option=com_foodman&task=shopping.' . TASK_SHOPPING_STORE . '&layout=' . VIEW_SHOPPING[TYPE_PROCESS_STORE] . '&id=' . (int) $item->id); ?>">
+                                               href="<?php echo JRoute::_('index.php?option=com_foodman&task=shopping.' . TASK_SHOPPING_FINISH . '&layout=' . TASK_SHOPPING_FINISH . '&id=' . (int) $item->id); ?>">
 												<?php echo JText::_('COM_FOODMAN_LIST_SHOPPING_FINISH'); ?></a>
 										<?php } else { ?>
                                             <a class="badge badge-info"
-                                               href="<?php echo JRoute::_('index.php?option=com_foodman&task=shopping.' . TASK_SHOPPING_STORE . '&layout=' . VIEW_SHOPPING[TYPE_PROCESS_STORE] . '&id=' . (int) $item->id); ?>">
+                                               href="<?php echo JRoute::_('index.php?option=com_foodman&task=shopping.' . TASK_SHOPPING_FINISH . '&layout=' . TASK_SHOPPING_FINISH . '&id=' . (int) $item->id); ?>">
 												<?php echo JText::_('COM_FOODMAN_LIST_SHOPPING_FINISH'); ?></a>
 										<?php } ?>
 									<?php } ?>

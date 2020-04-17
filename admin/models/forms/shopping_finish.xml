@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+    <fieldset name="details" addfieldpath="/administrator/components/com_foodman/models/fields">
+
+        <field
+                name="id"
+                type="number"
+                label="JGLOBAL_FIELD_ID_LABEL"
+                description="JGLOBAL_FIELD_ID_DESC"
+                default="0"
+                readonly="true"
+                class="readonly"
+        />
+
+        <field
+                name="userid"
+                type="fmusers"
+                label="COM_FOODMAN_FIELD_USER_LABEL"
+                description="COM_FOODMAN_FIELD_USER_DESC"
+                readonly="true"
+        />
+
+        <field
+                name="listid"
+                type="fmlist"
+                label="COM_FOODMAN_FIELD_LIST_LABEL"
+                description="COM_FOODMAN_FIELD_LIST_DESC"
+                readonly="true"
+        />
+
+        <!-- State Finish, Joomla not permit const -->
+        <field
+                name="process"
+                type="hidden"
+                default="4"
+        />
+
+        <field
+                name="products"
+                type="subform"
+                label="COM_FOODMAN_FIELD_PRODUCTS_LABEL"
+                description="COM_FOODMAN_FIELD_PRODUCTS_DESC"
+                multiple="true"
+                buttons="move"
+        >
+            <form>
+                <field
+                        name="id"
+                        type="hidden"
+                />
+
+                <field
+                        name="process"
+                        type="hidden"
+                />
+
+                <field
+                        name="proid"
+                        type="fmproduct"
+                        label="COM_FOODMAN_FIELD_PRODUCT_LABEL"
+                        description="COM_FOODMAN_FIELD_PRODUCT_DESC"
+                        readonly="true"
+                />
+
+                <field
+                        name="quantity"
+                        type="number"
+                        min="0"
+                        max="1000"
+                        default="1"
+                        step="1"
+                        readonly="true"
+                        label="COM_FOODMAN_FIELD_QUANTITY_LABEL"
+                        description="COM_FOODMAN_FIELD_QUANTITY_DESC"
+                        class="btn-group btn-group-number"
+                />
+
+                <field
+                        name="bought"
+                        type="number"
+                        min="0"
+                        max="1000"
+                        default="0"
+                        step="1"
+                        label="COM_FOODMAN_FIELD_BOUGHT_LABEL"
+                        description="COM_FOODMAN_FIELD_BOUGHT_DESC"
+                        class="btn-group btn-group-number"
+                        readonly="true"
+                />
+
+                <field
+                        name="price"
+                        type="number"
+                        min="0"
+                        default="1"
+                        label="COM_FOODMAN_FIELD_PRICE_LABEL"
+                        description="COM_FOODMAN_FIELD_PRICE_DESC"
+                        class="btn-group btn-group-number"
+                        readonly="true"
+                />
+
+                <field
+                        name="comments"
+                        type="text"
+                        label="COM_FOODMAN_FIELD_COMMENTS_LABEL"
+                        description="COM_FOODMAN_FIELD_COMMENTS_DESC"
+                        class="input-xxlarge input-large-text"
+                        size="120"
+                        readonly="true"
+                />
+
+                <field name="preserve"
+                       type="radio"
+                       class="btn-group btn-group-yesno"
+                       label="COM_FOODMAN_FIELD_PRESERVE_LABEL"
+                       description="COM_FOODMAN_FIELD_PRESERVE_DESC"
+                       default="1"
+                >
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+
+                <field
+                        name="rest"
+                        type="number"
+                        min="0"
+                        label="COM_FOODMAN_FIELD_REST_LABEL"
+                        description="COM_FOODMAN_FIELD_REST_DESC"
+                        class="btn-group btn-group-number"
+                        readonly="true"
+                />
+
+            </form>
+        </field>
+    </fieldset>
+</form>

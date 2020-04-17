@@ -1,4 +1,4 @@
-<?php
+<?php /** @noinspection ALL */
 
 /**
  * @package    FoodMan
@@ -277,6 +277,83 @@ class FoodManModelShopping extends JModelAdmin
 	}
 
 	/**
+	 * @param   array  $list
+	 *
+	 * @return array
+	 *
+	 * @since version
+	 */
+	private function GetFinishItems(array $list): array
+	{
+		#TODO Select only by user / lang / group
+
+		$db      = $this->getDbo();
+		$process = array(TYPE_PROCESS_BUY, TYPE_PROCESS_STORE);
+		$query   = $db->getQuery(true)
+			->select($db->quoteName(array('id', 'quantity', 'proid', 'price', 'bought', 'locid', 'process')))
+			->from($db->quoteName('#__foodman_shopping'))
+			->where('state = 1')
+			->where('process IN (' . implode(',', $process) . ')')
+			->where('listid = ' . $list['listid']);
+
+		$db->setQuery($query);
+
+		return $db->loadObjectList();
+	}
+
+	/**
+	 * @param   array  $rows
+	 * @param   array  $data
+	 *
+	 *
+	 * @since version
+	 */
+	private function UpdateFinishItems(array $rows, array $data): void
+	{
+		$table    = $this->getTable();
+		$preserve = array();
+
+		foreach ($data as $row)
+		{
+			$preserve[$row['id']] = (int) $row['preserve'];
+		}
+
+		foreach ($rows as $row)
+		{
+			// Product buy completely
+			if ($row->bought >= $row->quantity)
+			{
+				$table->load($row->id);
+				if (!$table->delete($row->id))
+				{
+					# TODO: Fix workflow in error
+					$this->setError($table->getError());
+				}
+				continue;
+			}
+
+			if (!$preserve[$row->id])
+			{
+				// No preserve item for next time
+				$table->load($row->id);
+				if (!$table->delete($row->id))
+				{
+					# TODO: Fix workflow in error
+					$this->setError($table->getError());
+				}
+				continue;
+			}
+
+			$object           = new stdClass();
+			$object->id       = $row->id;
+			$object->quantity = $row->quantity - $row->bought;
+			$object->process  = TYPE_PROCESS_CREATE;
+
+			$result = JFactory::getDbo()->updateObject('#__foodman_shopping', $object, 'id');
+		}
+	}
+
+	/**
 	 * Method to save category
 	 *
 	 * @param   array  $data  The form data.
@@ -287,6 +364,13 @@ class FoodManModelShopping extends JModelAdmin
 	 */
 	public function save($data)
 	{
+		if (JFactory::getApplication()->getUserState('com_foodman.edit.shopping.task') == TASK_SHOPPING_FINISH)
+		{
+			$rows = self::GetFinishItems($data);
+			self::UpdateFinishItems($rows, $data['products']);
+
+			return true;
+		}
 
 		foreach ($data['products'] as $product)
 		{
@@ -386,6 +470,9 @@ class FoodManModelShopping extends JModelAdmin
 			case TASK_SHOPPING_STORE:
 				$process = array(TYPE_PROCESS_BUY, TYPE_PROCESS_STORE);
 				break;
+			case TASK_SHOPPING_FINISH:
+				$process = array(TYPE_PROCESS_CREATE, TYPE_PROCESS_BUY, TYPE_PROCESS_STORE);
+				break;
 		}
 
 		# TODO: Perform security get item support by user
@@ -416,6 +503,11 @@ class FoodManModelShopping extends JModelAdmin
 			->where('listid = ' . $list->id)
 			->where('language = ' . $db->quote($list->language));
 
+		if ($layout === TASK_SHOPPING_FINISH)
+		{
+			$query->where($db->quoteName('quantity') . ' > ' . $db->quoteName('bought'));
+		}
+
 		$db->setQuery($query);
 
 		try
@@ -436,7 +528,15 @@ class FoodManModelShopping extends JModelAdmin
 			$result->listid   = $list->id;
 			$result->userid   = $list->userid;
 			$result->language = $list->language;
-			$result->process  = TYPE_PROCESS_CREATE;
+
+			if ($layout === TASK_SHOPPING_FINISH)
+			{
+				$result->process = TYPE_PROCESS_FINISH;
+			}
+			else
+			{
+				$result->process = TYPE_PROCESS_CREATE;
+			}
 
 			return $result;
 		}
@@ -444,6 +544,9 @@ class FoodManModelShopping extends JModelAdmin
 		// Checkin all items are editing for other users
 		foreach ($rows as $key => $row)
 		{
+			// Amount left to buy
+			$rows[$key]['rest'] = $row['quantity'] - $row['bought'];
+
 			if ($key !== 0)
 			{
 				if (!$this->checkout($row['id']))

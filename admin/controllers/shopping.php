@@ -32,6 +32,7 @@ class FoodManControllerShopping extends FoodManControllerForm
 		$this->registerTask(TASK_SHOPPING_CREATE, 'add');
 		$this->registerTask(TASK_SHOPPING_BUY, 'edit');
 		$this->registerTask(TASK_SHOPPING_STORE, 'edit');
+		$this->registerTask(TASK_SHOPPING_FINISH, 'edit');
 	}
 
 	private function SetTask(): void
@@ -102,17 +103,21 @@ class FoodManControllerShopping extends FoodManControllerForm
 	 */
 	public function save($key = null, $urlVar = null)
 	{
-		$task = $this->getTask();
+		$task     = $this->getTask();
+		$taskList = JFactory::getApplication()->getUserState('com_foodman.edit.shopping.task');
 
 		$return = parent::save();
 
 		if ($task !== 'apply')
 		{
-			$task = JFactory::getApplication()->getUserState('com_foodman.edit.shopping.task');
-			if (!FoodManHelper::DefaultTask($task))
+			if (!FoodManHelper::DefaultTask($taskList))
 			{
 				$this->setRedirect(JRoute::_('index.php?option=com_foodman&view=lists', false));
 			}
+		}
+		if ($task === 'apply' && $taskList === TASK_SHOPPING_FINISH)
+		{
+			$this->setRedirect(JRoute::_('index.php?option=com_foodman&view=lists', false));
 		}
 
 		return $return;

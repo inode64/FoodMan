@@ -92,24 +92,30 @@ class FoodManViewShopping extends JViewLegacy
 
 		JToolbarHelper::title($isNew ? JText::_('COM_FOODMAN_MANAGER_SHOPPING_NEW') : JText::_('COM_FOODMAN_MANAGER_SHOPPING_EDIT'), 'foodman fas fa-boxes');
 
-		// If not checked out, can save the item.
-		if ($canDo->get('core.edit'))
+		if ($task === TASK_SHOPPING_FINISH)
 		{
-			JToolbarHelper::apply('shopping.apply');
-			JToolbarHelper::save('shopping.save');
-
-			if ($canDo->get('core.create') && FoodManHelper::DefaultTask($task))
+			JToolbarHelper::apply('shopping.apply', 'COM_FOODMAN_FINISH_LIST');
+		}
+		else
+		{
+			// If not checked out, can save the item.
+			if ($canDo->get('core.edit'))
 			{
-				JToolbarHelper::save2new('shopping.save2new');
+				JToolbarHelper::apply('shopping.apply');
+				JToolbarHelper::save('shopping.save');
+
+				if ($canDo->get('core.create') && FoodManHelper::DefaultTask($task))
+				{
+					JToolbarHelper::save2new('shopping.save2new');
+				}
+			}
+
+			// If an existing item, can save to a copy.
+			if (!$isNew && $canDo->get('core.create') && FoodManHelper::DefaultTask($task))
+			{
+				JToolbarHelper::save2copy('shopping.save2copy');
 			}
 		}
-
-		// If an existing item, can save to a copy.
-		if (!$isNew && $canDo->get('core.create') && FoodManHelper::DefaultTask($task))
-		{
-			JToolbarHelper::save2copy('shopping.save2copy');
-		}
-
 		if (empty($this->item->id))
 		{
 			JToolbarHelper::cancel('shopping.cancel');
