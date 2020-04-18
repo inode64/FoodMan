@@ -13,4 +13,4 @@ DROP TABLE IF EXISTS `#__foodman_product_location`;
 DROP TABLE IF EXISTS `#__foodman_product_list`;
 DROP TABLE IF EXISTS `#__foodman_stocks`;
 DROP TABLE IF EXISTS `#__foodman_shopping`;
-DROP TABLE IF EXISTS `#__foodman_movement`;
+DROP TABLE IF EXISTS `#__foodman_movements`;

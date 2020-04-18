@@ -420,10 +420,10 @@ CREATE TABLE IF NOT EXISTS `#__foodman_shopping`
   AUTO_INCREMENT = 1000;
 
 --
--- Table structure for table `#__foodman_movement`
+-- Table structure for table `#__foodman_movements`
 --
 
-CREATE TABLE IF NOT EXISTS `#__foodman_movement`
+CREATE TABLE IF NOT EXISTS `#__foodman_movements`
 (
     `id`               int(11)                NOT NULL AUTO_INCREMENT,
     `state`            tinyint(3)             NOT NULL DEFAULT 0,

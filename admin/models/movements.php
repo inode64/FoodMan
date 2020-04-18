@@ -11,11 +11,11 @@
 defined('_JEXEC') or die;
 
 /**
- * Methods supporting a list of stock records.
+ * Methods supporting a list of movement records.
  *
  * @since  1.6
  */
-class FoodManModelStocks extends JModelList
+class FoodManModelMovements extends JModelList
 {
 	/**
 	 * Constructor.
@@ -32,11 +32,13 @@ class FoodManModelStocks extends JModelList
 			$config['filter_fields'] = array(
 				'id', 'a.id',
 				'userid', 'a.userid',
-				'proid', 'p.name', 'product',
-				'locid', 'n.name', 'location',
-				'state', 'a.state',
+				'locid', 'a.locid',
+				'listid', 'a.listid',
+				'shopid', 'a.shopid',
 				'quantity', 'a.quantity',
-				'expiration', 'a.expiration',
+				'price', 'a.price',
+				'state', 'a.state',
+				'type', 'a.type',
 				'ordering', 'a.ordering',
 				'featured', 'a.featured',
 				'language', 'a.language',
@@ -66,34 +68,42 @@ class FoodManModelStocks extends JModelList
 			$this->getState(
 				'list.select',
 				'a.id AS id,'
+				. 'a.quantity AS quantity,'
+				. 'a.price AS price,'
 				. 'a.state AS state,'
 				. 'a.featured AS featured,'
 				. 'a.ordering AS ordering,'
-				. 'a.userid,'
+				. 'a.type AS type,'
 				. 'a.language,'
-				. 'a.quantity,'
-				. 'a.expiration,'
 				. 'a.checked_out as checked_out,'
 				. 'a.checked_out_time as checked_out_time'
 			)
 		);
-		$query->from($db->quoteName('#__foodman_stocks', 'a'));
+		$query->from($db->quoteName('#__foodman_movements', 'a'));
 
 		// Join over the user
 		$query->select($db->quoteName('u.name', 'user_name'))
 			->join('LEFT', $db->quoteName('#__users', 'u') . ' ON u.id = a.userid');
 
+		// Join over the language
+		$query->select('l.title AS language_title, l.image AS language_image')
+			->join('LEFT', $db->quoteName('#__languages', 'l') . ' ON l.lang_code = a.language');
+
 		// Join over the product
 		$query->select($db->quoteName('p.name', 'product'))
 			->join('LEFT', $db->quoteName('#__foodman_products', 'p') . ' ON p.id = a.proid');
 
-		// Join over the location
-		$query->select($db->quoteName('n.name', 'location'))
-			->join('LEFT', $db->quoteName('#__foodman_locations', 'n') . ' ON n.id = a.locid');
+		// Join over the list
+		$query->select($db->quoteName('li.name', 'list'))
+			->join('LEFT', $db->quoteName('#__foodman_lists', 'li') . ' ON li.id = a.listid');
 
-		// Join over the language
-		$query->select('l.title AS language_title, l.image AS language_image')
-			->join('LEFT', $db->quoteName('#__languages', 'l') . ' ON l.lang_code = a.language');
+		// Join over the location
+		$query->select($db->quoteName('lo.name', 'location'))
+			->join('LEFT', $db->quoteName('#__foodman_locations', 'lo') . ' ON lo.id = a.locid');
+
+		// Join over the shop
+		$query->select($db->quoteName('s.name', 'shop'))
+			->join('LEFT', $db->quoteName('#__foodman_shops', 's') . ' ON s.id = a.shopid');
 
 		// Join with users table to get the username of the person who checked the record out
 		$query->select($db->quoteName('u2.username', 'editor'))
@@ -111,12 +121,28 @@ class FoodManModelStocks extends JModelList
 			$query->where($db->quoteName('a.state') . ' IN (0, 1)');
 		}
 
-		// Filter by user.
-		$userid = $this->getState('filter.userid');
+		// Filter by type movement.
+		$type = $this->getState('filter.type');
 
-		if (is_numeric($userid))
+		if (is_numeric($type))
 		{
-			$query->where($db->quoteName('a.userid') . ' = ' . (int) $userid);
+			$query->where($db->quoteName('a.type') . ' = ' . (int) $type);
+		}
+
+		// Filter by shop.
+		$shopid = $this->getState('filter.shopid');
+
+		if (is_numeric($shopid))
+		{
+			$query->where($db->quoteName('a.shopid') . ' = ' . (int) $shopid);
+		}
+
+		// Filter by list.
+		$listid = $this->getState('filter.listid');
+
+		if (is_numeric($listid))
+		{
+			$query->where($db->quoteName('a.listid') . ' = ' . (int) $listid);
 		}
 
 		// Filter by product.
@@ -134,19 +160,12 @@ class FoodManModelStocks extends JModelList
 		{
 			$query->where($db->quoteName('a.locid') . ' = ' . (int) $locid);
 		}
+		// Filter by user.
+		$userid = $this->getState('filter.userid');
 
-		// Add filter for registration ranges select list
-		$expiration = $this->getState('filter.expiration');
-
-		// Apply the range filter.
-		if ($expiration)
+		if (is_numeric($userid))
 		{
-			$dates = $this->buildDateRange($expiration);
-
-			$query->where(
-				$db->quoteName('a.expiration') . ' >= ' . $db->quote($dates['dStart']->format('Y-m-d H:i:s')) .
-				' AND ' . $db->quoteName('a.expiration') . ' <= ' . $db->quote($dates['dEnd']->format('Y-m-d H:i:s'))
-			);
+			$query->where($db->quoteName('a.userid') . ' = ' . (int) $userid);
 		}
 
 		// Filter by search in name
@@ -161,7 +180,7 @@ class FoodManModelStocks extends JModelList
 			else
 			{
 				$search = $db->quote('%' . str_replace(' ', '%', $db->escape(trim($search), true) . '%'));
-				$query->where('(a.name LIKE ' . $search . ' OR u.name LIKE ' . $search . ')');
+				$query->where('(a.comments LIKE ' . $search . ' OR u.name LIKE ' . $search . ')');
 			}
 		}
 
@@ -172,7 +191,7 @@ class FoodManModelStocks extends JModelList
 		}
 
 		// Add the list ordering clause.
-		$orderCol  = $this->state->get('list.ordering', 'p.name');
+		$orderCol  = $this->state->get('list.ordering', 'a.proid');
 		$orderDirn = $this->state->get('list.direction', 'ASC');
 
 		$query->order($db->escape($orderCol . ' ' . $orderDirn));
@@ -198,9 +217,11 @@ class FoodManModelStocks extends JModelList
 		// Compile the store id.
 		$id .= ':' . $this->getState('filter.search');
 		$id .= ':' . $this->getState('filter.published');
+		$id .= ':' . $this->getState('filter.type');
+		$id .= ':' . $this->getState('filter.listid');
+		$id .= ':' . $this->getState('filter.locationid');
+		$id .= ':' . $this->getState('filter.shopid');
 		$id .= ':' . $this->getState('filter.userid');
-		$id .= ':' . $this->getState('filter.locid');
-		$id .= ':' . $this->getState('filter.proid');
 		$id .= ':' . $this->getState('filter.language');
 
 		return parent::getStoreId($id);
@@ -217,7 +238,7 @@ class FoodManModelStocks extends JModelList
 	 *
 	 * @since   1.6
 	 */
-	public function getTable($type = 'Stocks', $prefix = 'FoodManTable', $config = array())
+	public function getTable($type = 'Movements', $prefix = 'FoodManTable', $config = array())
 	{
 		return JTable::getInstance($type, $prefix, $config);
 	}
@@ -234,14 +255,16 @@ class FoodManModelStocks extends JModelList
 	 *
 	 * @since   1.6
 	 */
-	protected function populateState($ordering = 'p.name', $direction = 'asc')
+	protected function populateState($ordering = 'a.proid', $direction = 'asc')
 	{
 		// Load the filter state.
 		$this->setState('filter.search', $this->getUserStateFromRequest($this->context . '.filter.search', 'filter_search', '', 'string'));
 		$this->setState('filter.published', $this->getUserStateFromRequest($this->context . '.filter.published', 'filter_published', '', 'string'));
 		$this->setState('filter.userid', $this->getUserStateFromRequest($this->context . '.filter.userid', 'filter_userid', '', 'int'));
 		$this->setState('filter.locid', $this->getUserStateFromRequest($this->context . '.filter.locid', 'filter_locid', '', 'int'));
-		$this->setState('filter.proid', $this->getUserStateFromRequest($this->context . '.filter.proid', 'filter_proid', '', 'int'));
+		$this->setState('filter.shopid', $this->getUserStateFromRequest($this->context . '.filter.shopid', 'filter_shopid', '', 'int'));
+		$this->setState('filter.listid', $this->getUserStateFromRequest($this->context . '.filter.listid', 'filter_listid', '', 'int'));
+		$this->setState('filter.type', $this->getUserStateFromRequest($this->context . '.filter.typeid', 'filter_typeid', '', 'int'));
 		$this->setState('filter.language', $this->getUserStateFromRequest($this->context . '.filter.language', 'filter_language', '', 'string'));
 
 		// Load the parameters.
@@ -250,62 +273,4 @@ class FoodManModelStocks extends JModelList
 		// List state information.
 		parent::populateState($ordering, $direction);
 	}
-
-	/**
-	 * Construct the date range to filter on.
-	 *
-	 * @param   string  $range  The textual range to construct the filter for.
-	 *
-	 * @return array The date range to filter on.
-	 *
-	 * @throws Exception
-	 * @since   3.6.0
-	 */
-	private function buildDateRange($range)
-	{
-
-		$app    = JFactory::getApplication();
-		$offset = $app->get('offset');
-
-		// Reset the start time to be the beginning of today, local time.
-		$dStart = new JDate('now', $offset);
-		$dStart->setTime(0, 0, 0);
-
-		// Now change the timezone back to UTC.
-		$tz = new DateTimeZone('GMT');
-		$dStart->setTimezone($tz);
-		$dEnd = clone $dStart;
-
-		switch ($range)
-		{
-			case 'last_week':
-				$dStart->modify('-7 day');
-				$dEnd->modify('-1 day');
-				break;
-
-			case 'yesterday':
-				$dStart->modify('-1 day');
-				$dEnd->modify('-1 day');
-				break;
-
-			case 'today':
-				break;
-
-			case 'tomorrow':
-				$dStart->modify('1 day');
-				$dEnd->modify('2 day');
-				break;
-
-			case 'this_week':
-				$dEnd->modify('7 day');
-				break;
-
-			case 'this_1month':
-				$dEnd->modify('1 month');
-				break;
-		}
-
-		return array('dEnd' => $dEnd, 'dStart' => $dStart);
-	}
-
 }

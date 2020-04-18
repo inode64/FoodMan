@@ -73,7 +73,7 @@ JFactory::getDocument()->addScriptDeclaration('
         </div>
 		<?php echo JHtml::_('bootstrap.endTab'); ?>
 
-		<?php echo JHtml::_('bootstrap.addTab', 'listTab', 'otherparams', JText::_('COM_FOODMAN_SHOP_LABEL_DETAILS')); ?>
+		<?php echo JHtml::_('bootstrap.addTab', 'listTab', 'otherparams', JText::_('COM_FOODMAN_LIST_LABEL_DETAILS')); ?>
 		<?php echo $this->form->renderField('shops'); ?>
 		<?php echo JHtml::_('bootstrap.endTab'); ?>
 

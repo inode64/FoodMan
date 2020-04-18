@@ -104,6 +104,15 @@ class FoodManController extends JControllerLegacy
 
 			return false;
 		}
+		if ($view == 'movement' && $layout == 'edit' && !$this->checkEditId('com_foodman.edit.movement', $id))
+		{
+			// Somehow the person just went to the form - we don't allow that.
+			$this->setError(JText::sprintf('JLIB_APPLICATION_ERROR_UNHELD_ID', $id));
+			$this->setMessage($this->getError(), 'error');
+			$this->setRedirect(JRoute::_('index.php?option=com_foodman&view=movements', false));
+
+			return false;
+		}
 
 		return parent::display();
 	}

@@ -121,4 +121,10 @@ const FOODMAN_SUBMENU = array(
 		'alt'   => null,
 		'image' => 'shoppings.png'
 	),
+	'movements'  => array(
+		'title' => 'COM_FOODMAN_SUBMENU_MOVEMENTS',
+		'url'   => 'index.php?option=com_foodman&view=movements',
+		'alt'   => null,
+		'image' => 'movements.png'
+	)
 );
