@@ -258,4 +258,29 @@ class FoodManModelMovement extends JModelAdmin
 	{
 		parent::preprocessForm($form, $data, $group);
 	}
+
+	/**
+	 * Insert an item
+	 *
+	 * @param   object  $data
+	 * @param   int     $type
+	 *
+	 * @return bool
+	 *
+	 * @since version
+	 */
+	public function insert(object $data, int $type): bool
+	{
+		$table = $this->getTable();
+
+		$data->state = 1;
+		$data->id    = 0;
+		$data->type = $type;
+
+		$table->bind((array) $data);
+
+		$this->prepareTable($table);
+
+		return $table->store($data);
+	}
 }

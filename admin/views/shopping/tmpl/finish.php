@@ -38,6 +38,7 @@ JFactory::getDocument()->addScriptDeclaration('
 		<?php echo JHtml::_('bootstrap.addTab', 'shoppingTab', 'details', JText::_('COM_FOODMAN_LABEL_DETAILS')); ?>
         <div class="row-fluid">
             <div class="span9">
+	            <?php echo $this->form->renderField('shopid'); ?>
 				<?php echo $this->form->renderField('listid'); ?>
 				<?php echo $this->form->renderField('products'); ?>
             </div>

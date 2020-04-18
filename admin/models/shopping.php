@@ -315,6 +315,7 @@ class FoodManModelShopping extends JModelAdmin
 
 		JModelLegacy::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_foodman/models', 'FoodManModel');
 		$stock = JModelLegacy::getInstance('Stock', 'FoodManModel');
+		$movement = JModelLegacy::getInstance('Movement', 'FoodManModel');
 
 		foreach ($data as $row)
 		{
@@ -333,10 +334,11 @@ class FoodManModelShopping extends JModelAdmin
 					$this->setError($table->getError());
 				}
 
-				continue;
-
 				// Update stock for complete
 				$stock->update($row);
+				$movement->insert($row, TYPE_MOVEMENT_BUY);
+
+				continue;
 			}
 
 			if (!$preserve[$row->id])
@@ -364,6 +366,7 @@ class FoodManModelShopping extends JModelAdmin
 			// Update stock for imcomplete
 			$row->quantity = $row->bought;
 			$stock->update($row);
+			$movement->insert($row, TYPE_MOVEMENT_BUY);
 		}
 	}
 
@@ -434,7 +437,6 @@ class FoodManModelShopping extends JModelAdmin
 		}
 
 		return true;
-
 	}
 
 	/**

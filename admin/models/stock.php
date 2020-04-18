@@ -265,6 +265,13 @@ class FoodManModelStock extends JModelAdmin
 	}
 
 
+	/**
+	 * @param   object  $data
+	 *
+	 * @return bool
+	 *
+	 * @since version
+	 */
 	public function update(object $data): bool
 	{
 		$db    = $this->getDbo();
