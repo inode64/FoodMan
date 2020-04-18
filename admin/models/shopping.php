@@ -355,6 +355,8 @@ class FoodManModelShopping extends JModelAdmin
 				$object->id       = $row->id;
 				$object->quantity = $row->quantity - $row->bought;
 				$object->process  = TYPE_PROCESS_CREATE;
+				// Reset bought but not reset location for remenber later
+				$object->bought  = 0;
 
 				$result = JFactory::getDbo()->updateObject('#__foodman_shopping', $object, 'id');
 			}
