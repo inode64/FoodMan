@@ -313,6 +313,9 @@ class FoodManModelShopping extends JModelAdmin
 		$table    = $this->getTable();
 		$preserve = array();
 
+		JModelLegacy::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_foodman/models', 'FoodManModel');
+		$stock = JModelLegacy::getInstance('Stock', 'FoodManModel');
+
 		foreach ($data as $row)
 		{
 			$preserve[$row['id']] = (int) $row['preserve'];
@@ -329,7 +332,11 @@ class FoodManModelShopping extends JModelAdmin
 					# TODO: Fix workflow in error
 					$this->setError($table->getError());
 				}
+
 				continue;
+
+				// Update stock for complete
+				$stock->update($row);
 			}
 
 			if (!$preserve[$row->id])
@@ -341,15 +348,20 @@ class FoodManModelShopping extends JModelAdmin
 					# TODO: Fix workflow in error
 					$this->setError($table->getError());
 				}
-				continue;
+			}
+			else
+			{
+				$object           = new stdClass();
+				$object->id       = $row->id;
+				$object->quantity = $row->quantity - $row->bought;
+				$object->process  = TYPE_PROCESS_CREATE;
+
+				$result = JFactory::getDbo()->updateObject('#__foodman_shopping', $object, 'id');
 			}
 
-			$object           = new stdClass();
-			$object->id       = $row->id;
-			$object->quantity = $row->quantity - $row->bought;
-			$object->process  = TYPE_PROCESS_CREATE;
-
-			$result = JFactory::getDbo()->updateObject('#__foodman_shopping', $object, 'id');
+			// Update stock for imcomplete
+			$row->quantity = $row->bought;
+			$stock->update($row);
 		}
 	}
 

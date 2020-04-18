@@ -265,4 +265,46 @@ class FoodManModelStock extends JModelAdmin
 	}
 
 
+	public function update(object $data): bool
+	{
+		$db    = $this->getDbo();
+		$table = $this->getTable();
+
+		# TODO: Check for group and lang if necessary
+		$query = $db->getQuery(true)
+			->select($db->quoteName(array('id', 'quantity')))
+			->from($db->quoteName('#__foodman_stocks'))
+			->where('state = 1')
+			->where('proid = ' . $data->proid)
+			->where('locid = ' . $data->locid);
+
+		$db->setQuery($query);
+
+		try
+		{
+			$row = $db->loadAssoc();
+		}
+		catch (RuntimeException $e)
+		{
+			$this->setError($e->getMessage());
+
+			return false;
+		}
+		if (empty($row['id']))
+		{
+			$data->id = 0;
+		}
+		else
+		{
+			$data->id       = $row['id'];
+			$data->quantity += $row['quantity'];
+		}
+
+		$data->state = 1;
+		$table->bind((array) $data);
+
+		$this->prepareTable($table);
+
+		return $table->store($data);
+	}
 }
