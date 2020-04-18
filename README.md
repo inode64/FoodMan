@@ -26,3 +26,9 @@ Todo
 - Charts and stats graphics
 - Import / Export in csv
 - Manage menus for restaurants, gims, etc...
+
+Ideas
+-------------
+
+- Use barcode detection API from chrome 83
+- USe NFC from chrome 81
