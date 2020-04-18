@@ -53,7 +53,7 @@ class JFormFieldFMTypeMovement extends JFormFieldList
 
 		foreach (TYPE_MOVEMENT as $key => $text)
 		{
-			$options[] = JHtml::_('select.option', $key, $text);
+			$options[] = JHtml::_('select.option', $key, JText::_($text));
 		}
 
 		// Create a read-only list (no name) with hidden input(s) to store the value(s).
