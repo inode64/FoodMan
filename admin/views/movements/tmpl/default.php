@@ -79,9 +79,6 @@ if ($saveOrder)
                     <th width="10%" class="nowrap hidden-phone">
 						<?php echo JHtml::_('searchtools.sort', 'COM_FOODMAN_HEADING_GROUP', 'g.name', $listDirn, $listOrder); ?>
                     </th>
-                    <th width="10%" class="nowrap hidden-phone">
-						<?php echo JHtml::_('searchtools.sort', 'JGRID_HEADING_LANGUAGE', 'a.language', $listDirn, $listOrder); ?>
-                    </th>
                     <th width="1%" class="nowrap hidden-phone">
 						<?php echo JHtml::_('searchtools.sort', 'JGRID_HEADING_ID', 'a.id', $listDirn, $listOrder); ?>
                     </th>
@@ -89,7 +86,7 @@ if ($saveOrder)
                 </thead>
                 <tfoot>
                 <tr>
-                    <td colspan="13">
+                    <td colspan="12">
 						<?php echo $this->pagination->getListFooter(); ?>
                     </td>
                 </tr>
@@ -162,9 +159,6 @@ if ($saveOrder)
                         </td>
                         <td class="small hidden-phone">
 							<?php echo JLayoutHelper::render('foodman.content.group', $item); ?>
-                        </td>
-                        <td class="small nowrap hidden-phone">
-							<?php echo JLayoutHelper::render('joomla.content.language', $item); ?>
                         </td>
                         <td class="hidden-phone">
 							<?php echo $item->id; ?>

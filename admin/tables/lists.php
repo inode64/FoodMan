@@ -24,7 +24,6 @@ class FoodManTableLists extends FoodManTable
 	public $description = '';
 	public $ordering;
 	public $featured;
-	public $language = '';
 	public $created;
 	public $created_by;
 	public $modified = 0;

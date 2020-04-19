@@ -49,7 +49,6 @@ JFactory::getDocument()->addScriptDeclaration('
     </div>
 
 	<?php echo $this->form->renderField('state'); ?>
-	<?php echo $this->form->renderField('language'); ?>
     <input type="hidden" name="task" value=""/>
 	<?php echo JHtml::_('form.token'); ?>
 </form>

@@ -161,7 +161,6 @@ class FoodManViewShoppings extends JViewLegacy
 			'a.proid'    => JText::_('COM_FOODMAN_HEADING_PRODUCT'),
 			'a.featured' => JText::_('JFEATURED'),
 			'g.name'     => JText::_('COM_FOODMAN_HEADING_GROUP'),
-			'a.language' => JText::_('JGRID_HEADING_LANGUAGE'),
 			'a.id'       => JText::_('JGRID_HEADING_ID'),
 		);
 	}

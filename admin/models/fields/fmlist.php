@@ -42,7 +42,6 @@ class JFormFieldFMList extends JFormFMFieldList
 		$query = $db->getQuery(true);
 		$query->select($db->quoteName(array('id', 'name')))
 			->from($db->quoteName('#__foodman_lists'))
-			->where($db->quoteName('language') . ' IN (' . $db->quote($this->lang) . ',' . $db->quote('*') . ')')
 			->order($db->quoteName('name'));
 
 		$db->setQuery((string) $query);

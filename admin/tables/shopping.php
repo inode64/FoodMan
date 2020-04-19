@@ -31,7 +31,6 @@ class FoodManTableShopping extends FoodManTable
 	public $quantity = 0;
 	public $bought = 0;
 	public $price = 0;
-	public $language = '';
 	public $created;
 	public $created_by;
 	public $modified = 0;

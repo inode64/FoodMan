@@ -29,7 +29,6 @@ class FoodManTableMovements extends FoodManTable
 	public $price = 0;
 	public $ordering;
 	public $featured;
-	public $language = '';
 	public $created;
 	public $created_by;
 	public $modified = 0;

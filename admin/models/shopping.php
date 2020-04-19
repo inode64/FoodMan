@@ -285,7 +285,7 @@ class FoodManModelShopping extends JModelAdmin
 	 */
 	private function GetFinishItems(array $list): array
 	{
-		#TODO Select only by user / lang / group
+		#TODO Select only by group
 
 		$db      = $this->getDbo();
 		$process = array(TYPE_PROCESS_BUY, TYPE_PROCESS_STORE);
@@ -493,7 +493,7 @@ class FoodManModelShopping extends JModelAdmin
 
 		# TODO: Perform security get item support by user
 		$query = $db->getQuery(true)
-			->select($db->quoteName(array('id', 'language', 'groupid')))
+			->select($db->quoteName(array('id', 'groupid')))
 			->from($db->quoteName('#__foodman_lists'))
 			->where('id = ' . (int) $listid);
 
@@ -516,8 +516,7 @@ class FoodManModelShopping extends JModelAdmin
 			->where('state = 1')
 			->where('process IN (' . implode(',', $process) . ')')
 			->where('groupid = ' . $list->groupid)
-			->where('listid = ' . $list->id)
-			->where('language = ' . $db->quote($list->language));
+			->where('listid = ' . $list->id);
 
 		if ($layout === TASK_SHOPPING_FINISH)
 		{
@@ -543,7 +542,6 @@ class FoodManModelShopping extends JModelAdmin
 			$result           = parent::getItem();
 			$result->listid   = $list->id;
 			$result->groupid  = $list->groupid;
-			$result->language = $list->language;
 
 			if ($layout === TASK_SHOPPING_FINISH)
 			{

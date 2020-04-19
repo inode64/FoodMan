@@ -33,15 +33,6 @@
         />
 
         <field
-                name="language"
-                type="contentlanguage"
-                label="JFIELD_LANGUAGE_LABEL"
-                description="COM_FOODMAN_FIELD_LANGUAGE_DESC"
-        >
-            <option value="*">JALL</option>
-        </field>
-
-        <field
                 name="featured"
                 type="radio"
                 label="JFEATURED"

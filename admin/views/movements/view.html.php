@@ -157,7 +157,6 @@ class FoodManViewMovements extends JViewLegacy
 			'lo.name'    => JText::_('COM_FOODMAN_HEADING_LOCATION'),
 			'lI.name'    => JText::_('COM_FOODMAN_HEADING_LIST'),
 			'S.name'     => JText::_('COM_FOODMAN_HEADING_SHOP'),
-			'a.language' => JText::_('JGRID_HEADING_LANGUAGE'),
 			'a.id'       => JText::_('JGRID_HEADING_ID'),
 		);
 	}

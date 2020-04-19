@@ -76,9 +76,6 @@ if ($saveOrder)
                   title="<?php echo JText::_('COM_FOODMAN_COUNT_STORE_ITEMS'); ?>"><span
                         class="element-invisible"><?php echo JText::_('COM_FOODMAN_COUNT_LIST_ITEMS'); ?></span></span>
                     </th>
-                    <th width="10%" class="nowrap hidden-phone">
-						<?php echo JHtml::_('searchtools.sort', 'JGRID_HEADING_LANGUAGE', 'a.language', $listDirn, $listOrder); ?>
-                    </th>
                     <th width="1%" class="nowrap hidden-phone">
 						<?php echo JHtml::_('searchtools.sort', 'JGRID_HEADING_ID', 'a.id', $listDirn, $listOrder); ?>
                     </th>
@@ -86,7 +83,7 @@ if ($saveOrder)
                 </thead>
                 <tfoot>
                 <tr>
-                    <td colspan="10">
+                    <td colspan="9">
 						<?php echo $this->pagination->getListFooter(); ?>
                     </td>
                 </tr>
@@ -193,9 +190,6 @@ if ($saveOrder)
 								<?php echo $item->count_list_store; ?></a>
                         </td>
 
-                        <td class="small nowrap hidden-phone">
-							<?php echo JLayoutHelper::render('joomla.content.language', $item); ?>
-                        </td>
                         <td class="hidden-phone">
 							<?php echo $item->id; ?>
                         </td>

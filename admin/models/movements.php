@@ -41,7 +41,6 @@ class FoodManModelMovements extends JModelList
 				'type', 'a.type',
 				'ordering', 'a.ordering',
 				'featured', 'a.featured',
-				'language', 'a.language',
 				'created', 'a.created',
 				'g.name', 'group_name',
 				'published'
@@ -75,7 +74,6 @@ class FoodManModelMovements extends JModelList
 				. 'a.featured AS featured,'
 				. 'a.ordering AS ordering,'
 				. 'a.type AS type,'
-				. 'a.language,'
 				. 'a.checked_out as checked_out,'
 				. 'a.checked_out_time as checked_out_time'
 			)
@@ -85,10 +83,6 @@ class FoodManModelMovements extends JModelList
 		// Join over the group
 		$query->select($db->quoteName('g.name', 'group_name'))
 			->join('LEFT', $db->quoteName('#__foodman_groups', 'g') . ' ON g.id = a.groupid');
-
-		// Join over the language
-		$query->select('l.title AS language_title, l.image AS language_image')
-			->join('LEFT', $db->quoteName('#__languages', 'l') . ' ON l.lang_code = a.language');
 
 		// Join over the product
 		$query->select($db->quoteName('p.name', 'product'))
@@ -185,12 +179,6 @@ class FoodManModelMovements extends JModelList
 			}
 		}
 
-		// Filter on the language.
-		if ($language = $this->getState('filter.language'))
-		{
-			$query->where($db->quoteName('a.language') . ' = ' . $db->quote($language));
-		}
-
 		// Add the list ordering clause.
 		$orderCol  = $this->state->get('list.ordering', 'a.proid');
 		$orderDirn = $this->state->get('list.direction', 'ASC');
@@ -223,7 +211,6 @@ class FoodManModelMovements extends JModelList
 		$id .= ':' . $this->getState('filter.locationid');
 		$id .= ':' . $this->getState('filter.shopid');
 		$id .= ':' . $this->getState('filter.groupid');
-		$id .= ':' . $this->getState('filter.language');
 
 		return parent::getStoreId($id);
 	}
@@ -266,7 +253,6 @@ class FoodManModelMovements extends JModelList
 		$this->setState('filter.shopid', $this->getUserStateFromRequest($this->context . '.filter.shopid', 'filter_shopid', '', 'int'));
 		$this->setState('filter.listid', $this->getUserStateFromRequest($this->context . '.filter.listid', 'filter_listid', '', 'int'));
 		$this->setState('filter.type', $this->getUserStateFromRequest($this->context . '.filter.typeid', 'filter_typeid', '', 'int'));
-		$this->setState('filter.language', $this->getUserStateFromRequest($this->context . '.filter.language', 'filter_language', '', 'string'));
 
 		// Load the parameters.
 		$this->setState('params', JComponentHelper::getParams('com_foodman'));

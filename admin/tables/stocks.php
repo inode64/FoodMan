@@ -27,7 +27,6 @@ class FoodManTableStocks extends FoodManTable
 	public $ordering;
 	public $featured;
 	public $open;
-	public $language = '';
 	public $created;
 	public $created_by;
 	public $modified = 0;

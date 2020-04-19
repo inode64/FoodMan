@@ -277,7 +277,7 @@ class FoodManModelStock extends JModelAdmin
 		$db    = $this->getDbo();
 		$table = $this->getTable();
 
-		# TODO: Check for group and lang if necessary
+		# TODO: Check for group if necessary
 		$query = $db->getQuery(true)
 			->select($db->quoteName(array('id', 'quantity')))
 			->from($db->quoteName('#__foodman_stocks'))

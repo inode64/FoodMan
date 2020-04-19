@@ -19,11 +19,6 @@
         />
 
         <field
-                name="language"
-                type="hidden"
-        />
-
-        <field
                 name="featured"
                 type="hidden"
                 default="0"
