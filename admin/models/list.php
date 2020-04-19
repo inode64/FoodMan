@@ -76,15 +76,7 @@ class FoodManModelList extends JModelAdmin
 
 		if ($result && !empty($result->id))
 		{
-			$db = $this->getDbo();
-
-			$query = $db->getQuery(true);
-			$query->select($db->quoteName('shopid'))
-				->from($db->quoteName('#__foodman_list_shop'))
-				->where($db->quoteName('listid') . ' = ' . $result->id);
-
-			$db->setQuery((string) $query);
-			$result->shops = $db->loadColumn() ?: array(0);
+			$result->shops = FoodManHelperXref::get(XREF_LIST, $result->id, XREF_SHOP);
 		}
 
 		return $result;
@@ -309,26 +301,10 @@ class FoodManModelList extends JModelAdmin
 			return false;
 		}
 
-		if ($data['id'] > 0)
-		{
-			$this->DeleteShops($data['id']);
-		}
-
 		$item       = $this->getItem();
 		$data['id'] = $item->get('id');
 
-		if (isset($data['shops']))
-		{
-			foreach ($data['shops'] as $item)
-			{
-				$row = (object) array(
-					'listid' => $data['id'],
-					'shopid' => $item
-				);
-
-				JFactory::getDbo()->insertObject('#__foodman_list_shop', $row);
-			}
-		}
+		FoodManHelperXref::update(XREF_LIST, $data['id'], XREF_SHOP, $data['shops']);
 
 		return true;
 	}
@@ -357,20 +333,12 @@ class FoodManModelList extends JModelAdmin
 				foreach ($pks as $id)
 				{
 					$this->DeleteShops($id);
+					FoodManHelperXref::delete(XREF_LIST, $id);
+
 				}
 			}
 		}
 
 		return $success;
-	}
-
-	private function DeleteShops(int $id)
-	{
-		$db    = $this->getDbo();
-		$query = $db->getQuery(true)
-			->delete($db->quoteName('#__foodman_list_shop'))
-			->where($db->quoteName('listid') . ' = ' . $id);
-		$db->setQuery($query);
-		$db->execute();
 	}
 }

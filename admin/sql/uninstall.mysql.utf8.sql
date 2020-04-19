@@ -1,16 +1,10 @@
 DROP TABLE IF EXISTS `#__foodman_groups`;
-DROP TABLE IF EXISTS `#__foodman_group_user`;
 DROP TABLE IF EXISTS `#__foodman_shops`;
 DROP TABLE IF EXISTS `#__foodman_locations`;
 DROP TABLE IF EXISTS `#__foodman_categories`;
-DROP TABLE IF EXISTS `#__foodman_category_location`;
-DROP TABLE IF EXISTS `#__foodman_category_shop`;
 DROP TABLE IF EXISTS `#__foodman_lists`;
-DROP TABLE IF EXISTS `#__foodman_list_shop`;
 DROP TABLE IF EXISTS `#__foodman_products`;
-DROP TABLE IF EXISTS `#__foodman_product_category`;
-DROP TABLE IF EXISTS `#__foodman_product_location`;
-DROP TABLE IF EXISTS `#__foodman_product_list`;
 DROP TABLE IF EXISTS `#__foodman_stocks`;
 DROP TABLE IF EXISTS `#__foodman_shopping`;
 DROP TABLE IF EXISTS `#__foodman_movements`;
+DROP TABLE IF EXISTS `#__foodman_xref`;

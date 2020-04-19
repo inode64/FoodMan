@@ -76,23 +76,8 @@ class FoodManModelCategory extends JModelAdmin
 
 		if ($result && !empty($result->id))
 		{
-			$db = $this->getDbo();
-
-			$query = $db->getQuery(true);
-			$query->select($db->quoteName('locid'))
-				->from($db->quoteName('#__foodman_category_location'))
-				->where($db->quoteName('catid') . ' = ' . $result->id);
-
-			$db->setQuery((string) $query);
-			$result->locations = $db->loadColumn() ?: array(0);
-
-			$query->clear()
-				->select($db->quoteName('shopid'))
-				->from($db->quoteName('#__foodman_category_shop'))
-				->where($db->quoteName('catid') . ' = ' . $result->id);
-
-			$db->setQuery((string) $query);
-			$result->shops = $db->loadColumn() ?: array(0);
+			$result->locations = FoodManHelperXref::get(XREF_CATEGORY, $result->id, XREF_LOCATION);
+			$result->shops = FoodManHelperXref::get(XREF_CATEGORY, $result->id, XREF_SHOP);
 		}
 
 		return $result;
@@ -317,40 +302,11 @@ class FoodManModelCategory extends JModelAdmin
 			return false;
 		}
 
-		if ($data['id'] > 0)
-		{
-			$this->DeleteLocations($data['id']);
-			$this->DeleteShops($data['id']);
-		}
-
 		$item       = $this->getItem();
 		$data['id'] = $item->get('id');
 
-		if (isset($data['locations']))
-		{
-			foreach ($data['locations'] as $item)
-			{
-				$row = (object) array(
-					'catid' => $data['id'],
-					'locid' => $item
-				);
-
-				JFactory::getDbo()->insertObject('#__foodman_category_location', $row);
-			}
-		}
-
-		if (isset($data['shops']))
-		{
-			foreach ($data['shops'] as $item)
-			{
-				$row = (object) array(
-					'catid'  => $data['id'],
-					'shopid' => $item
-				);
-
-				JFactory::getDbo()->insertObject('#__foodman_category_shop', $row);
-			}
-		}
+		FoodManHelperXref::update(XREF_CATEGORY, $data['id'], XREF_SHOP, $data['shops']);
+		FoodManHelperXref::update(XREF_CATEGORY, $data['id'], XREF_LOCATION, $data['locations']);
 
 		return true;
 	}
@@ -378,32 +334,11 @@ class FoodManModelCategory extends JModelAdmin
 			{
 				foreach ($pks as $id)
 				{
-					$this->DeleteLocations($id);
-					$this->DeleteShops($id);
+					FoodManHelperXref::delete(XREF_CATEGORY, $id);
 				}
 			}
 		}
 
 		return $success;
-	}
-
-	private function DeleteLocations(int $id)
-	{
-		$db    = $this->getDbo();
-		$query = $db->getQuery(true)
-			->delete($db->quoteName('#__foodman_category_location'))
-			->where($db->quoteName('catid') . ' = ' . $id);
-		$db->setQuery($query);
-		$db->execute();
-	}
-
-	private function DeleteShops(int $id)
-	{
-		$db    = $this->getDbo();
-		$query = $db->getQuery(true)
-			->delete($db->quoteName('#__foodman_category_shop'))
-			->where($db->quoteName('catid') . ' = ' . $id);
-		$db->setQuery($query);
-		$db->execute();
 	}
 }

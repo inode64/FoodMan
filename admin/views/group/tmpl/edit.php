@@ -75,6 +75,7 @@ JFactory::getDocument()->addScriptDeclaration('
 
 		<?php echo JHtml::_('bootstrap.addTab', 'groupTab', 'otherparams', JText::_('COM_FOODMAN_GROUP_LABEL_DETAILS')); ?>
 		<?php echo $this->form->renderField('users'); ?>
+	    <?php echo $this->form->renderField('adminusers'); ?>
 		<?php echo JHtml::_('bootstrap.endTab'); ?>
 
 

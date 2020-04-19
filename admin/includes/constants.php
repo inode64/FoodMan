@@ -57,13 +57,7 @@ const FOODMAN_TABLES_PRIMARY = array(
 );
 
 const FOODMAN_TABLES_SECONDARY = array(
-	'#__foodman_group_user',
-	'#__foodman_category_location',
-	'#__foodman_category_shop',
-	'#__foodman_list_shop',
-	'#__foodman_product_category',
-	'#__foodman_product_location',
-	'#__foodman_product_list'
+	'#__foodman_xref'
 );
 
 const FOODMAN_SUBMENU = array(
@@ -128,3 +122,12 @@ const FOODMAN_SUBMENU = array(
 		'image' => 'movements.png'
 	)
 );
+
+const XREF_GROUP = 'group';
+const XREF_USER = 'user';
+const XREF_USER_ADMIN = 'user_admin';
+const XREF_CATEGORY = 'category';
+const XREF_LIST = 'list';
+const XREF_PRODUCT = 'product';
+const XREF_SHOP = 'shop';
+const XREF_LOCATION = 'location';

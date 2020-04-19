@@ -76,15 +76,8 @@ class FoodManModelGroup extends JModelAdmin
 
 		if ($result && !empty($result->id))
 		{
-			$db = $this->getDbo();
-
-			$query = $db->getQuery(true);
-			$query->select($db->quoteName('userid'))
-				->from($db->quoteName('#__foodman_group_user'))
-				->where($db->quoteName('groupid') . ' = ' . $result->id);
-
-			$db->setQuery((string) $query);
-			$result->users = $db->loadColumn() ?: array(0);
+			$result->users = FoodManHelperXref::get(XREF_GROUP, $result->id, XREF_USER);
+			$result->adminusers = FoodManHelperXref::get(XREF_GROUP, $result->id, XREF_USER_ADMIN);
 		}
 
 		return $result;
@@ -309,26 +302,11 @@ class FoodManModelGroup extends JModelAdmin
 			return false;
 		}
 
-		if ($data['id'] > 0)
-		{
-			$this->DeleteUsers($data['id']);
-		}
-
 		$item       = $this->getItem();
 		$data['id'] = $item->get('id');
 
-		if (isset($data['users']))
-		{
-			foreach ($data['users'] as $item)
-			{
-				$row = (object) array(
-					'groupid' => $data['id'],
-					'userid'  => $item
-				);
-
-				JFactory::getDbo()->insertObject('#__foodman_group_user', $row);
-			}
-		}
+		FoodManHelperXref::update(XREF_GROUP, $data['id'], XREF_USER, $data['users']);
+		FoodManHelperXref::update(XREF_GROUP, $data['id'], XREF_USER_ADMIN, $data['adminusers']);
 
 		return true;
 	}
@@ -356,21 +334,11 @@ class FoodManModelGroup extends JModelAdmin
 			{
 				foreach ($pks as $id)
 				{
-					$this->DeleteUsers($id);
+					FoodManHelperXref::delete(XREF_GROUP, $id);
 				}
 			}
 		}
 
 		return $success;
-	}
-
-	private function DeleteUsers(int $id)
-	{
-		$db    = $this->getDbo();
-		$query = $db->getQuery(true)
-			->delete($db->quoteName('#__foodman_group_user'))
-			->where($db->quoteName('groupid') . ' = ' . $id);
-		$db->setQuery($query);
-		$db->execute();
 	}
 }

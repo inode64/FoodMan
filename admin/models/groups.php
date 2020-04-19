@@ -75,9 +75,10 @@ class FoodManModelGroups extends JModelList
 
 		// Join over the user
 		$query->select('group_concat(' . $db->quoteName('u.name') . ')' . ' AS users_name')
-			->join('LEFT', $db->quoteName('#__foodman_group_user', 'g') . ' ON g.groupid = a.id');
+			->join('LEFT', $db->quoteName('#__foodman_xref', 'x') . ' ON x.primary = a.id AND x.KeyPrimary = ' . $db->quote(XREF_GROUP) . ' AND x.KeySecondary = ' . $db->quote(XREF_USER));
 		$query->select($db->quoteName('u.name','user_name'))
-			->join('LEFT', $db->quoteName('#__users', 'u') . ' ON u.id = g.userid');
+			->join('LEFT', $db->quoteName('#__users', 'u') . ' ON u.id = x.secondary');
+
 		$query->group($db->quoteName('a.id'));
 
 		// Join over the language

@@ -29,25 +29,6 @@ CREATE TABLE IF NOT EXISTS `#__foodman_groups`
   AUTO_INCREMENT = 1000;
 
 --
--- Table structure for table `#__foodman_group_user`
---
-
-CREATE TABLE IF NOT EXISTS `#__foodman_group_user`
-(
-    `id`       int(11) NOT NULL AUTO_INCREMENT,
-    `groupid`  int(11) NOT NULL DEFAULT 0,
-    `userid`   int(11) NOT NULL DEFAULT 0,
-    `ordering` int(11) NOT NULL DEFAULT 0,
-    PRIMARY KEY (`id`),
-    UNIQUE KEY `group_user` (`groupid`, `userid`),
-    KEY `groupid` (`groupid`),
-    KEY `userid` (`userid`)
-) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4
-  DEFAULT COLLATE = utf8mb4_unicode_ci
-  AUTO_INCREMENT = 1000;
-
---
 -- Table structure for table `#__foodman_shops`
 --
 
@@ -165,44 +146,6 @@ CREATE TABLE IF NOT EXISTS `#__foodman_categories`
   AUTO_INCREMENT = 1000;
 
 --
--- Table structure for table `#__foodman_category_location`
---
-
-CREATE TABLE IF NOT EXISTS `#__foodman_category_location`
-(
-    `id`       int(11) NOT NULL AUTO_INCREMENT,
-    `catid`    int(11) NOT NULL DEFAULT 0,
-    `locid`    int(11) NOT NULL DEFAULT 0,
-    `ordering` int(11) NOT NULL DEFAULT 0,
-    PRIMARY KEY (`id`),
-    UNIQUE KEY `category_location` (`catid`, `locid`),
-    KEY `catid` (`catid`),
-    KEY `locid` (`locid`)
-) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4
-  DEFAULT COLLATE = utf8mb4_unicode_ci
-  AUTO_INCREMENT = 1000;
-
---
--- Table structure for table `#__foodman_category_shop`
---
-
-CREATE TABLE IF NOT EXISTS `#__foodman_category_shop`
-(
-    `id`       int(11) NOT NULL AUTO_INCREMENT,
-    `catid`    int(11) NOT NULL DEFAULT 0,
-    `shopid`   int(11) NOT NULL DEFAULT 0,
-    `ordering` int(11) NOT NULL DEFAULT 0,
-    PRIMARY KEY (`id`),
-    UNIQUE KEY `category shop` (`catid`, `shopid`),
-    KEY `catid` (`catid`),
-    KEY `shopid` (`shopid`)
-) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4
-  DEFAULT COLLATE = utf8mb4_unicode_ci
-  AUTO_INCREMENT = 1000;
-
---
 -- Table structure for table `#__foodman_lists`
 --
 
@@ -227,25 +170,6 @@ CREATE TABLE IF NOT EXISTS `#__foodman_lists`
     KEY `idx_state` (`state`),
     KEY `idx_createdby` (`created_by`),
     KEY `idx_language` (`language`)
-) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4
-  DEFAULT COLLATE = utf8mb4_unicode_ci
-  AUTO_INCREMENT = 1000;
-
---
--- Table structure for table `#__foodman_list_location`
---
-
-CREATE TABLE IF NOT EXISTS `#__foodman_list_shop`
-(
-    `id`       int(11) NOT NULL AUTO_INCREMENT,
-    `listid`   int(11) NOT NULL DEFAULT 0,
-    `shopid`   int(11) NOT NULL DEFAULT 0,
-    `ordering` int(11) NOT NULL DEFAULT 0,
-    PRIMARY KEY (`id`),
-    UNIQUE KEY `list shop` (`listid`, `shopid`),
-    KEY `listid` (`listid`),
-    KEY `shopid` (`shopid`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
   DEFAULT COLLATE = utf8mb4_unicode_ci
@@ -281,64 +205,6 @@ CREATE TABLE IF NOT EXISTS `#__foodman_products`
     KEY `idx_state` (`state`),
     KEY `idx_createdby` (`created_by`),
     KEY `idx_language` (`language`)
-) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4
-  DEFAULT COLLATE = utf8mb4_unicode_ci
-  AUTO_INCREMENT = 1000;
-
---
--- Table structure for table `#__foodman_product_category`
---
-
-CREATE TABLE IF NOT EXISTS `#__foodman_product_category`
-(
-    `id`       int(11) NOT NULL AUTO_INCREMENT,
-    `proid`    int(11) NOT NULL DEFAULT 0,
-    `catid`    int(11) NOT NULL DEFAULT 0,
-    `ordering` int(11) NOT NULL DEFAULT 0,
-    PRIMARY KEY (`id`),
-    UNIQUE KEY `product_category` (`proid`, `catid`),
-    KEY `proid` (`proid`),
-    KEY `catid` (`catid`)
-) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4
-  DEFAULT COLLATE = utf8mb4_unicode_ci
-  AUTO_INCREMENT = 1000;
-
---
--- Table structure for table `#__foodman_product_location`
---
-
-CREATE TABLE IF NOT EXISTS `#__foodman_product_location`
-(
-    `id`       int(11) NOT NULL AUTO_INCREMENT,
-    `proid`    int(11) NOT NULL DEFAULT 0,
-    `locid`    int(11) NOT NULL DEFAULT 0,
-    `ordering` int(11) NOT NULL DEFAULT 0,
-    PRIMARY KEY (`id`),
-    UNIQUE KEY `product_location` (`proid`, `locid`),
-    KEY `proid` (`proid`),
-    KEY `locid` (`locid`)
-) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4
-  DEFAULT COLLATE = utf8mb4_unicode_ci
-  AUTO_INCREMENT = 1000;
-
---
--- Table structure for table `#__foodman_product_list`
---
-
-CREATE TABLE IF NOT EXISTS `#__foodman_product_list`
-(
-    `id`       int(11)         NOT NULL AUTO_INCREMENT,
-    `proid`    int(11)         NOT NULL DEFAULT 0,
-    `listid`   int(11)         NOT NULL DEFAULT 0,
-    `quantity` int(4) unsigned NOT NULL DEFAULT 0,
-    `ordering` int(11)         NOT NULL DEFAULT 0,
-    PRIMARY KEY (`id`),
-    UNIQUE KEY `product_list` (`proid`, `listid`),
-    KEY `proid` (`proid`),
-    KEY `listid` (`listid`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
   DEFAULT COLLATE = utf8mb4_unicode_ci
@@ -457,6 +323,28 @@ CREATE TABLE IF NOT EXISTS `#__foodman_movements`
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
   DEFAULT COLLATE = utf8mb4_unicode_ci;
+
+--
+-- Table structure for table `#__foodman_xref`
+--
+
+CREATE TABLE IF NOT EXISTS `#__foodman_xref`
+(
+    `id`           int(11)  NOT NULL AUTO_INCREMENT,
+    `KeyPrimary`   char(16) NOT NULL,
+    `KeySecondary` char(16) NOT NULL,
+    `primary`      int(11)  NOT NULL DEFAULT 0,
+    `secondary`    int(11)  NOT NULL DEFAULT 0,
+    `groupid`      int(11)  DEFAULT NULL,
+
+    PRIMARY KEY (`id`),
+    UNIQUE KEY `unique` (`KeyPrimary`, `KeySecondary`,`primary`, `secondary`),
+    KEY `KeyPrimary` (`KeyPrimary`),
+    KEY `KeySecondary` (`KeySecondary`)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4
+  DEFAULT COLLATE = utf8mb4_unicode_ci
+  AUTO_INCREMENT = 1000;
 
 INSERT IGNORE INTO `#__foodman_categories` (`id`, `name`, `state`, `language`)
 VALUES (1, 'Vegetables', 1, 'en-GB'),

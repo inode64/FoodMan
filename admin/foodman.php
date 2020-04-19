@@ -24,6 +24,7 @@ JLoader::import('components.com_foodman.libraries.models.fieldlist', JPATH_ADMIN
 JLoader::import('components.com_foodman.libraries.models.predefinedlist', JPATH_ADMINISTRATOR);
 
 JLoader::register('FoodManHelper', JPATH_ADMINISTRATOR . '/components/com_foodman/helpers/foodman.php');
+JLoader::register('FoodManHelperXref', JPATH_ADMINISTRATOR . '/components/com_foodman/helpers/xref.php');
 
 // Execute the task.
 $controller = JControllerLegacy::getInstance('FoodMan');

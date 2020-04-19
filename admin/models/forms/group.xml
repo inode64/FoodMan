@@ -71,6 +71,14 @@
                 multiple="true"
         />
 
+        <field
+                name="adminusers"
+                type="fmusers"
+                label="COM_FOODMAN_FIELD_ADMINUSER_LABEL"
+                description="COM_FOODMAN_FIELD_ADMINUSER_DESC"
+                multiple="true"
+        />
+
     </fieldset>
 
     <fieldset name="publish" label="COM_FOODMAN_LABEL_DETAILS">
