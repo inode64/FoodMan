@@ -31,14 +31,14 @@ class FoodManModelShops extends JModelList
 		{
 			$config['filter_fields'] = array(
 				'id', 'a.id',
-				'userid', 'a.userid',
+				'groupid', 'a.groupid',
 				'name', 'a.name',
 				'state', 'a.state',
 				'ordering', 'a.ordering',
 				'featured', 'a.featured',
 				'language', 'a.language',
 				'created', 'a.created',
-				'u.name', 'user_name',
+				'g.name', 'group_name',
 				'published'
 			);
 		}
@@ -65,6 +65,7 @@ class FoodManModelShops extends JModelList
 				'a.id AS id,'
 				. 'a.name AS name,'
 				. 'a.state AS state,'
+				. 'a.groupid AS groupid,'
 				. 'a.featured AS featured,'
 				. 'a.ordering AS ordering,'
 				. 'a.language,'
@@ -74,9 +75,9 @@ class FoodManModelShops extends JModelList
 		);
 		$query->from($db->quoteName('#__foodman_shops', 'a'));
 
-		// Join over the user
-		$query->select($db->quoteName('u.name', 'user_name'))
-			->join('LEFT', $db->quoteName('#__users', 'u') . ' ON u.id = a.userid');
+		// Join over the group
+		$query->select($db->quoteName('g.name', 'group_name'))
+			->join('LEFT', $db->quoteName('#__foodman_groups', 'g') . ' ON g.id = a.groupid');
 
 		// Join over the language
 		$query->select('l.title AS language_title, l.image AS language_image')
@@ -98,12 +99,12 @@ class FoodManModelShops extends JModelList
 			$query->where($db->quoteName('a.state') . ' IN (0, 1)');
 		}
 
-		// Filter by user.
-		$userid = $this->getState('filter.userid');
+		// Filter by group.
+		$groupid = $this->getState('filter.groupid');
 
-		if (is_numeric($userid) && !empty($userid))
+		if (is_numeric($groupid) && !empty($groupid))
 		{
-			$query->where($db->quoteName('a.userid') . ' = ' . (int) $userid);
+			$query->where($db->quoteName('a.groupid') . ' = ' . (int) $groupid);
 		}
 
 		// Filter by search in name
@@ -118,7 +119,7 @@ class FoodManModelShops extends JModelList
 			else
 			{
 				$search = $db->quote('%' . str_replace(' ', '%', $db->escape(trim($search), true) . '%'));
-				$query->where('(a.name LIKE ' . $search . ' OR u.name LIKE ' . $search . ')');
+				$query->where('(a.name LIKE ' . $search . ' OR g.name LIKE ' . $search . ')');
 			}
 		}
 
@@ -155,7 +156,7 @@ class FoodManModelShops extends JModelList
 		// Compile the store id.
 		$id .= ':' . $this->getState('filter.search');
 		$id .= ':' . $this->getState('filter.published');
-		$id .= ':' . $this->getState('filter.userid');
+		$id .= ':' . $this->getState('filter.groupid');
 		$id .= ':' . $this->getState('filter.language');
 
 		return parent::getStoreId($id);
@@ -194,7 +195,7 @@ class FoodManModelShops extends JModelList
 		// Load the filter state.
 		$this->setState('filter.search', $this->getUserStateFromRequest($this->context . '.filter.search', 'filter_search', '', 'string'));
 		$this->setState('filter.published', $this->getUserStateFromRequest($this->context . '.filter.published', 'filter_published', '', 'string'));
-		$this->setState('filter.userid', $this->getUserStateFromRequest($this->context . '.filter.userid', 'filter_userid', '', 'int'));
+		$this->setState('filter.groupid', $this->getUserStateFromRequest($this->context . '.filter.groupid', 'filter_groupid', '', 'int'));
 		$this->setState('filter.language', $this->getUserStateFromRequest($this->context . '.filter.language', 'filter_language', '', 'string'));
 
 		// Load the parameters.

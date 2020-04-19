@@ -59,7 +59,7 @@ if ($saveOrder)
 						<?php echo JHtml::_('searchtools.sort', 'COM_FOODMAN_HEADING_NAME', 'a.name', $listDirn, $listOrder); ?>
                     </th>
                     <th width="10%" class="nowrap hidden-phone">
-						<?php echo JHtml::_('searchtools.sort', 'COM_FOODMAN_HEADING_USER', 'u.name', $listDirn, $listOrder); ?>
+						<?php echo JHtml::_('searchtools.sort', 'COM_FOODMAN_HEADING_GROUP', 'g.name', $listDirn, $listOrder); ?>
                     </th>
                     <th width="1%" class="nowrap center hidden-phone hidden-tablet">
 			<span class="icon-publish hasTooltip" aria-hidden="true"
@@ -175,7 +175,7 @@ if ($saveOrder)
                         </td>
 
                         <td class="small hidden-phone">
-							<?php echo JLayoutHelper::render('foodman.content.user', $item); ?>
+							<?php echo JLayoutHelper::render('foodman.content.group', $item); ?>
                         </td>
                         <td class="center btns hidden-phone hidden-tablet">
                             <a class="badge <?php if ($item->count_list_create > 0) echo 'badge-important'; ?>"

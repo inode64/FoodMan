@@ -20,7 +20,7 @@ class FoodManTableLists extends FoodManTable
 
 	public $name = '';
 	public $state;
-	public $userid;
+	public $groupid;
 	public $description = '';
 	public $ordering;
 	public $featured;

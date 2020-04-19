@@ -22,7 +22,7 @@ class FoodManTableProducts extends FoodManTable
 	public $expiration;
 	public $catid;
 	public $state;
-	public $userid;
+	public $groupid;
 	public $description = '';
 	public $ordering;
 	public $daysopen = 0;

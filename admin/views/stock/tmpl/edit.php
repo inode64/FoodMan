@@ -58,7 +58,7 @@ JFactory::getDocument()->addScriptDeclaration('
 		<?php echo JHtml::_('bootstrap.addTab', 'stockTab', 'details', JText::_('COM_FOODMAN_LABEL_DETAILS')); ?>
         <div class="row-fluid">
             <div class="span9">
-				<?php echo $this->form->renderField('userid'); ?>
+				<?php echo $this->form->renderField('groupid'); ?>
 				<?php echo $this->form->renderField('quantity'); ?>
 				<?php echo $this->form->renderField('proid'); ?>
 				<?php echo $this->form->renderField('expiration'); ?>

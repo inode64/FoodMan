@@ -38,15 +38,15 @@ JFactory::getDocument()->addScriptDeclaration('
 		<?php echo JHtml::_('bootstrap.addTab', 'movementTab', 'details', JText::_('COM_FOODMAN_LABEL_DETAILS')); ?>
         <div class="row-fluid">
             <div class="span9">
-	            <?php echo $this->form->renderField('type'); ?>
-	            <?php echo $this->form->renderField('proid'); ?>
-	            <?php echo $this->form->renderField('quantity'); ?>
-	            <?php echo $this->form->renderField('price'); ?>
-	            <?php echo $this->form->renderField('locid'); ?>
+				<?php echo $this->form->renderField('type'); ?>
+				<?php echo $this->form->renderField('proid'); ?>
+				<?php echo $this->form->renderField('quantity'); ?>
+				<?php echo $this->form->renderField('price'); ?>
+				<?php echo $this->form->renderField('locid'); ?>
 
-	            <?php echo $this->form->renderField('shopid'); ?>
-				<?php echo $this->form->renderField('userid'); ?>
-	            <?php echo $this->form->renderField('comments'); ?>
+				<?php echo $this->form->renderField('shopid'); ?>
+				<?php echo $this->form->renderField('groupid'); ?>
+				<?php echo $this->form->renderField('comments'); ?>
             </div>
             <div class="span3">
 				<?php echo JLayoutHelper::render('joomla.edit.global', $this); ?>

@@ -17,6 +17,7 @@ use Joomla\CMS\Form\Form;
 use Joomla\CMS\Form\FormHelper;
 
 FormHelper::loadFieldClass('predefinedlist');
+
 /**
  * Form Field class for the FoodMan Platform.
  * Supports a generic list of options.

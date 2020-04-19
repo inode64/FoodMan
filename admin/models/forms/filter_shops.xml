@@ -21,8 +21,8 @@
         </field>
 
         <field
-                name="userid"
-                type="fmusers"
+                name="groupid"
+                type="fmgroup"
                 label="COM_FOODMAN_FILTER_USER"
                 description="COM_FOODMAN_FILTER_USER_DESC"
                 onchange="this.form.submit();"
@@ -58,8 +58,8 @@
             <option value="a.state DESC">JSTATUS_DESC</option>
             <option value="a.name ASC">COM_FOODMAN_HEADING_NAME_ASC</option>
             <option value="a.name DESC">COM_FOODMAN_HEADING_NAME_DESC</option>
-            <option value="u.name ASC">COM_FOODMAN_HEADING_USER_ASC</option>
-            <option value="u.name DESC">COM_FOODMAN_HEADING_USER_DESC</option>
+            <option value="g.name ASC">COM_FOODMAN_HEADING_GROUP_ASC</option>
+            <option value="g.name DESC">COM_FOODMAN_HEADING_GROUP_DESC</option>
             <option value="a.language ASC">JGRID_HEADING_LANGUAGE_ASC</option>
             <option value="a.language DESC">JGRID_HEADING_LANGUAGE_DESC</option>
             <option value="a.id ASC">JGRID_HEADING_ID_ASC</option>

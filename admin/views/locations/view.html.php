@@ -158,7 +158,7 @@ class FoodManViewLocations extends JViewLegacy
 			'a.state'    => JText::_('JSTATUS'),
 			'a.name'     => JText::_('COM_FOODMAN_HEADING_NAME'),
 			'a.featured' => JText::_('JFEATURED'),
-			'u.name'     => JText::_('COM_FOODMAN_HEADING_USER'),
+			'g.name'     => JText::_('COM_FOODMAN_HEADING_GROUP'),
 			'a.language' => JText::_('JGRID_HEADING_LANGUAGE'),
 			'a.id'       => JText::_('JGRID_HEADING_ID'),
 		);

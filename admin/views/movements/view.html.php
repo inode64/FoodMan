@@ -152,7 +152,7 @@ class FoodManViewMovements extends JViewLegacy
 			'a.state'    => JText::_('JSTATUS'),
 			'a.type'     => JText::_('COM_FOODMAN_HEADING_MOVEMENT'),
 			'a.featured' => JText::_('JFEATURED'),
-			'u.name'     => JText::_('COM_FOODMAN_HEADING_USER'),
+			'g.name'     => JText::_('COM_FOODMAN_HEADING_GROUP'),
 			'a.type'     => JText::_('COM_FOODMAN_HEADING_MOVEMENT'),
 			'lo.name'    => JText::_('COM_FOODMAN_HEADING_LOCATION'),
 			'lI.name'    => JText::_('COM_FOODMAN_HEADING_LIST'),

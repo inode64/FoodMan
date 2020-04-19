@@ -53,7 +53,7 @@ const FOODMAN_TABLES_PRIMARY = array(
 	'#__foodman_products'   => 'COM_FOODMAN_SUBMENU_PRODUCTS',
 	'#__foodman_stocks'     => 'COM_FOODMAN_SUBMENU_STOCKS',
 	'#__foodman_shopping'   => 'COM_FOODMAN_SUBMENU_SHOPPINGS',
-	'#__foodman_movement'   => 'COM_FOODMAN_SUBMENU_MOVEMENT'
+	'#__foodman_movements'  => 'COM_FOODMAN_SUBMENU_MOVEMENTS'
 );
 
 const FOODMAN_TABLES_SECONDARY = array(
@@ -123,11 +123,11 @@ const FOODMAN_SUBMENU = array(
 	)
 );
 
-const XREF_GROUP = 'group';
-const XREF_USER = 'user';
+const XREF_GROUP      = 'group';
+const XREF_USER       = 'user';
 const XREF_USER_ADMIN = 'user_admin';
-const XREF_CATEGORY = 'category';
-const XREF_LIST = 'list';
-const XREF_PRODUCT = 'product';
-const XREF_SHOP = 'shop';
-const XREF_LOCATION = 'location';
+const XREF_CATEGORY   = 'category';
+const XREF_LIST       = 'list';
+const XREF_PRODUCT    = 'product';
+const XREF_SHOP       = 'shop';
+const XREF_LOCATION   = 'location';

@@ -31,7 +31,7 @@ class FoodManModelStocks extends JModelList
 		{
 			$config['filter_fields'] = array(
 				'id', 'a.id',
-				'userid', 'a.userid',
+				'groupid', 'a.groupid',
 				'proid', 'p.name', 'product',
 				'locid', 'n.name', 'location',
 				'state', 'a.state',
@@ -41,7 +41,7 @@ class FoodManModelStocks extends JModelList
 				'featured', 'a.featured',
 				'language', 'a.language',
 				'created', 'a.created',
-				'u.name', 'user_name',
+				'g.name', 'group_name',
 				'published'
 			);
 		}
@@ -66,10 +66,11 @@ class FoodManModelStocks extends JModelList
 			$this->getState(
 				'list.select',
 				'a.id AS id,'
+				. 'a.groupid AS groupid,'
 				. 'a.state AS state,'
 				. 'a.featured AS featured,'
 				. 'a.ordering AS ordering,'
-				. 'a.userid,'
+				. 'a.groupid,'
 				. 'a.language,'
 				. 'a.quantity,'
 				. 'a.expiration,'
@@ -79,9 +80,9 @@ class FoodManModelStocks extends JModelList
 		);
 		$query->from($db->quoteName('#__foodman_stocks', 'a'));
 
-		// Join over the user
-		$query->select($db->quoteName('u.name', 'user_name'))
-			->join('LEFT', $db->quoteName('#__users', 'u') . ' ON u.id = a.userid');
+		// Join over the group
+		$query->select($db->quoteName('g.name', 'group_name'))
+			->join('LEFT', $db->quoteName('#__foodman_groups', 'g') . ' ON g.id = a.groupid');
 
 		// Join over the product
 		$query->select($db->quoteName('p.name', 'product'))
@@ -111,12 +112,12 @@ class FoodManModelStocks extends JModelList
 			$query->where($db->quoteName('a.state') . ' IN (0, 1)');
 		}
 
-		// Filter by user.
-		$userid = $this->getState('filter.userid');
+		// Filter by group.
+		$groupid = $this->getState('filter.groupid');
 
-		if (is_numeric($userid))
+		if (is_numeric($groupid))
 		{
-			$query->where($db->quoteName('a.userid') . ' = ' . (int) $userid);
+			$query->where($db->quoteName('a.groupid') . ' = ' . (int) $groupid);
 		}
 
 		// Filter by product.
@@ -198,7 +199,7 @@ class FoodManModelStocks extends JModelList
 		// Compile the store id.
 		$id .= ':' . $this->getState('filter.search');
 		$id .= ':' . $this->getState('filter.published');
-		$id .= ':' . $this->getState('filter.userid');
+		$id .= ':' . $this->getState('filter.groupid');
 		$id .= ':' . $this->getState('filter.locid');
 		$id .= ':' . $this->getState('filter.proid');
 		$id .= ':' . $this->getState('filter.language');
@@ -239,7 +240,7 @@ class FoodManModelStocks extends JModelList
 		// Load the filter state.
 		$this->setState('filter.search', $this->getUserStateFromRequest($this->context . '.filter.search', 'filter_search', '', 'string'));
 		$this->setState('filter.published', $this->getUserStateFromRequest($this->context . '.filter.published', 'filter_published', '', 'string'));
-		$this->setState('filter.userid', $this->getUserStateFromRequest($this->context . '.filter.userid', 'filter_userid', '', 'int'));
+		$this->setState('filter.groupid', $this->getUserStateFromRequest($this->context . '.filter.groupid', 'filter_groupid', '', 'int'));
 		$this->setState('filter.locid', $this->getUserStateFromRequest($this->context . '.filter.locid', 'filter_locid', '', 'int'));
 		$this->setState('filter.proid', $this->getUserStateFromRequest($this->context . '.filter.proid', 'filter_proid', '', 'int'));
 		$this->setState('filter.language', $this->getUserStateFromRequest($this->context . '.filter.language', 'filter_language', '', 'string'));

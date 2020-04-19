@@ -275,7 +275,7 @@ class FoodManModelMovement extends JModelAdmin
 
 		$data->state = 1;
 		$data->id    = 0;
-		$data->type = $type;
+		$data->type  = $type;
 
 		$table->bind((array) $data);
 

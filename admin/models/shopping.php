@@ -314,7 +314,7 @@ class FoodManModelShopping extends JModelAdmin
 		$preserve = array();
 
 		JModelLegacy::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_foodman/models', 'FoodManModel');
-		$stock = JModelLegacy::getInstance('Stock', 'FoodManModel');
+		$stock    = JModelLegacy::getInstance('Stock', 'FoodManModel');
 		$movement = JModelLegacy::getInstance('Movement', 'FoodManModel');
 
 		foreach ($data as $row)
@@ -358,7 +358,7 @@ class FoodManModelShopping extends JModelAdmin
 				$object->quantity = $row->quantity - $row->bought;
 				$object->process  = TYPE_PROCESS_CREATE;
 				// Reset bought but not reset location for remenber later
-				$object->bought  = 0;
+				$object->bought = 0;
 
 				$result = JFactory::getDbo()->updateObject('#__foodman_shopping', $object, 'id');
 			}
@@ -493,7 +493,7 @@ class FoodManModelShopping extends JModelAdmin
 
 		# TODO: Perform security get item support by user
 		$query = $db->getQuery(true)
-			->select($db->quoteName(array('id', 'language', 'userid')))
+			->select($db->quoteName(array('id', 'language', 'groupid')))
 			->from($db->quoteName('#__foodman_lists'))
 			->where('id = ' . (int) $listid);
 
@@ -515,7 +515,7 @@ class FoodManModelShopping extends JModelAdmin
 			->from($db->quoteName('#__foodman_shopping'))
 			->where('state = 1')
 			->where('process IN (' . implode(',', $process) . ')')
-			->where('userid = ' . $list->userid)
+			->where('groupid = ' . $list->groupid)
 			->where('listid = ' . $list->id)
 			->where('language = ' . $db->quote($list->language));
 
@@ -542,7 +542,7 @@ class FoodManModelShopping extends JModelAdmin
 		{
 			$result           = parent::getItem();
 			$result->listid   = $list->id;
-			$result->userid   = $list->userid;
+			$result->groupid  = $list->groupid;
 			$result->language = $list->language;
 
 			if ($layout === TASK_SHOPPING_FINISH)

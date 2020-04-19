@@ -22,7 +22,7 @@ class FoodManTableShopping extends FoodManTable
 	public $expiration;
 	public $state;
 	public $process;
-	public $userid;
+	public $groupid;
 	public $proid;
 	public $listid;
 	public $locid;

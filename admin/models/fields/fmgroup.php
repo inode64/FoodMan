@@ -43,12 +43,16 @@ class JFormFieldFMGroup extends JFormFMFieldList
 		$query = $db->getQuery(true);
 		$query->select($db->quoteName(array('id', 'name')))
 			->from($db->quoteName('#__foodman_groups'))
-			->where($db->quoteName('userid') . ' IN (' . $this->user . ',0)')
 			->where($db->quoteName('language') . ' IN (' . $db->quote($this->lang) . ',' . $db->quote('*') . ')')
 			->order($db->quoteName('name'));
 
 		$db->setQuery((string) $query);
 		$rows = $db->loadObjectList();
+
+		if ($this->admin)
+		{
+			$options[] = JHtml::_('select.option', 0, JText::_('COM_FOODMAN_CONTENT_ALL_GROUPS'));
+		}
 
 		foreach ($rows as $row)
 		{

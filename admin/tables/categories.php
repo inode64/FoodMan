@@ -21,7 +21,7 @@ class FoodManTableCategories extends FoodManTable
 	public $name = '';
 	public $expiration;
 	public $state;
-	public $userid;
+	public $groupid;
 	public $description = '';
 	public $ordering;
 	public $featured;

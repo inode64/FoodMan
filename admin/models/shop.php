@@ -97,6 +97,11 @@ class FoodManModelShop extends JModelAdmin
 			return false;
 		}
 
+		if (JFactory::getUser()->authorise('core.admin'))
+		{
+			$form->setFieldAttribute('groupid', 'admin', 'true');
+		}
+
 		// Modify the form based on access controls.
 		if (!$this->canEditState((object) $data))
 		{

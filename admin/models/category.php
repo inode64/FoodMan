@@ -77,7 +77,7 @@ class FoodManModelCategory extends JModelAdmin
 		if ($result && !empty($result->id))
 		{
 			$result->locations = FoodManHelperXref::get(XREF_CATEGORY, $result->id, XREF_LOCATION);
-			$result->shops = FoodManHelperXref::get(XREF_CATEGORY, $result->id, XREF_SHOP);
+			$result->shops     = FoodManHelperXref::get(XREF_CATEGORY, $result->id, XREF_SHOP);
 		}
 
 		return $result;
@@ -117,6 +117,11 @@ class FoodManModelCategory extends JModelAdmin
 		if (empty($form))
 		{
 			return false;
+		}
+
+		if (JFactory::getUser()->authorise('core.admin'))
+		{
+			$form->setFieldAttribute('groupid', 'admin', 'true');
 		}
 
 		// Modify the form based on access controls.

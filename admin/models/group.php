@@ -76,7 +76,7 @@ class FoodManModelGroup extends JModelAdmin
 
 		if ($result && !empty($result->id))
 		{
-			$result->users = FoodManHelperXref::get(XREF_GROUP, $result->id, XREF_USER);
+			$result->users      = FoodManHelperXref::get(XREF_GROUP, $result->id, XREF_USER);
 			$result->adminusers = FoodManHelperXref::get(XREF_GROUP, $result->id, XREF_USER_ADMIN);
 		}
 

@@ -46,6 +46,14 @@ abstract class JFormFMFieldList extends JFormFieldList
 	protected $filter = false;
 
 	/**
+	 * is used in administrator.
+	 *
+	 * @var         mixed
+	 * @since  3.2
+	 */
+	protected $admin = false;
+
+	/**
 	 * Method to get certain otherwise inaccessible properties from the form field object.
 	 *
 	 * @param   string  $name  The property name for which to get the value.
@@ -58,6 +66,7 @@ abstract class JFormFMFieldList extends JFormFieldList
 	{
 		switch ($name)
 		{
+			case 'admin':
 			case 'user':
 			case 'filter':
 			case 'lang':
@@ -82,6 +91,10 @@ abstract class JFormFMFieldList extends JFormFieldList
 	{
 		switch ($name)
 		{
+			case 'admin':
+				$this->$name = (bool) $value;
+				break;
+
 			case 'user':
 				$this->$name = (int) $value;
 				break;
@@ -191,6 +204,7 @@ abstract class JFormFMFieldList extends JFormFieldList
 					$this->user = (int) $this->element['user'];
 				}
 			}
+
 			if (isset($this->element['lang']))
 			{
 				if (defined($this->element['lang']))
@@ -202,6 +216,7 @@ abstract class JFormFMFieldList extends JFormFieldList
 					$this->lang = (string) $this->element['lang'];
 				}
 			}
+
 			if (isset($this->element['filter']))
 			{
 				if (defined($this->element['filter']))
@@ -214,6 +229,17 @@ abstract class JFormFMFieldList extends JFormFieldList
 				}
 			}
 
+			if (isset($this->element['admin']))
+			{
+				if (defined($this->element['admin']))
+				{
+					$this->admin = (bool) constant($this->element['admin']);
+				}
+				else
+				{
+					$this->admin = (bool) $this->element['admin'];
+				}
+			}
 		}
 
 		return $return;

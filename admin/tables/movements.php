@@ -19,7 +19,7 @@ class FoodManTableMovements extends FoodManTable
 {
 
 	public $state;
-	public $userid;
+	public $groupid;
 	public $locid;
 	public $listid;
 	public $shopid;

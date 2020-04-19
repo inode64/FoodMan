@@ -62,7 +62,7 @@ JFactory::getDocument()->addScriptDeclaration('
 		<?php echo JHtml::_('bootstrap.addTab', 'locationTab', 'details', JText::_('COM_FOODMAN_LABEL_DETAILS')); ?>
         <div class="row-fluid">
             <div class="span9">
-				<?php echo $this->form->renderField('userid'); ?>
+				<?php echo $this->form->renderField('groupid'); ?>
                 <div id="image">
 					<?php echo $this->form->renderFieldset('image'); ?>
                 </div>

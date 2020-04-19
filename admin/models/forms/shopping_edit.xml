@@ -44,10 +44,10 @@
         </field>
 
         <field
-                name="userid"
-                type="fmusers"
-                label="COM_FOODMAN_FIELD_USER_LABEL"
-                description="COM_FOODMAN_FIELD_USER_DESC"
+                name="groupid"
+                type="fmgroup"
+                label="COM_FOODMAN_FIELD_GROUP_LABEL"
+                description="COM_FOODMAN_FIELD_GROUP_DESC"
         />
 
         <field

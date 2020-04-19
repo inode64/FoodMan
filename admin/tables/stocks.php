@@ -21,7 +21,7 @@ class FoodManTableStocks extends FoodManTable
 	public $quantity = 1;
 	public $expiration = 0;
 	public $state;
-	public $userid;
+	public $groupid;
 	public $proid;
 	public $locid;
 	public $ordering;
