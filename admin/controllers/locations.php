@@ -10,14 +10,12 @@
 
 defined('_JEXEC') or die;
 
-use Joomla\Utilities\ArrayHelper;
-
 /**
  * FoodMan list controller class.
  *
  * @since  1.6
  */
-class FoodManControllerLocations extends JControllerAdmin
+class FoodManControllerLocations extends FoodManControllerAdmin
 {
 	/**
 	 * The prefix to use with controller messages.
@@ -26,69 +24,6 @@ class FoodManControllerLocations extends JControllerAdmin
 	 * @since  1.6
 	 */
 	protected $text_prefix = 'COM_FOODMAN_LOCATION';
-
-	/**
-	 * Constructor.
-	 *
-	 * @param   array  $config  An optional associative array of configuration settings.
-	 *
-	 * @throws Exception
-	 * @see           JControllerLegacy
-	 * @since         1.6
-	 */
-	public function __construct($config = array())
-	{
-		parent::__construct($config);
-
-		$this->registerTask('unfeatured', 'featured');
-	}
-
-	/**
-	 * Method to toggle the featured setting of a list of locations.
-	 *
-	 * @return  void
-	 *
-	 * @throws Exception
-	 * @since   1.6
-	 */
-	public function featured()
-	{
-		// Check for request forgeries
-		$this->checkToken();
-
-		$ids    = $this->input->get('cid', array(), 'array');
-		$values = array('featured' => 1, 'unfeatured' => 0);
-		$task   = $this->getTask();
-		$value  = ArrayHelper::getValue($values, $task, 0, 'int');
-
-		$model   = $this->getModel();
-		$message = '';
-
-		if (empty($ids))
-		{
-			\Joomla\CMS\Factory::getApplication()->enqueueMessage('COM_FOODMAN_LOCATION_NO_ITEM_SELECTED', 'error');
-		}
-		else
-		{
-			// Publish the items.
-			if (!$model->featured($ids, $value))
-			{
-				\Joomla\CMS\Factory::getApplication()->enqueueMessage($model->getError(), 'warning');
-			}
-
-			if ($value == 1)
-			{
-				$message = JText::plural('COM_FOODMAN_LOCATION_N_ITEMS_FEATURED', count($ids));
-			}
-			else
-			{
-				$message = JText::plural('COM_FOODMAN_LOCATION_N_ITEMS_UNFEATURED', count($ids));
-			}
-		}
-
-		$this->setRedirect('index.php?option=com_foodman&view=locations', $message);
-	}
-
 
 	/**
 	 * Method to get a model object, loading it if required.

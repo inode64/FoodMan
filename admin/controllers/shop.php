@@ -15,7 +15,7 @@ defined('_JEXEC') or die;
  *
  * @since  1.6
  */
-class FoodManControllerShop extends JControllerForm
+class FoodManControllerShop extends FoodManControllerForm
 {
 	/**
 	 * The prefix to use with controller messages.
