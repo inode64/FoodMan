@@ -22,6 +22,7 @@ JLoader::import('components.com_foodman.libraries.models.table', JPATH_ADMINISTR
 JLoader::import('components.com_foodman.libraries.models.controlerform', JPATH_ADMINISTRATOR);
 JLoader::import('components.com_foodman.libraries.models.controleradmin', JPATH_ADMINISTRATOR);
 JLoader::import('components.com_foodman.libraries.models.modellist', JPATH_ADMINISTRATOR);
+JLoader::import('components.com_foodman.libraries.models.adminlist', JPATH_ADMINISTRATOR);
 JLoader::import('components.com_foodman.libraries.models.fieldlist', JPATH_ADMINISTRATOR);
 JLoader::import('components.com_foodman.libraries.models.predefinedlist', JPATH_ADMINISTRATOR);
 

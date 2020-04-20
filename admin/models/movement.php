@@ -133,22 +133,6 @@ class FoodManModelMovement extends JModelAdmin
 	}
 
 	/**
-	 * A protected method to get a set of ordering conditions.
-	 *
-	 * @param   JTable  $table  A record object.
-	 *
-	 * @return  array  An array of conditions to add to add to ordering queries.
-	 *
-	 * @since   1.6
-	 */
-	protected function getReorderConditions($table)
-	{
-		return array(
-			'state >= 0'
-		);
-	}
-
-	/**
 	 * Prepare and sanitise the table prior to saving.
 	 *
 	 * @param   JTable  $table  A JTable object.
