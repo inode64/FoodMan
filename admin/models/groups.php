@@ -15,7 +15,7 @@ defined('_JEXEC') or die;
  *
  * @since  1.6
  */
-class FoodManModelGroups extends JModelList
+class FoodManModelGroups extends FoodManModelList
 {
 	/**
 	 * Constructor.
@@ -156,8 +156,6 @@ class FoodManModelGroups extends JModelList
 	protected function getStoreId($id = '')
 	{
 		// Compile the store id.
-		$id .= ':' . $this->getState('filter.search');
-		$id .= ':' . $this->getState('filter.published');
 		$id .= ':' . $this->getState('filter.userid');
 		$id .= ':' . $this->getState('filter.language');
 
@@ -195,13 +193,8 @@ class FoodManModelGroups extends JModelList
 	protected function populateState($ordering = 'a.name', $direction = 'asc')
 	{
 		// Load the filter state.
-		$this->setState('filter.search', $this->getUserStateFromRequest($this->context . '.filter.search', 'filter_search', '', 'string'));
-		$this->setState('filter.published', $this->getUserStateFromRequest($this->context . '.filter.published', 'filter_published', '', 'string'));
 		$this->setState('filter.userid', $this->getUserStateFromRequest($this->context . '.filter.userid', 'filter_userid', '', 'int'));
 		$this->setState('filter.language', $this->getUserStateFromRequest($this->context . '.filter.language', 'filter_language', '', 'string'));
-
-		// Load the parameters.
-		$this->setState('params', JComponentHelper::getParams('com_foodman'));
 
 		// List state information.
 		parent::populateState($ordering, $direction);

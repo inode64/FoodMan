@@ -15,7 +15,7 @@ defined('_JEXEC') or die;
  *
  * @since  1.6
  */
-class FoodManModelStocks extends JModelList
+class FoodManModelStocks extends FoodManModelList
 {
 	/**
 	 * Constructor.
@@ -156,7 +156,7 @@ class FoodManModelStocks extends JModelList
 			else
 			{
 				$search = $db->quote('%' . str_replace(' ', '%', $db->escape(trim($search), true) . '%'));
-				$query->where('(a.name LIKE ' . $search . ' OR u.name LIKE ' . $search . ')');
+				$query->where('(g.name LIKE ' . $search . ')');
 			}
 		}
 
@@ -185,8 +185,6 @@ class FoodManModelStocks extends JModelList
 	protected function getStoreId($id = '')
 	{
 		// Compile the store id.
-		$id .= ':' . $this->getState('filter.search');
-		$id .= ':' . $this->getState('filter.published');
 		$id .= ':' . $this->getState('filter.groupid');
 		$id .= ':' . $this->getState('filter.locid');
 		$id .= ':' . $this->getState('filter.proid');
@@ -225,14 +223,9 @@ class FoodManModelStocks extends JModelList
 	protected function populateState($ordering = 'p.name', $direction = 'asc')
 	{
 		// Load the filter state.
-		$this->setState('filter.search', $this->getUserStateFromRequest($this->context . '.filter.search', 'filter_search', '', 'string'));
-		$this->setState('filter.published', $this->getUserStateFromRequest($this->context . '.filter.published', 'filter_published', '', 'string'));
 		$this->setState('filter.groupid', $this->getUserStateFromRequest($this->context . '.filter.groupid', 'filter_groupid', '', 'int'));
 		$this->setState('filter.locid', $this->getUserStateFromRequest($this->context . '.filter.locid', 'filter_locid', '', 'int'));
 		$this->setState('filter.proid', $this->getUserStateFromRequest($this->context . '.filter.proid', 'filter_proid', '', 'int'));
-
-		// Load the parameters.
-		$this->setState('params', JComponentHelper::getParams('com_foodman'));
 
 		// List state information.
 		parent::populateState($ordering, $direction);

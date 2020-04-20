@@ -15,7 +15,7 @@ defined('_JEXEC') or die;
  *
  * @since  1.6
  */
-class FoodManModelMovements extends JModelList
+class FoodManModelMovements extends FoodManModelList
 {
 	/**
 	 * Constructor.
@@ -175,7 +175,7 @@ class FoodManModelMovements extends JModelList
 			else
 			{
 				$search = $db->quote('%' . str_replace(' ', '%', $db->escape(trim($search), true) . '%'));
-				$query->where('(a.comments LIKE ' . $search . ' OR u.name LIKE ' . $search . ')');
+				$query->where('(a.comments LIKE ' . $search . ' OR g.name LIKE ' . $search . ')');
 			}
 		}
 
@@ -204,8 +204,6 @@ class FoodManModelMovements extends JModelList
 	protected function getStoreId($id = '')
 	{
 		// Compile the store id.
-		$id .= ':' . $this->getState('filter.search');
-		$id .= ':' . $this->getState('filter.published');
 		$id .= ':' . $this->getState('filter.type');
 		$id .= ':' . $this->getState('filter.listid');
 		$id .= ':' . $this->getState('filter.locationid');
@@ -246,8 +244,6 @@ class FoodManModelMovements extends JModelList
 	protected function populateState($ordering = 'a.proid', $direction = 'asc')
 	{
 		// Load the filter state.
-		$this->setState('filter.search', $this->getUserStateFromRequest($this->context . '.filter.search', 'filter_search', '', 'string'));
-		$this->setState('filter.published', $this->getUserStateFromRequest($this->context . '.filter.published', 'filter_published', '', 'string'));
 		$this->setState('filter.groupid', $this->getUserStateFromRequest($this->context . '.filter.groupid', 'filter_groupid', '', 'int'));
 		$this->setState('filter.locid', $this->getUserStateFromRequest($this->context . '.filter.locid', 'filter_locid', '', 'int'));
 		$this->setState('filter.shopid', $this->getUserStateFromRequest($this->context . '.filter.shopid', 'filter_shopid', '', 'int'));
