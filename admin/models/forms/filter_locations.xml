@@ -24,6 +24,7 @@
                 name="groupid"
                 type="fmgroup"
                 label="COM_FOODMAN_FILTER_GROUP"
+                filter="true"
                 description="COM_FOODMAN_FILTER_GROUP_DESC"
                 onchange="this.form.submit();"
         >

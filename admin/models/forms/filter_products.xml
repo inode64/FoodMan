@@ -22,7 +22,8 @@
 
         <field
                 name="groupid"
-                type="fmgrouo"
+                type="fmgroup"
+                filter="true"
                 label="COM_FOODMAN_FILTER_GROUP"
                 description="COM_FOODMAN_FILTER_GROUP_DESC"
                 onchange="this.form.submit();"

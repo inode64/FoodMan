@@ -23,6 +23,7 @@
         <field
                 name="type"
                 type="fmtypemovement"
+                filter="true"
                 label="COM_FOODMAN_FILTER_MOVEMENT"
                 description="COM_FOODMAN_FILTER_MOVEMENT_DESC"
                 onchange="this.form.submit();"
@@ -32,6 +33,7 @@
         <field
                 name="groupid"
                 type="fmgroup"
+                filter="true"
                 label="COM_FOODMAN_FILTER_GROUP"
                 description="COM_FOODMAN_FILTER_GROUP_DESC"
                 onchange="this.form.submit();"
@@ -41,6 +43,7 @@
         <field
                 name="listid"
                 type="fmlist"
+                filter="true"
                 label="COM_FOODMAN_FILTER_LIST"
                 description="COM_FOODMAN_FILTER_LIST_DESC"
                 onchange="this.form.submit();"
@@ -50,6 +53,7 @@
         <field
                 name="shopid"
                 type="fmshop"
+                filter="true"
                 label="COM_FOODMAN_FILTER_SHOP"
                 description="COM_FOODMAN_FILTER_SHOP_DESC"
                 onchange="this.form.submit();"
@@ -59,6 +63,7 @@
         <field
                 name="locid"
                 type="fmlocation"
+                filter="true"
                 label="COM_FOODMAN_FILTER_LOCATION"
                 description="COM_FOODMAN_FILTER_LOCATION_DESC"
                 onchange="this.form.submit();"
@@ -68,6 +73,7 @@
         <field
                 name="listid"
                 type="fmlist"
+                filter="true"
                 label="COM_FOODMAN_FILTER_LIST"
                 description="COM_FOODMAN_FILTER_LIST_DESC"
                 onchange="this.form.submit();"

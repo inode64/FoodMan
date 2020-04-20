@@ -23,6 +23,7 @@
         <field
                 name="userid"
                 type="fmusers"
+                filter="true"
                 label="COM_FOODMAN_FILTER_USER"
                 description="COM_FOODMAN_FILTER_USER_DESC"
                 onchange="this.form.submit();"
