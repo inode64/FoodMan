@@ -15,7 +15,7 @@ defined('_JEXEC') or die;
  *
  * @since  1.6
  */
-class FoodManModelMovements extends FoodManModelList
+class FoodManModelMovements extends FoodMan\Models\ModelList
 {
 	/**
 	 * Constructor.

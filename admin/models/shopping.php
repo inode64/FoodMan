@@ -18,7 +18,7 @@ use Joomla\Utilities\ArrayHelper;
  *
  * @since  1.6
  */
-class FoodManModelShopping extends JModelAdmin
+class FoodManModelShopping extends FoodManModelAdmin
 {
 	/**
 	 * The prefix to use with controller messages.
@@ -27,7 +27,6 @@ class FoodManModelShopping extends JModelAdmin
 	 * @since  1.6
 	 */
 	protected $text_prefix = 'COM_FOODMAN_SHOPPING';
-
 
 
 	/**
@@ -506,9 +505,9 @@ class FoodManModelShopping extends JModelAdmin
 		// Not exist, create new
 		if (!$rows)
 		{
-			$result           = parent::getItem();
-			$result->listid   = $list->id;
-			$result->groupid  = $list->groupid;
+			$result          = parent::getItem();
+			$result->listid  = $list->id;
+			$result->groupid = $list->groupid;
 
 			if ($layout === TASK_SHOPPING_FINISH)
 			{

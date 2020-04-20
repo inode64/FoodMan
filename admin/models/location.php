@@ -17,7 +17,7 @@ use Joomla\Utilities\ArrayHelper;
  *
  * @since  1.6
  */
-class FoodManModelLocation extends JModelAdmin
+class FoodManModelLocation extends FoodManModelAdmin
 {
 	/**
 	 * The prefix to use with controller messages.

@@ -17,7 +17,7 @@ use Joomla\Utilities\ArrayHelper;
  *
  * @since  1.6
  */
-class FoodManModelList extends JModelAdmin
+class FoodManModelList extends FoodManModelAdmin
 {
 	/**
 	 * The prefix to use with controller messages.
@@ -302,9 +302,7 @@ class FoodManModelList extends JModelAdmin
 			{
 				foreach ($pks as $id)
 				{
-					$this->DeleteShops($id);
 					FoodManHelperXref::delete(XREF_LIST, $id);
-
 				}
 			}
 		}

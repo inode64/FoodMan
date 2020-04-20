@@ -10,65 +10,13 @@
 
 defined('_JEXEC') or die;
 
-JLoader::register('FoodManHelper', JPATH_ADMINISTRATOR . '/components/com_foodman/helpers/foodman.php');
-
 /**
  * View to edit a shopping.
  *
  * @since  1.5
  */
-class FoodManViewShopping extends JViewLegacy
+class FoodManViewShopping extends FoodMan\Models\ViewForm
 {
-	/**
-	 * The JForm object
-	 *
-	 * @var        JForm
-	 */
-	protected $form;
-
-	/**
-	 * The active item
-	 *
-	 * @var        object
-	 */
-	protected $item;
-
-	/**
-	 * The model state
-	 *
-	 * @var        object
-	 */
-	protected $state;
-
-	/**
-	 * Display the view
-	 *
-	 * @param   string  $tpl  The name of the template file to parse; automatically searches through the template paths.
-	 *
-	 * @return  mixed  A string if successful, otherwise an Error object.
-	 * @throws Exception
-	 */
-	public function display($tpl = null)
-	{
-		// Initialize variables.
-		$this->form  = $this->get('Form');
-		$this->item  = $this->get('Item');
-		$this->state = $this->get('State');
-
-		// Check for errors.
-		if (count($errors = $this->get('Errors')))
-		{
-			throw new Exception(implode("\n", $errors), 500);
-		}
-
-		JHtml::_('stylesheet', 'com_foodman/Font-Awesome/fontawesome.min.css', array(), true);
-		JHtml::_('stylesheet', 'com_foodman/Font-Awesome/solid.min.css', array(), true);
-		JHtml::_('stylesheet', 'com_foodman/foodman.css', array(), true);
-
-		$this->addToolbar();
-
-		return parent::display($tpl);
-	}
 
 	/**
 	 * Add the page title and toolbar.
@@ -78,19 +26,15 @@ class FoodManViewShopping extends JViewLegacy
 	 * @throws Exception
 	 * @since   1.6
 	 */
-	protected function addToolbar()
+	protected function addToolbar(): void
 	{
 		$app  = JFactory::getApplication();
 		$task = $app->getUserState('com_foodman.edit.shopping.task');
-
-		$app->input->set('hidemainmenu', true);
 
 		$isNew = ($this->item->id == 0);
 
 		// Since we don't track these assets at the item level
 		$canDo = JHelperContent::getActions('com_foodman');
-
-		JToolbarHelper::title($isNew ? JText::_('COM_FOODMAN_MANAGER_SHOPPING_NEW') : JText::_('COM_FOODMAN_MANAGER_SHOPPING_EDIT'), 'foodman fas fa-boxes');
 
 		if ($task === TASK_SHOPPING_FINISH)
 		{
@@ -124,5 +68,19 @@ class FoodManViewShopping extends JViewLegacy
 		{
 			JToolbarHelper::cancel('shopping.cancel', 'JTOOLBAR_CLOSE');
 		}
+	}
+
+	/**
+	 * Add the page title.
+	 *
+	 * @return  void
+	 *
+	 * @since   1.6
+	 */
+	protected function addTitle(): void
+	{
+		$isNew = ($this->item->id == 0);
+
+		JToolbarHelper::title($isNew ? JText::_('COM_FOODMAN_MANAGER_SHOPPING_NEW') : JText::_('COM_FOODMAN_MANAGER_SHOPPING_EDIT'), 'foodman fas fa-boxes');
 	}
 }

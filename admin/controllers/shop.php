@@ -17,12 +17,5 @@ defined('_JEXEC') or die;
  */
 class FoodManControllerShop extends FoodManControllerForm
 {
-	/**
-	 * The prefix to use with controller messages.
-	 *
-	 * @var          string
-	 * @since  1.6
-	 */
-	protected $text_prefix = 'COM_FOODMAN_SHOP';
 
 }

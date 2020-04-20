@@ -15,69 +15,14 @@ defined('_JEXEC') or die;
  *
  * @since  1.6
  */
-class FoodManViewMovements extends JViewLegacy
+class FoodManViewMovements extends FoodMan\Models\ViewList
 {
-
 	/**
-	 * An array of items
+	 * The Context
 	 *
-	 * @var        array
+	 * @var        Context
 	 */
-	protected $items;
-
-	/**
-	 * The pagination object
-	 *
-	 * @var        JPagination
-	 */
-	protected $pagination;
-
-	/**
-	 * The model state
-	 *
-	 * @var        object
-	 */
-	protected $state;
-
-	/**
-	 * Method to display the view.
-	 *
-	 * @param   string  $tpl  A template file to load. [optional]
-	 *
-	 * @return  mixed  A string if successful, otherwise a JError object.
-	 *
-	 * @throws Exception
-	 * @since   1.6
-	 */
-	public function display($tpl = null)
-	{
-		$this->items         = $this->get('Items');
-		$this->pagination    = $this->get('Pagination');
-		$this->state         = $this->get('State');
-		$this->filterForm    = $this->get('FilterForm');
-		$this->activeFilters = $this->get('ActiveFilters');
-
-		// Check for errors.
-		if (count($errors = $this->get('Errors')))
-		{
-			throw new Exception(implode("\n", $errors), 500);
-		}
-
-		JHtml::_('stylesheet', 'com_foodman/Font-Awesome/fontawesome.min.css', array(), true);
-		JHtml::_('stylesheet', 'com_foodman/Font-Awesome/solid.min.css', array(), true);
-		JHtml::_('stylesheet', 'com_foodman/foodman.css', array(), true);
-
-		FoodManHelper::addSubmenu('movements');
-
-		$this->addToolbar();
-
-		// Include the component HTML helpers.
-		JHtml::addIncludePath(JPATH_COMPONENT . '/helpers/html');
-
-		$this->sidebar = JHtmlSidebar::render();
-
-		return parent::display($tpl);
-	}
+	protected $context = 'movements';
 
 	/**
 	 * Add the page title and toolbar.
@@ -86,14 +31,10 @@ class FoodManViewMovements extends JViewLegacy
 	 *
 	 * @since   1.6
 	 */
-	protected function addToolbar()
+	protected function addToolbar(): void
 	{
-		JLoader::register('FoodManHelper', JPATH_ADMINISTRATOR . '/components/com_foodman/helpers/foodman.php');
-
 		$canDo = JHelperContent::getActions('com_foodman');
 		$user  = JFactory::getUser();
-
-		JToolbarHelper::title(JText::_('COM_FOODMAN_MANAGER_MOVEMENTS'), 'foodman movement');
 
 		if ($canDo->get('core.edit'))
 		{
@@ -122,6 +63,7 @@ class FoodManViewMovements extends JViewLegacy
 				}
 			}
 		}
+
 		if ($canDo->get('core.edit') || JFactory::getUser()->authorise('core.manage', 'com_checkin'))
 		{
 			JToolBarHelper::checkin('movements.checkin');
@@ -136,6 +78,18 @@ class FoodManViewMovements extends JViewLegacy
 		{
 			JToolbarHelper::preferences('com_foodman');
 		}
+	}
+
+	/**
+	 * Add the page title.
+	 *
+	 * @return  void
+	 *
+	 * @since   1.6
+	 */
+	protected function addTitle(): void
+	{
+		JToolbarHelper::title(JText::_('COM_FOODMAN_MANAGER_MOVEMENTS'), 'foodman movement');
 	}
 
 	/**

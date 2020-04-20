@@ -17,7 +17,7 @@ use Joomla\Utilities\ArrayHelper;
  *
  * @since  1.6
  */
-class FoodManModelLists extends FoodManModelList
+class FoodManModelLists extends FoodMan\Models\ModelList
 {
 	/**
 	 * Constructor.

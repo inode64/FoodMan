@@ -8,6 +8,8 @@
  * @link       https://github.com/inode64/FoodMan
  */
 
+namespace FoodMan\Models;
+
 defined('_JEXEC') or die;
 
 /**
@@ -15,7 +17,7 @@ defined('_JEXEC') or die;
  *
  * @since  1.6
  */
-abstract class FoodManModelList extends \Joomla\CMS\MVC\Model\ListModel
+abstract class ModelList extends \Joomla\CMS\MVC\Model\ListModel
 {
 	/**
 	 * Method to get a store id based on model configuration state.
@@ -58,7 +60,7 @@ abstract class FoodManModelList extends \Joomla\CMS\MVC\Model\ListModel
 		$this->setState('filter.published', $this->getUserStateFromRequest($this->context . '.filter.published', 'filter_published', '', 'string'));
 
 		// Load the parameters.
-		$this->setState('params', JComponentHelper::getParams('com_foodman'));
+		$this->setState('params', \JComponentHelper::getParams('com_foodman'));
 
 		// List state information.
 		parent::populateState($ordering, $direction);

@@ -79,7 +79,7 @@ abstract class FoodManControllerAdmin extends \Joomla\CMS\MVC\Controller\AdminCo
 			}
 		}
 
-        $extension    = $this->input->get('view');
+		$extension = $this->input->get('view');
 
 		$this->setRedirect('index.php?option=com_foodman&view=' . $extension, $message);
 	}

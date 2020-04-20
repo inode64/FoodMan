@@ -17,7 +17,7 @@ use Joomla\Utilities\ArrayHelper;
  *
  * @since  1.6
  */
-class FoodManModelGroup extends JModelAdmin
+class FoodManModelGroup extends FoodManModelAdmin
 {
 	/**
 	 * The prefix to use with controller messages.
