@@ -31,8 +31,6 @@ class FoodManViewShopping extends FoodMan\Models\ViewForm
 		$app  = JFactory::getApplication();
 		$task = $app->getUserState('com_foodman.edit.shopping.task');
 
-		$isNew = ($this->item->id == 0);
-
 		// Since we don't track these assets at the item level
 		$canDo = JHelperContent::getActions('com_foodman');
 
@@ -55,7 +53,7 @@ class FoodManViewShopping extends FoodMan\Models\ViewForm
 			}
 
 			// If an existing item, can save to a copy.
-			if (!$isNew && $canDo->get('core.create') && FoodManHelper::DefaultTask($task))
+			if (!$this->isNew && $canDo->get('core.create') && FoodManHelper::DefaultTask($task))
 			{
 				JToolbarHelper::save2copy('shopping.save2copy');
 			}
@@ -79,8 +77,6 @@ class FoodManViewShopping extends FoodMan\Models\ViewForm
 	 */
 	protected function addTitle(): void
 	{
-		$isNew = ($this->item->id == 0);
-
-		JToolbarHelper::title($isNew ? JText::_('COM_FOODMAN_MANAGER_SHOPPING_NEW') : JText::_('COM_FOODMAN_MANAGER_SHOPPING_EDIT'), 'foodman fas fa-boxes');
+		JToolbarHelper::title($this->isNew ? JText::_('COM_FOODMAN_MANAGER_SHOPPING_NEW') : JText::_('COM_FOODMAN_MANAGER_SHOPPING_EDIT'), 'foodman fas fa-boxes');
 	}
 }

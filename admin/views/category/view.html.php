@@ -27,8 +27,6 @@ class FoodManViewCategory extends FoodMan\Models\ViewForm
 	 */
 	protected function addToolbar(): void
 	{
-		$isNew = ($this->item->id == 0);
-
 		// Since we don't track these assets at the item level
 		$canDo = JHelperContent::getActions('com_foodman');
 
@@ -45,7 +43,7 @@ class FoodManViewCategory extends FoodMan\Models\ViewForm
 		}
 
 		// If an existing item, can save to a copy.
-		if (!$isNew && $canDo->get('core.create'))
+		if (!$this->isNew && $canDo->get('core.create'))
 		{
 			JToolbarHelper::save2copy('category.save2copy');
 		}
@@ -69,8 +67,6 @@ class FoodManViewCategory extends FoodMan\Models\ViewForm
 	 */
 	protected function addTitle(): void
 	{
-		$isNew = ($this->item->id == 0);
-
-		JToolbarHelper::title($isNew ? JText::_('COM_FOODMAN_MANAGER_CATEGORY_NEW') : JText::_('COM_FOODMAN_MANAGER_CATEGORY_EDIT'), 'foodman fas fa-boxes');
+		JToolbarHelper::title($this->isNew ? JText::_('COM_FOODMAN_MANAGER_CATEGORY_NEW') : JText::_('COM_FOODMAN_MANAGER_CATEGORY_EDIT'), 'foodman fas fa-boxes');
 	}
 }
