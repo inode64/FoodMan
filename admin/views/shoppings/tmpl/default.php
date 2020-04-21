@@ -148,7 +148,7 @@ if ($saveOrder)
 							<?php echo JLayoutHelper::render('foodman.content.process', $item); ?>
                         </td>
                         <td class="small hidden-phone">
-							<?php echo JLayoutHelper::render('foodman.content.user', $item); ?>
+							<?php echo JLayoutHelper::render('foodman.content.group', $item); ?>
                         </td>
                         <td class="hidden-phone">
 							<?php echo $item->id; ?>
