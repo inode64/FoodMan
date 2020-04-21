@@ -14,7 +14,7 @@
 
         <field
                 name="groupid"
-                type="fmusers"
+                type="fmgroup"
                 label="COM_FOODMAN_FIELD_GROUP_LABEL"
                 description="COM_FOODMAN_FIELD_GROUP_DESC"
                 readonly="true"
