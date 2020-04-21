@@ -242,12 +242,12 @@ class FoodManModelStock extends FoodManModelAdmin
 		$db    = $this->getDbo();
 		$table = $this->getTable();
 
-		# TODO: Check for group if necessary
 		$query = $db->getQuery(true)
 			->select($db->quoteName(array('id', 'quantity')))
 			->from($db->quoteName('#__foodman_stocks'))
 			->where('state = 1')
 			->where('proid = ' . $data->proid)
+			->where('groupid = ' . $data->groupid)
 			->where('locid = ' . $data->locid);
 
 		$db->setQuery($query);

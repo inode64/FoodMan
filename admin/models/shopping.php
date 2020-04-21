@@ -251,12 +251,10 @@ class FoodManModelShopping extends FoodManModelAdmin
 	 */
 	private function GetFinishItems(array $list): array
 	{
-		#TODO Select only by group
-
 		$db      = $this->getDbo();
 		$process = array(TYPE_PROCESS_BUY, TYPE_PROCESS_STORE);
 		$query   = $db->getQuery(true)
-			->select($db->quoteName(array('id', 'quantity', 'proid', 'price', 'bought', 'locid', 'process')))
+			->select($db->quoteName(array('id', 'quantity', 'proid', 'price', 'bought', 'locid', 'process', 'groupid')))
 			->from($db->quoteName('#__foodman_shopping'))
 			->where('state = 1')
 			->where('process IN (' . implode(',', $process) . ')')

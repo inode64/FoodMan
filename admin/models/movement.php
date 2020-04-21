@@ -225,7 +225,6 @@ class FoodManModelMovement extends FoodManModelAdmin
 		return true;
 	}
 
-
 	/**
 	 * Override JModelAdmin::preprocessForm to ensure the correct plugin group is loaded
 	 *

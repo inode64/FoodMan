@@ -39,6 +39,7 @@ JFactory::getDocument()->addScriptDeclaration('
         <div class="row-fluid">
             <div class="span9">
 				<?php echo $this->form->renderField('shopid'); ?>
+				<?php echo $this->form->renderField('groupid'); ?>
 				<?php echo $this->form->renderField('listid'); ?>
 				<?php echo $this->form->renderField('products'); ?>
             </div>
