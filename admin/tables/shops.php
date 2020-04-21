@@ -17,6 +17,7 @@ defined('_JEXEC') or die;
  */
 class FoodManTableShops extends FoodManTable
 {
+
 	public $name = '';
 	public $state;
 	public $groupid;

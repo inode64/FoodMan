@@ -25,7 +25,7 @@ Todo
 - Integration with openfoodfacts.org
 - Charts and stats graphics
 - Import / Export in csv
-- Manage menus for restaurants, gims, etc...
+- Manage menus for restaurants, gyms, catering, etc...
 
 Ideas
 -------------

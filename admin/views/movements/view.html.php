@@ -107,10 +107,9 @@ class FoodManViewMovements extends FoodMan\Models\ViewList
 			'a.type'     => JText::_('COM_FOODMAN_HEADING_MOVEMENT'),
 			'a.featured' => JText::_('JFEATURED'),
 			'g.name'     => JText::_('COM_FOODMAN_HEADING_GROUP'),
-			'a.type'     => JText::_('COM_FOODMAN_HEADING_MOVEMENT'),
 			'lo.name'    => JText::_('COM_FOODMAN_HEADING_LOCATION'),
-			'lI.name'    => JText::_('COM_FOODMAN_HEADING_LIST'),
-			'S.name'     => JText::_('COM_FOODMAN_HEADING_SHOP'),
+			'li.name'    => JText::_('COM_FOODMAN_HEADING_LIST'),
+			's.name'     => JText::_('COM_FOODMAN_HEADING_SHOP'),
 			'a.id'       => JText::_('JGRID_HEADING_ID'),
 		);
 	}

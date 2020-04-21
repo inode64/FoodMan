@@ -99,7 +99,7 @@ class FoodManModelProducts extends FoodMan\Models\ModelList
 			$query->where($db->quoteName('a.state') . ' IN (0, 1)');
 		}
 
-		// Filter by user.
+		// Filter by group.
 		$groupid = $this->getState('filter.groupid');
 
 		if (is_numeric($groupid))

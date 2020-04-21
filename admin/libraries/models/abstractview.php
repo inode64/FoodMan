@@ -13,7 +13,7 @@ namespace FoodMan\Models;
 defined('_JEXEC') or die;
 
 /**
- * Base movel JViewLegacy class.
+ * Base model JViewLegacy class.
  *
  * @since  1.6
  */

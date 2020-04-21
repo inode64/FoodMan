@@ -29,7 +29,7 @@ if ($saveOrder)
 }
 ?>
 <form action="<?php echo JRoute::_('index.php?option=com_foodman&view=lists'); ?>" method="post" name="adminForm"
-      id="adminForm" xmlns="http://www.w3.org/1999/html">
+      id="adminForm">
     <div id="j-sidebar-container" class="span2">
 		<?php echo $this->sidebar; ?>
     </div>

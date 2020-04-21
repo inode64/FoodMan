@@ -25,7 +25,7 @@ class com_FoodManInstallerScript extends \Joomla\CMS\Installer\InstallerScript
 	 *
 	 * @since   3.6
 	 */
-	function preflight($type, $parent)
+	public function preflight($type, $parent)
 	{
 		if (!parent::preflight($type, $parent))
 		{

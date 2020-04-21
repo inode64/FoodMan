@@ -34,7 +34,6 @@ class FoodManViewLists extends FoodMan\Models\ViewList
 	 */
 	protected function addToolbar(): void
 	{
-
 		$canDo = JHelperContent::getActions('com_foodman');
 		$user  = JFactory::getUser();
 
