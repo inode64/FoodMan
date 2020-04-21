@@ -35,7 +35,6 @@ class JFormFieldFMShop extends JFormFMFieldList
 
 	protected function getInput()
 	{
-
 		$options = $this->preInput();
 
 		$db    = JFactory::getDbo();
@@ -44,6 +43,15 @@ class JFormFieldFMShop extends JFormFMFieldList
 			->from($db->quoteName('#__foodman_shops'))
 			->where($db->quoteName('language') . ' IN (' . $db->quote($this->lang) . ',' . $db->quote('*') . ')')
 			->order($db->quoteName('name'));
+
+		if (is_numeric($this->list))
+		{
+			$list = FoodManHelperXref::get(XREF_LIST, $this->list, XREF_SHOP);
+			if (!empty($list))
+			{
+				$query->where($db->quoteName('id') . ' IN (' . implode(',', $list) . ')');
+			}
+		}
 
 		$db->setQuery((string) $query);
 		$rows = $db->loadObjectList();

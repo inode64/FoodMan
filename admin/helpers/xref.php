@@ -50,7 +50,7 @@ class FoodManHelperXref
 		$db->execute();
 	}
 
-	public static function get(string $KeyPrimary, int $primary, string $KeySecondary, ?int $group = null): array
+	public static function get(string $KeyPrimary, int $primary, string $KeySecondary, ?int $group = null): ?array
 	{
 		$query = self::query($KeyPrimary, $primary, $KeySecondary, $group);
 		$db    = JFactory::getDbo();
@@ -60,7 +60,7 @@ class FoodManHelperXref
 
 		$db->setQuery($query);
 
-		return $db->loadColumn() ?: [0];
+		return $db->loadColumn();
 	}
 
 	public static function update(string $KeyPrimary, int $primary, string $KeySecondary, ?array $items, ?int $group = null): void

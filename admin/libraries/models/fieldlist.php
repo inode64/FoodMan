@@ -20,22 +20,13 @@ JFormHelper::loadFieldClass('list');
  */
 abstract class JFormFMFieldList extends JFormFieldList
 {
-
 	/**
-	 * The accepted user list.
+	 * is used in administrator.
 	 *
 	 * @var         mixed
 	 * @since  3.2
 	 */
-	protected $user;
-
-	/**
-	 * The accepted lang list.
-	 *
-	 * @var         mixed
-	 * @since  3.2
-	 */
-	protected $lang;
+	protected $admin = false;
 
 	/**
 	 * is used in a filter list.
@@ -46,12 +37,36 @@ abstract class JFormFMFieldList extends JFormFieldList
 	protected $filter = false;
 
 	/**
-	 * is used in administrator.
+	 * Id Group for filter.
 	 *
 	 * @var         mixed
 	 * @since  3.2
 	 */
-	protected $admin = false;
+	protected $group = false;
+
+	/**
+	 * The accepted lang list.
+	 *
+	 * @var         mixed
+	 * @since  3.2
+	 */
+	protected $lang;
+
+	/**
+	 * Id List for filter.
+	 *
+	 * @var         mixed
+	 * @since  3.2
+	 */
+	protected $list = false;
+
+	/**
+	 * The accepted user list.
+	 *
+	 * @var         mixed
+	 * @since  3.2
+	 */
+	protected $user;
 
 	/**
 	 * Method to get certain otherwise inaccessible properties from the form field object.
@@ -67,9 +82,11 @@ abstract class JFormFMFieldList extends JFormFieldList
 		switch ($name)
 		{
 			case 'admin':
-			case 'user':
 			case 'filter':
+			case 'group':
 			case 'lang':
+			case 'list':
+			case 'user':
 				return $this->$name;
 				break;
 		}
@@ -92,15 +109,14 @@ abstract class JFormFMFieldList extends JFormFieldList
 		switch ($name)
 		{
 			case 'admin':
-				$this->$name = (bool) $value;
-				break;
-
-			case 'user':
-				$this->$name = (int) $value;
-				break;
-
 			case 'filter':
 				$this->$name = (bool) $value;
+				break;
+
+			case 'group':
+			case 'list':
+			case 'user':
+				$this->$name = (int) $value;
 				break;
 
 			case 'lang':
@@ -193,27 +209,15 @@ abstract class JFormFMFieldList extends JFormFieldList
 
 		if ($return)
 		{
-			if (isset($this->element['user']))
+			if (isset($this->element['admin']))
 			{
-				if (defined($this->element['user']))
+				if (defined($this->element['admin']))
 				{
-					$this->user = (int) constant($this->element['user']);
+					$this->admin = (bool) constant($this->element['admin']);
 				}
 				else
 				{
-					$this->user = (int) $this->element['user'];
-				}
-			}
-
-			if (isset($this->element['lang']))
-			{
-				if (defined($this->element['lang']))
-				{
-					$this->lang = (string) constant($this->element['lang']);
-				}
-				else
-				{
-					$this->lang = (string) $this->element['lang'];
+					$this->admin = (bool) $this->element['admin'];
 				}
 			}
 
@@ -229,17 +233,54 @@ abstract class JFormFMFieldList extends JFormFieldList
 				}
 			}
 
-			if (isset($this->element['admin']))
+			if (isset($this->element['group']))
 			{
-				if (defined($this->element['admin']))
+				if (defined($this->element['group']))
 				{
-					$this->admin = (bool) constant($this->element['admin']);
+					$this->group = (int) constant($this->element['group']);
 				}
 				else
 				{
-					$this->admin = (bool) $this->element['admin'];
+					$this->group = (int) $this->element['group'];
 				}
 			}
+
+			if (isset($this->element['lang']))
+			{
+				if (defined($this->element['lang']))
+				{
+					$this->lang = (string) constant($this->element['lang']);
+				}
+				else
+				{
+					$this->lang = (string) $this->element['lang'];
+				}
+			}
+
+			if (isset($this->element['list']))
+			{
+				if (defined($this->element['list']))
+				{
+					$this->list = (int) constant($this->element['list']);
+				}
+				else
+				{
+					$this->list = (int) $this->element['list'];
+				}
+			}
+
+			if (isset($this->element['user']))
+			{
+				if (defined($this->element['user']))
+				{
+					$this->user = (int) constant($this->element['user']);
+				}
+				else
+				{
+					$this->user = (int) $this->element['user'];
+				}
+			}
+
 		}
 
 		return $return;

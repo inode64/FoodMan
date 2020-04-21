@@ -93,6 +93,8 @@ class FoodManModelShopping extends FoodManModelAdmin
 			return false;
 		}
 
+		$form->setFieldAttribute('shopid', 'list', $this->getState('shopping.id'));
+
 		// Modify the form based on access controls.
 		if (!$this->canEditState((object) $data))
 		{
@@ -272,7 +274,7 @@ class FoodManModelShopping extends FoodManModelAdmin
 	 *
 	 * @since version
 	 */
-	private function UpdateFinishItems(array $rows, array $data): void
+	private function UpdateFinishItems(array $rows, array $data, int $shopid): void
 	{
 		$table    = $this->getTable();
 		$preserve = array();
@@ -288,6 +290,8 @@ class FoodManModelShopping extends FoodManModelAdmin
 
 		foreach ($rows as $row)
 		{
+			$row->shopid = $shopid;
+
 			// Product buy completely
 			if ($row->bought >= $row->quantity)
 			{
@@ -348,7 +352,7 @@ class FoodManModelShopping extends FoodManModelAdmin
 		if (JFactory::getApplication()->getUserState('com_foodman.edit.shopping.task') == TASK_SHOPPING_FINISH)
 		{
 			$rows = self::GetFinishItems($data);
-			self::UpdateFinishItems($rows, $data['products']);
+			self::UpdateFinishItems($rows, $data['products'], $data['shopid']);
 
 			return true;
 		}
