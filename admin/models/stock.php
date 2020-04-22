@@ -229,6 +229,44 @@ class FoodManModelStock extends FoodManModelAdmin
 		parent::preprocessForm($form, $data, $group);
 	}
 
+	/**
+	 * Method to save category
+	 *
+	 * @param   array  $data  The form data.
+	 *
+	 * @return  boolean  True on success.
+	 *
+	 * @since   1.6
+	 */
+	public function save($data)
+	{
+		$isNew = ($data['id'] == 0);
+
+		if (!$isNew)
+		{
+			$item_old = $this->getItem($data['id']);
+		}
+
+		if (!parent::save($data))
+		{
+			return false;
+		}
+
+		JModelLegacy::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_foodman/models', 'FoodManModel');
+		$movement = JModelLegacy::getInstance('Movement', 'FoodManModel');
+
+		if ($isNew)
+		{
+			return $movement->insert((object) $data, TYPE_MOVEMENT_REGULARIZE);
+		}
+
+		if ($data['locid'] != $item_old->locid)
+		{
+			return $movement->insert((object) $data, TYPE_MOVEMENT_MOVE);
+		}
+
+		return true;
+	}
 
 	/**
 	 * @param   object  $data

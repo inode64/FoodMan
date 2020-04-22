@@ -51,6 +51,8 @@ class JFormFieldFMTypeMovement extends JFormFieldList
 		// Get the field options.
 		$options = (array) $this->getOptions();
 
+		$options[] = JHtml::_('select.option', '', JText::_('COM_FOODMAN_SELECT_MOVEMENT'));
+
 		foreach (TYPE_MOVEMENT as $key => $text)
 		{
 			$options[] = JHtml::_('select.option', $key, JText::_($text));
