@@ -20,6 +20,7 @@ require_once JPATH_COMPONENT_ADMINISTRATOR . '/includes/constants.php';
 
 JLoader::register('FoodManHelper', JPATH_ADMINISTRATOR . '/components/com_foodman/helpers/foodman.php');
 JLoader::register('FoodManHelperXref', JPATH_ADMINISTRATOR . '/components/com_foodman/helpers/xref.php');
+JLoader::register('FoodManHelperAccess', JPATH_ADMINISTRATOR . '/components/com_foodman/helpers/access.php');
 
 JLoader::import('components.com_foodman.libraries.models.table', JPATH_ADMINISTRATOR);
 JLoader::import('components.com_foodman.libraries.models.controlerform', JPATH_ADMINISTRATOR);

@@ -43,5 +43,11 @@
                 title="JACTION_EDITSTATE"
         />
 
+        <action
+                name="group.manage"
+                description="COM_FOODMAN_ACCESS_MANAGE_GROUP_DESC"
+                title="COM_FOODMAN_ACCESS_MANAGE_GROUP"
+        />
+
     </section>
 </access>

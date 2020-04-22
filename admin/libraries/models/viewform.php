@@ -71,5 +71,26 @@ abstract class ViewForm extends AbstractView
 		$this->state = $this->get('State');
 
 		$this->isNew = ($this->item->id == 0);
+
+		// Set default group for a rest of fields
+		if ($this->isNew)
+		{
+			if ($this->canDo->get('group.manage'))
+			{
+				$this->item->groupid = \FoodManHelperAccess::getGroup();
+
+				$this->form->setFieldAttribute('groupid', 'default', $this->item->groupid);
+			}
+		}
+
+		if (!$this->canDo->get('group.manage'))
+		{
+			$this->form->setFieldAttribute('groupid', 'readonly', 'true');
+		}
+		
+		$this->form->setFieldAttribute('listid', 'group', $this->item->groupid);
+		$this->form->setFieldAttribute('shopid', 'group', $this->item->groupid);
+		$this->form->setFieldAttribute('proid', 'group', $this->item->groupid);
+		$this->form->setFieldAttribute('locid', 'group', $this->item->groupid);
 	}
 }

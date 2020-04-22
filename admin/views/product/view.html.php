@@ -43,7 +43,7 @@ class FoodManViewProduct extends FoodMan\Models\ViewForm
 		}
 
 		// If an existing item, can save to a copy.
-		if (!$isNew && $canDo->get('core.create'))
+		if (!$this->isNew && $canDo->get('core.create'))
 		{
 			JToolbarHelper::save2copy('product.save2copy');
 		}

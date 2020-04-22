@@ -11,20 +11,28 @@
 defined('_JEXEC') or die;
 
 /**
- * FoodMan component helper for table xref.
+ * Class FoodMan helper for manage table xref.
  *
  * @since  1.6
  */
 class FoodManHelperXref
 {
-
-	private static function query(string $KeyPrimary, int $primary, ?string $KeySecondary = null, ?int $group = null): object
+	private static function query(string $KeyPrimary, ?int $primary = null, ?string $KeySecondary = null, ?int $secondary = null, ?int $group = null): object
 	{
 		$db = JFactory::getDbo();
 
 		$query = $db->getQuery(true)
-			->where($db->quoteName('KeyPrimary') . ' = ' . $db->quote($KeyPrimary))
-			->where($db->quoteName('primary') . ' = ' . $primary);
+			->where($db->quoteName('KeyPrimary') . ' = ' . $db->quote($KeyPrimary));
+
+		if ($primary !== null)
+		{
+			$query->where($db->quoteName('primary') . ' = ' . $primary);
+		}
+
+		if ($secondary !== null)
+		{
+			$query->where($db->quoteName('secondary') . ' = ' . $secondary);
+		}
 
 		if ($KeySecondary !== null)
 		{
@@ -36,12 +44,11 @@ class FoodManHelperXref
 		}
 
 		return $query;
-
 	}
 
 	public static function delete(string $KeyPrimary, int $primary, ?string $KeySecondary = null, ?int $group = null): void
 	{
-		$query = self::query($KeyPrimary, $primary, $KeySecondary, $group);
+		$query = self::query($KeyPrimary, $primary, $KeySecondary, null, $group);
 		$db    = JFactory::getDbo();
 
 		$query->delete($db->quoteName('#__foodman_xref'));
@@ -52,7 +59,7 @@ class FoodManHelperXref
 
 	public static function get(string $KeyPrimary, int $primary, string $KeySecondary, ?int $group = null): ?array
 	{
-		$query = self::query($KeyPrimary, $primary, $KeySecondary, $group);
+		$query = self::query($KeyPrimary, $primary, $KeySecondary, null, $group);
 		$db    = JFactory::getDbo();
 
 		$query->select($db->quoteName('secondary'))
@@ -63,9 +70,22 @@ class FoodManHelperXref
 		return $db->loadColumn();
 	}
 
+	public static function getPrimary(string $KeyPrimary, int $secondary, string $KeySecondary, ?int $group = null): ?array
+	{
+		$query = self::query($KeyPrimary, null, $KeySecondary, $secondary, $group);
+		$db    = JFactory::getDbo();
+
+		$query->select($db->quoteName('primary'))
+			->from($db->quoteName('#__foodman_xref'));
+
+		$db->setQuery($query);
+
+		return $db->loadColumn();
+	}
+
 	public static function update(string $KeyPrimary, int $primary, string $KeySecondary, ?array $items, ?int $group = null): void
 	{
-		self::delete($KeyPrimary, $primary, $KeySecondary, $group);
+		self::delete($KeyPrimary, $primary, $KeySecondary, null, $group);
 
 		if (!empty($items))
 		{

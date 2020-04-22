@@ -34,6 +34,11 @@ abstract class AbstractView extends \Joomla\CMS\MVC\View\HtmlView
 	protected $context;
 
 	/**
+	 * @var  Object
+	 */
+	public $canDo;
+
+	/**
 	 * Execute and display a template script.
 	 *
 	 * @param   string  $tpl  The name of the template file to parse; automatically searches through the template paths.
@@ -44,6 +49,8 @@ abstract class AbstractView extends \Joomla\CMS\MVC\View\HtmlView
 	 */
 	public function display($tpl = null)
 	{
+		$this->generatePermission();
+
 		// Check for errors.
 		if (count($errors = $this->get('Errors')))
 		{
@@ -80,6 +87,19 @@ abstract class AbstractView extends \Joomla\CMS\MVC\View\HtmlView
 		$this->addToolbar();
 
 		return parent::display($tpl);
+	}
+
+	/**
+	 * Method for generate permission.
+	 * @todo Select correct view an incliude levels (create, view, edit, delete, etc..)
+	 *
+	 * @return  void
+	 *
+	 * @since   0.1.0
+	 */
+	protected function generatePermission(): void
+	{
+		$this->canDo = \JHelperContent::getActions('com_foodman');
 	}
 
 	/**
