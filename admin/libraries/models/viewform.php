@@ -87,7 +87,7 @@ abstract class ViewForm extends AbstractView
 		{
 			$this->form->setFieldAttribute('groupid', 'readonly', 'true');
 		}
-		
+
 		$this->form->setFieldAttribute('listid', 'group', $this->item->groupid);
 		$this->form->setFieldAttribute('shopid', 'group', $this->item->groupid);
 		$this->form->setFieldAttribute('proid', 'group', $this->item->groupid);

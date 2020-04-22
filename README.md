@@ -6,8 +6,9 @@ It also allows you to spare money, losing less time searching food in its correc
 
 Requirements
 -------------
-- Joomla 3.9
-- PHP 7.2
+- Joomla 3.9.x
+- PHP 7.2 +
+- Mysql 5.5.3 +
 
 Todo
 -------------
