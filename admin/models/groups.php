@@ -73,6 +73,9 @@ class FoodManModelGroups extends FoodMan\Models\ModelList
 		);
 		$query->from($db->quoteName('#__foodman_groups', 'a'));
 
+		$this->GetUsers($query);
+		$this->FilterPublished($query);
+
 		// Join over the user
 		$query->select('group_concat(' . $db->quoteName('u.name') . ')' . ' AS users_name')
 			->join('LEFT', $db->quoteName('#__foodman_xref', 'x') . ' ON x.primary = a.id AND x.KeyPrimary = ' . $db->quote(XREF_GROUP) . ' AND x.KeySecondary = ' . $db->quote(XREF_USER));
@@ -84,22 +87,6 @@ class FoodManModelGroups extends FoodMan\Models\ModelList
 		// Join over the language
 		$query->select('l.title AS language_title, l.image AS language_image')
 			->join('LEFT', $db->quoteName('#__languages', 'l') . ' ON l.lang_code = a.language');
-
-		// Join with users table to get the username of the person who checked the record out
-		$query->select($db->quoteName('u2.username', 'editor'))
-			->join('LEFT', $db->quoteName('#__users', 'u2') . ' ON u2.id = a.checked_out');
-
-		// Filter by published state
-		$published = $this->getState('filter.published');
-
-		if (is_numeric($published))
-		{
-			$query->where($db->quoteName('a.state') . ' = ' . (int) $published);
-		}
-		elseif ($published === '')
-		{
-			$query->where($db->quoteName('a.state') . ' IN (0, 1)');
-		}
 
 		// Filter by user.
 		$userid = $this->getState('filter.userid');
