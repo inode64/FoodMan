@@ -72,6 +72,9 @@ abstract class ViewForm extends AbstractView
 
 		$this->isNew = ($this->item->id == 0);
 
+		$user = \JFactory::getUser();
+		$lang = \JFactory::getLanguage()->getTag();
+
 		// Set default group for a rest of fields
 		if ($this->isNew)
 		{
@@ -88,12 +91,28 @@ abstract class ViewForm extends AbstractView
 			$this->form->setFieldAttribute('groupid', 'readonly', 'true');
 		}
 
+		if (!$user->authorise('core.admin'))
+		{
+			$this->item->lang = $lang;
+
+			$this->form->setFieldAttribute('language', 'readonly', 'true');
+			$this->form->setFieldAttribute('language', 'default', $this->item->lang);
+		}
+
 		if (isset($this->item->groupid))
 		{
 			$this->form->setFieldAttribute('listid', 'group', $this->item->groupid);
 			$this->form->setFieldAttribute('shopid', 'group', $this->item->groupid);
 			$this->form->setFieldAttribute('proid', 'group', $this->item->groupid);
 			$this->form->setFieldAttribute('locid', 'group', $this->item->groupid);
+		}
+
+		if (isset($this->item->lang))
+		{
+			$this->form->setFieldAttribute('listid', 'lang', $this->item->lang);
+			$this->form->setFieldAttribute('shopid', 'lang', $this->item->lang);
+			$this->form->setFieldAttribute('proid', 'lang', $this->item->lang);
+			$this->form->setFieldAttribute('locid', 'lang', $this->item->lang);
 		}
 	}
 }
