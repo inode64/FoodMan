@@ -90,11 +90,6 @@ class FoodManModelShoppings extends FoodMan\Models\ModelList
 		$query->select($db->quoteName('p.name', 'product_name'))
 			->join('LEFT', $db->quoteName('#__foodman_products', 'p') . ' ON p.id = a.proid');
 
-		// Join with users table to get the username of the person who checked the record out
-		$query->select($db->quoteName('u2.username', 'editor'))
-			->join('LEFT', $db->quoteName('#__users', 'u2') . ' ON u2.id = a.checked_out');
-
-
 		// Filter by list
 		$listid = $this->getState('filter.listid');
 
