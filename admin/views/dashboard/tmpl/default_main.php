@@ -11,14 +11,18 @@
 defined('_JEXEC') or die;
 
 foreach (FOODMAN_SUBMENU as $item)
-{ ?>
-    <div class="dashboard-wrapper">
-        <div class="dashboard-content">
-            <a class="icon" href="<?php echo $item['url']; ?>">
-				<?php echo JHtml::_('image', 'com_foodman/' . $item['image'], JText::_($item['title']), null, true); ?>
-                <span class="dashboard-title"><?php echo JText::_($item['title']); ?></span>
-            </a>
+{
+	if (FoodManHelperAccess::AccessMenu($item))
+	{
+		?>
+        <div class="dashboard-wrapper">
+            <div class="dashboard-content">
+                <a class="icon" href="<?php echo $item['url']; ?>">
+					<?php echo JHtml::_('image', 'com_foodman/' . $item['image'], JText::_($item['title']), null, true); ?>
+                    <span class="dashboard-title"><?php echo JText::_($item['title']); ?></span>
+                </a>
+            </div>
         </div>
-    </div>
-<?php } ?>
+	<?php }
+} ?>
 <div class="clearfix"></div>

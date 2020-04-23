@@ -33,17 +33,21 @@ class FoodManViewGroups extends FoodMan\Models\ViewList
 	 */
 	protected function addToolbar(): void
 	{
-		$canDo = JHelperContent::getActions('com_foodman');
+		if (!$this->canDo->get('group.manage'))
+		{
+			throw new JAccessExceptionNotallowed(JText::_('JERROR_ALERTNOAUTHOR'), 403);
+		}
+
 		$user  = JFactory::getUser();
 
 		JToolbarHelper::addNew('group.add');
 
-		if ($canDo->get('core.edit'))
+		if ($this->canDo->get('core.edit'))
 		{
 			JToolbarHelper::editList('group.edit');
 		}
 
-		if ($canDo->get('core.edit.state'))
+		if ($this->canDo->get('core.edit.state'))
 		{
 			if ($this->state->get('filter.published') != 2)
 			{
@@ -65,16 +69,16 @@ class FoodManViewGroups extends FoodMan\Models\ViewList
 				}
 			}
 		}
-		if ($canDo->get('core.edit') || JFactory::getUser()->authorise('core.manage', 'com_checkin'))
+		if ($this->canDo->get('core.edit') || JFactory::getUser()->authorise('core.manage', 'com_checkin'))
 		{
 			JToolBarHelper::checkin('groups.checkin');
 		}
 
-		if ($this->state->get('filter.published') == -2 && $canDo->get('core.delete'))
+		if ($this->state->get('filter.published') == -2 && $this->canDo->get('core.delete'))
 		{
 			JToolbarHelper::deleteList('JGLOBAL_CONFIRM_DELETE', 'groups.delete', 'JTOOLBAR_EMPTY_TRASH');
 		}
-		elseif ($canDo->get('core.edit.state'))
+		elseif ($this->canDo->get('core.edit.state'))
 		{
 			JToolbarHelper::trash('groups.trash');
 		}

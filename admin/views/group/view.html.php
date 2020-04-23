@@ -28,23 +28,25 @@ class FoodManViewGroup extends FoodMan\Models\ViewForm
 	 */
 	protected function addToolbar(): void
 	{
-		// Since we don't track these assets at the item level
-		$canDo = JHelperContent::getActions('com_foodman');
+		if (!$this->canDo->get('group.manage'))
+		{
+			throw new JAccessExceptionNotallowed(JText::_('JERROR_ALERTNOAUTHOR'), 403);
+		}
 
 		// If not checked out, can save the item.
-		if ($canDo->get('core.edit'))
+		if ($this->canDo->get('core.edit'))
 		{
 			JToolbarHelper::apply('group.apply');
 			JToolbarHelper::save('group.save');
 
-			if ($canDo->get('core.create'))
+			if ($this->canDo->get('core.create'))
 			{
 				JToolbarHelper::save2new('group.save2new');
 			}
 		}
 
 		// If an existing item, can save to a copy.
-		if (!$this->isNew && $canDo->get('core.create'))
+		if (!$this->isNew && $this->canDo->get('core.create'))
 		{
 			JToolbarHelper::save2copy('group.save2copy');
 		}

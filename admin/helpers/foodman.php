@@ -30,11 +30,14 @@ class FoodManHelper extends JHelperContent
 	{
 		foreach (FOODMAN_SUBMENU as $key => $item)
 		{
-			JHtmlSidebar::addEntry(
-				JText::_($item['title']),
-				$item['url'],
-				$vName == $key
-			);
+			if (FoodManHelperAccess::AccessMenu($item))
+			{
+				JHtmlSidebar::addEntry(
+					JText::_($item['title']),
+					$item['url'],
+					$vName == $key
+				);
+			}
 		}
 	}
 

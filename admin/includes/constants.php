@@ -66,64 +66,74 @@ const FOODMAN_TABLES_SECONDARY = array(
 
 const FOODMAN_SUBMENU = array(
 	'dashboard'  => array(
-		'title' => 'COM_FOODMAN_SUBMENU_DASHBOARD',
-		'url'   => 'index.php?option=com_foodman&view=dashboard',
-		'alt'   => null,
-		'image' => 'dashboard.png'
+		'title'  => 'COM_FOODMAN_SUBMENU_DASHBOARD',
+		'url'    => 'index.php?option=com_foodman&view=dashboard',
+		'alt'    => null,
+		'image'  => 'dashboard.png',
+		'access' => ''
 	),
 	'groups'     => array(
-		'title' => 'COM_FOODMAN_SUBMENU_GROUPS',
-		'url'   => 'index.php?option=com_foodman&view=groups',
-		'alt'   => null,
-		'image' => 'groups.png'
+		'title'  => 'COM_FOODMAN_SUBMENU_GROUPS',
+		'url'    => 'index.php?option=com_foodman&view=groups',
+		'alt'    => null,
+		'image'  => 'groups.png',
+		'access' => 'group.manage'
 	),
 	'shops'      => array(
-		'title' => 'COM_FOODMAN_SUBMENU_SHOPS',
-		'url'   => 'index.php?option=com_foodman&view=shops',
-		'alt'   => null,
-		'image' => 'shops.png'
+		'title'  => 'COM_FOODMAN_SUBMENU_SHOPS',
+		'url'    => 'index.php?option=com_foodman&view=shops',
+		'alt'    => null,
+		'image'  => 'shops.png',
+		'access' => ''
 	),
 	'locations'  => array(
-		'title' => 'COM_FOODMAN_SUBMENU_LOCATIONS',
-		'url'   => 'index.php?option=com_foodman&view=locations',
-		'alt'   => null,
-		'image' => 'locations.png'
+		'title'  => 'COM_FOODMAN_SUBMENU_LOCATIONS',
+		'url'    => 'index.php?option=com_foodman&view=locations',
+		'alt'    => null,
+		'image'  => 'locations.png',
+		'access' => ''
 	),
 	'categories' => array(
-		'title' => 'COM_FOODMAN_SUBMENU_CATEGORIES',
-		'url'   => 'index.php?option=com_foodman&view=categories',
-		'alt'   => null,
-		'image' => 'categories.png'
+		'title'  => 'COM_FOODMAN_SUBMENU_CATEGORIES',
+		'url'    => 'index.php?option=com_foodman&view=categories',
+		'alt'    => null,
+		'image'  => 'categories.png',
+		'access' => ''
 	),
 	'lists'      => array(
-		'title' => 'COM_FOODMAN_SUBMENU_LISTS',
-		'url'   => 'index.php?option=com_foodman&view=lists',
-		'alt'   => null,
-		'image' => 'lists.png'
+		'title'  => 'COM_FOODMAN_SUBMENU_LISTS',
+		'url'    => 'index.php?option=com_foodman&view=lists',
+		'alt'    => null,
+		'image'  => 'lists.png',
+		'access' => ''
 	),
 	'products'   => array(
-		'title' => 'COM_FOODMAN_SUBMENU_PRODUCTS',
-		'url'   => 'index.php?option=com_foodman&view=products',
-		'alt'   => null,
-		'image' => 'products.png'
+		'title'  => 'COM_FOODMAN_SUBMENU_PRODUCTS',
+		'url'    => 'index.php?option=com_foodman&view=products',
+		'alt'    => null,
+		'image'  => 'products.png',
+		'access' => ''
 	),
 	'stocks'     => array(
-		'title' => 'COM_FOODMAN_SUBMENU_STOCKS',
-		'url'   => 'index.php?option=com_foodman&view=stocks',
-		'alt'   => null,
-		'image' => 'stocks.png'
+		'title'  => 'COM_FOODMAN_SUBMENU_STOCKS',
+		'url'    => 'index.php?option=com_foodman&view=stocks',
+		'alt'    => null,
+		'image'  => 'stocks.png',
+		'access' => ''
 	),
 	'shoppings'  => array(
-		'title' => 'COM_FOODMAN_SUBMENU_SHOPPINGS',
-		'url'   => 'index.php?option=com_foodman&view=shoppings',
-		'alt'   => null,
-		'image' => 'shoppings.png'
+		'title'  => 'COM_FOODMAN_SUBMENU_SHOPPINGS',
+		'url'    => 'index.php?option=com_foodman&view=shoppings',
+		'alt'    => null,
+		'image'  => 'shoppings.png',
+		'access' => ''
 	),
 	'movements'  => array(
-		'title' => 'COM_FOODMAN_SUBMENU_MOVEMENTS',
-		'url'   => 'index.php?option=com_foodman&view=movements',
-		'alt'   => null,
-		'image' => 'movements.png'
+		'title'  => 'COM_FOODMAN_SUBMENU_MOVEMENTS',
+		'url'    => 'index.php?option=com_foodman&view=movements',
+		'alt'    => null,
+		'image'  => 'movements.png',
+		'access' => ''
 	)
 );
 

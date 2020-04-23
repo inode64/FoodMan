@@ -34,4 +34,11 @@ class FoodManHelperAccess
 
 		return empty($group) ? null : $group[0];
 	}
+
+	public static function AccessMenu(array $item, ?int $userId = null): bool
+	{
+		$user = JFactory::getUser($userId ?? JFactory::getUser()->id);
+
+		return empty($item['access'])|| $user->authorise($item['access'], 'com_foodman');
+	}
 }
