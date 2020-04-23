@@ -34,9 +34,9 @@ class FMStateField extends JFormFMFieldPredefinedList
 	 * @since  3.2
 	 */
 	protected $predefinedOptions = array(
-		'1'  => 'JPUBLISHED',
-		'0'  => 'JUNPUBLISHED',
-		'2'  => 'JARCHIVED',
-		'-1' => 'JTRASHED'
+		1  => 'JPUBLISHED',
+		0  => 'JUNPUBLISHED',
+		2  => 'JARCHIVED',
+		-2 => 'JTRASHED'
 	);
 }

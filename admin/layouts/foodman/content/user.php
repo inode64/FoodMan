@@ -8,7 +8,7 @@
  * @link       https://github.com/inode64/FoodMan
  */
 
-defined('JPATH_BASE') or die;
+defined('_JEXEC') or die;
 
 $item = $displayData;
 

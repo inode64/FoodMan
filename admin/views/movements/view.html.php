@@ -51,7 +51,7 @@ class FoodManViewMovements extends FoodMan\Models\ViewList
 				JToolbarHelper::custom('movements.unfeatured', 'unfeatured.png', 'featured_f2.png', 'JUNFEATURE', true);
 			}
 
-			if ($this->state->get('filter.published') != -1)
+			if ($this->state->get('filter.published') != -2)
 			{
 				if ($this->state->get('filter.published') != 2)
 				{
