@@ -529,13 +529,15 @@ class FoodManModelShopping extends FoodManModelAdmin
 			// Amount left to buy
 			$rows[$key]['rest'] = $row['quantity'] - $row['bought'];
 
+			# TODO Checkout when create new items from list,
+			/*
 			if ($key !== 0)
 			{
 				if (!$this->checkout($row['id']))
 				{
 					return false;
 				}
-			}
+			}*/
 		}
 
 		$result = parent::getItem($rows[0]['id']);
