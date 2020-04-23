@@ -78,9 +78,9 @@ class FoodManModelStocks extends FoodMan\Models\ModelList
 		);
 		$query->from($db->quoteName('#__foodman_stocks', 'a'));
 
-		// Join over the group
-		$query->select($db->quoteName('g.name', 'group_name'))
-			->join('LEFT', $db->quoteName('#__foodman_groups', 'g') . ' ON g.id = a.groupid');
+		$this->GetUsers($query);
+		$this->FilterPublished($query);
+		$this->FilterGroup($query);
 
 		// Join over the product
 		$query->select($db->quoteName('p.name', 'product'))
@@ -89,30 +89,6 @@ class FoodManModelStocks extends FoodMan\Models\ModelList
 		// Join over the location
 		$query->select($db->quoteName('n.name', 'location'))
 			->join('LEFT', $db->quoteName('#__foodman_locations', 'n') . ' ON n.id = a.locid');
-
-		// Join with users table to get the username of the person who checked the record out
-		$query->select($db->quoteName('u2.username', 'editor'))
-			->join('LEFT', $db->quoteName('#__users', 'u2') . ' ON u2.id = a.checked_out');
-
-		// Filter by published state
-		$published = $this->getState('filter.published');
-
-		if (is_numeric($published))
-		{
-			$query->where($db->quoteName('a.state') . ' = ' . (int) $published);
-		}
-		elseif ($published === '')
-		{
-			$query->where($db->quoteName('a.state') . ' IN (0, 1)');
-		}
-
-		// Filter by group.
-		$groupid = $this->getState('filter.groupid');
-
-		if (is_numeric($groupid))
-		{
-			$query->where($db->quoteName('a.groupid') . ' = ' . (int) $groupid);
-		}
 
 		// Filter by product.
 		$proid = $this->getState('filter.proid');

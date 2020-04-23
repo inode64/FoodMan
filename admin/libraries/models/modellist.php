@@ -94,4 +94,82 @@ abstract class ModelList extends \Joomla\CMS\MVC\Model\ListModel
 
 		return $form;
 	}
+
+	protected function FilterLang(object &$query): void
+	{
+		$db = $this->getDbo();
+
+		// Join over the language
+		$query->select('l.title AS language_title, l.image AS language_image')
+			->join('LEFT', $db->quoteName('#__languages', 'l') . ' ON l.lang_code = a.language');
+
+		if (\JFactory::getUser()->authorise('core.admin'))
+		{
+			// Filter on the language.
+			if ($language = $this->getState('filter.language'))
+			{
+				$query->where($db->quoteName('a.language') . ' = ' . $db->quote($language));
+			}
+		}
+		else
+		{
+			$query->where($db->quoteName('a.language') . ' IN (' . $db->quote(\JFactory::getLanguage()->getTag()) . ',' . $db->quote('*') . ')');
+		}
+	}
+
+	protected function FilterPublished(object &$query): void
+	{
+		$db = $this->getDbo();
+
+		// Filter by published state
+		$published = $this->getState('filter.published');
+
+		if (is_numeric($published))
+		{
+			$query->where($db->quoteName('a.state') . ' = ' . (int) $published);
+		}
+		elseif ($published === '')
+		{
+			$query->where($db->quoteName('a.state') . ' IN (0, 1)');
+		}
+	}
+
+	protected function FilterGroup(object &$query): void
+	{
+		$db = $this->getDbo();
+
+		// Join over the group
+		$query->select($db->quoteName('g.name', 'group_name'))
+			->join('LEFT', $db->quoteName('#__foodman_groups', 'g') . ' ON g.id = a.groupid');
+
+		if (\JHelperContent::getActions('com_foodman')->get('group.manage'))
+		{
+			// Filter by group.
+			$groupid = $this->getState('filter.groupid');
+
+			if (is_numeric($groupid) && !empty($groupid))
+			{
+				$query->where($db->quoteName('a.groupid') . ' = ' . (int) $groupid);
+			}
+		}
+		else
+		{
+			$query->where($db->quoteName('a.groupid') . ' IN (0, ' . \FoodManHelperAccess::getGroup() . ')');
+		}
+	}
+
+	protected function GetUsers(object &$query): void
+	{
+		$db = $this->getDbo();
+
+		// Join with users table to get the username of the person who checked the record out
+		$query->select($db->quoteName('u1.username', 'editor'))
+			->join('LEFT', $db->quoteName('#__users', 'u1') . ' ON u1.id = a.checked_out');
+
+		$query->select($db->quoteName('u2.username', 'created'))
+			->join('LEFT', $db->quoteName('#__users', 'u2') . ' ON u2.id = a.created_by');
+
+		$query->select($db->quoteName('u3.username', 'modified'))
+			->join('LEFT', $db->quoteName('#__users', 'u3') . ' ON u3.id = a.modified_by');
+	}
 }
