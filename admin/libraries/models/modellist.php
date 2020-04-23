@@ -65,4 +65,33 @@ abstract class ModelList extends \Joomla\CMS\MVC\Model\ListModel
 		// List state information.
 		parent::populateState($ordering, $direction);
 	}
+
+	/**
+	 * Get the filter form
+	 *
+	 * @param   array    $data      data
+	 * @param   boolean  $loadData  load current data
+	 *
+	 * @return  \JForm|boolean  The \JForm object or false on error
+	 *
+	 * @since   3.2
+	 */
+	public function getFilterForm($data = array(), $loadData = true)
+	{
+		$form = parent::getFilterForm($data, $loadData);
+
+		if ($form)
+		{
+			if (!\JFactory::getUser()->authorise('group.manage', 'com_foodman'))
+			{
+				$form->removeField('groupid', 'filter');
+			}
+			if (!\JFactory::getUser()->authorise('core.admin'))
+			{
+				$form->removeField('language', 'filter');
+			}
+		}
+
+		return $form;
+	}
 }
