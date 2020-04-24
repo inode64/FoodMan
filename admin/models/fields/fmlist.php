@@ -41,8 +41,10 @@ class JFormFieldFMList extends JFormFMFieldList
 		$db    = JFactory::getDbo();
 		$query = $db->getQuery(true);
 		$query->select($db->quoteName(array('id', 'name')))
-			->from($db->quoteName('#__foodman_lists'))
+			->from($db->quoteName('#__foodman_lists', 'a'))
 			->order($db->quoteName('name'));
+
+		$this->FilterGroup($query);
 
 		$db->setQuery((string) $query);
 		$rows = $db->loadObjectList();

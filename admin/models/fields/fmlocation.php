@@ -41,9 +41,11 @@ class JFormFieldFMLocation extends JFormFMFieldList
 		$db    = JFactory::getDbo();
 		$query = $db->getQuery(true);
 		$query->select($db->quoteName(array('id', 'name')))
-			->from($db->quoteName('#__foodman_locations'))
-			->where($db->quoteName('language') . ' IN (' . $db->quote($this->lang) . ',' . $db->quote('*') . ')')
+			->from($db->quoteName('#__foodman_locations','a'))
 			->order($db->quoteName('name'));
+
+		$this->FilterLang($query);
+		$this->FilterGroup($query);
 
 		$db->setQuery((string) $query);
 		$rows = $db->loadObjectList();

@@ -37,12 +37,12 @@ abstract class JFormFMFieldList extends JFormFieldList
 	protected $filter = false;
 
 	/**
-	 * Id Group for filter.
+	 * Id GroupId for filter.
 	 *
 	 * @var         mixed
 	 * @since  3.2
 	 */
-	protected $group = false;
+	protected $groupId;
 
 	/**
 	 * The accepted lang list.
@@ -53,12 +53,12 @@ abstract class JFormFMFieldList extends JFormFieldList
 	protected $lang;
 
 	/**
-	 * Id List for filter.
+	 * Id ListId for filter.
 	 *
 	 * @var         mixed
 	 * @since  3.2
 	 */
-	protected $list = false;
+	protected $listId;
 
 	/**
 	 * The accepted user list.
@@ -83,9 +83,9 @@ abstract class JFormFMFieldList extends JFormFieldList
 		{
 			case 'admin':
 			case 'filter':
-			case 'group':
+			case 'groupid':
 			case 'lang':
-			case 'list':
+			case 'listid':
 			case 'user':
 				return $this->$name;
 				break;
@@ -113,8 +113,8 @@ abstract class JFormFMFieldList extends JFormFieldList
 				$this->$name = (bool) $value;
 				break;
 
-			case 'group':
-			case 'list':
+			case 'groupid':
+			case 'listid':
 			case 'user':
 				$this->$name = (int) $value;
 				break;
@@ -233,15 +233,15 @@ abstract class JFormFMFieldList extends JFormFieldList
 				}
 			}
 
-			if (isset($this->element['group']))
+			if (isset($this->element['groupid']))
 			{
-				if (defined($this->element['group']))
+				if (defined($this->element['groupid']))
 				{
-					$this->group = (int) constant($this->element['group']);
+					$this->groupId = (int) constant($this->element['groupid']);
 				}
 				else
 				{
-					$this->group = (int) $this->element['group'];
+					$this->groupId = (int) $this->element['groupid'];
 				}
 			}
 
@@ -257,15 +257,15 @@ abstract class JFormFMFieldList extends JFormFieldList
 				}
 			}
 
-			if (isset($this->element['list']))
+			if (isset($this->element['listid']))
 			{
-				if (defined($this->element['list']))
+				if (defined($this->element['listid']))
 				{
-					$this->list = (int) constant($this->element['list']);
+					$this->listId = (int) constant($this->element['listid']);
 				}
 				else
 				{
-					$this->list = (int) $this->element['list'];
+					$this->listId = (int) $this->element['listid'];
 				}
 			}
 
@@ -280,10 +280,41 @@ abstract class JFormFMFieldList extends JFormFieldList
 					$this->user = (int) $this->element['user'];
 				}
 			}
-
 		}
 
 		return $return;
 	}
 
+	public function FilterLang(object &$query): void
+	{
+		if ($this->lang !== null)
+		{
+			$db = JFactory::getDbo();
+
+			$query->where($db->quoteName('a.language') . ' IN (' . $db->quote($this->lang) . ',' . $db->quote('*') . ')');
+		}
+	}
+
+	public function FilterGroup(object &$query): void
+	{
+		if ($this->groupId !== null)
+		{
+			$db = JFactory::getDbo();
+			$query->where($db->quoteName('a.groupid') . ' IN (0, ' . $this->groupId . ')');
+		}
+	}
+
+	public function FilterXref(string $primary, string $secondary, ?int $id, object &$query): void
+	{
+		if (is_numeric($id))
+		{
+			$db = JFactory::getDbo();
+
+			$refs = FoodManHelperXref::get($primary, $id, $secondary);
+			if (!empty($refs))
+			{
+				$query->where($db->quoteName('id') . ' IN (' . implode(',', $refs) . ')');
+			}
+		}
+	}
 }

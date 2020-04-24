@@ -93,7 +93,7 @@ class FoodManModelShopping extends FoodManModelAdmin
 			return false;
 		}
 
-		$form->setFieldAttribute('shopid', 'list', $this->getState('shopping.id'));
+		$form->setFieldAttribute('shopid', 'listid', $this->getState('shopping.id'));
 
 		// Modify the form based on access controls.
 		if (!$this->canEditState((object) $data))

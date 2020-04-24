@@ -101,10 +101,10 @@ abstract class ViewForm extends AbstractView
 
 		if (isset($this->item->groupid))
 		{
-			$this->form->setFieldAttribute('listid', 'group', $this->item->groupid);
-			$this->form->setFieldAttribute('shopid', 'group', $this->item->groupid);
-			$this->form->setFieldAttribute('proid', 'group', $this->item->groupid);
-			$this->form->setFieldAttribute('locid', 'group', $this->item->groupid);
+			$this->form->setFieldAttribute('listid', 'groupid', $this->item->groupid);
+			$this->form->setFieldAttribute('shopid', 'groupid', $this->item->groupid);
+			$this->form->setFieldAttribute('proid', 'groupid', $this->item->groupid);
+			$this->form->setFieldAttribute('locid', 'groupid', $this->item->groupid);
 		}
 
 		if (isset($this->item->lang))

@@ -40,18 +40,12 @@ class JFormFieldFMShop extends JFormFMFieldList
 		$db    = JFactory::getDbo();
 		$query = $db->getQuery(true);
 		$query->select($db->quoteName(array('id', 'name')))
-			->from($db->quoteName('#__foodman_shops'))
-			->where($db->quoteName('language') . ' IN (' . $db->quote($this->lang) . ',' . $db->quote('*') . ')')
+			->from($db->quoteName('#__foodman_shops', 'a'))
 			->order($db->quoteName('name'));
 
-		if (is_numeric($this->list))
-		{
-			$list = FoodManHelperXref::get(XREF_LIST, $this->list, XREF_SHOP);
-			if (!empty($list))
-			{
-				$query->where($db->quoteName('id') . ' IN (' . implode(',', $list) . ')');
-			}
-		}
+		$this->FilterLang($query);
+		$this->FilterGroup($query);
+		$this->FilterXref(XREF_LIST, XREF_SHOP, $this->listId, $query);
 
 		$db->setQuery((string) $query);
 		$rows = $db->loadObjectList();
