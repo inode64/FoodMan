@@ -83,62 +83,11 @@ class FoodManModelMovements extends FoodMan\Models\ModelList
 		$this->GetUsers($query);
 		$this->FilterPublished($query);
 		$this->FilterGroup($query);
-
-		// Join over the product
-		$query->select($db->quoteName('p.name', 'product'))
-			->join('LEFT', $db->quoteName('#__foodman_products', 'p') . ' ON p.id = a.proid');
-
-		// Join over the list
-		$query->select($db->quoteName('li.name', 'list'))
-			->join('LEFT', $db->quoteName('#__foodman_lists', 'li') . ' ON li.id = a.listid');
-
-		// Join over the location
-		$query->select($db->quoteName('lo.name', 'location'))
-			->join('LEFT', $db->quoteName('#__foodman_locations', 'lo') . ' ON lo.id = a.locid');
-
-		// Join over the shop
-		$query->select($db->quoteName('s.name', 'shop'))
-			->join('LEFT', $db->quoteName('#__foodman_shops', 's') . ' ON s.id = a.shopid');
-
-		// Filter by type movement.
-		$type = $this->getState('filter.type');
-
-		if (is_numeric($type))
-		{
-			$query->where($db->quoteName('a.type') . ' = ' . (int) $type);
-		}
-
-		// Filter by shop.
-		$shopid = $this->getState('filter.shopid');
-
-		if (is_numeric($shopid))
-		{
-			$query->where($db->quoteName('a.shopid') . ' = ' . (int) $shopid);
-		}
-
-		// Filter by list.
-		$listid = $this->getState('filter.listid');
-
-		if (is_numeric($listid))
-		{
-			$query->where($db->quoteName('a.listid') . ' = ' . (int) $listid);
-		}
-
-		// Filter by product.
-		$proid = $this->getState('filter.proid');
-
-		if (is_numeric($proid))
-		{
-			$query->where($db->quoteName('a.proid') . ' = ' . (int) $proid);
-		}
-
-		// Filter by location.
-		$locid = $this->getState('filter.locid');
-
-		if (is_numeric($locid))
-		{
-			$query->where($db->quoteName('a.locid') . ' = ' . (int) $locid);
-		}
+		$this->FilterProduct($query);
+		$this->FilterList($query);
+		$this->FilterLocation($query);
+		$this->FilterMovement($query);
+		$this->FilterShop($query);
 
 		// Filter by search in name
 		$search = $this->getState('filter.search');

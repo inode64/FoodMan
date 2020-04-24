@@ -75,6 +75,7 @@ class FoodManModelGroups extends FoodMan\Models\ModelList
 
 		$this->GetUsers($query);
 		$this->FilterPublished($query);
+		$this->FilterLang($query);
 
 		// Join over the user
 		$query->select('group_concat(' . $db->quoteName('u.name') . ')' . ' AS users_name')
@@ -83,10 +84,6 @@ class FoodManModelGroups extends FoodMan\Models\ModelList
 			->join('LEFT', $db->quoteName('#__users', 'u') . ' ON u.id = x.secondary');
 
 		$query->group($db->quoteName('a.id'));
-
-		// Join over the language
-		$query->select('l.title AS language_title, l.image AS language_image')
-			->join('LEFT', $db->quoteName('#__languages', 'l') . ' ON l.lang_code = a.language');
 
 		// Filter by user.
 		$userid = $this->getState('filter.userid');
@@ -110,12 +107,6 @@ class FoodManModelGroups extends FoodMan\Models\ModelList
 				$search = $db->quote('%' . str_replace(' ', '%', $db->escape(trim($search), true) . '%'));
 				$query->where('(a.name LIKE ' . $search . ' OR u.name LIKE ' . $search . ')');
 			}
-		}
-
-		// Filter on the language.
-		if ($language = $this->getState('filter.language'))
-		{
-			$query->where($db->quoteName('a.language') . ' = ' . $db->quote($language));
 		}
 
 		// Add the list ordering clause.

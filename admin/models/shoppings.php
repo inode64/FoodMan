@@ -81,38 +81,9 @@ class FoodManModelShoppings extends FoodMan\Models\ModelList
 		$this->GetUsers($query);
 		$this->FilterPublished($query);
 		$this->FilterGroup($query);
-
-		// Join over the list
-		$query->select($db->quoteName('t.name', 'list_name'))
-			->join('LEFT', $db->quoteName('#__foodman_lists', 't') . ' ON t.id = a.listid');
-
-		// Join over the product
-		$query->select($db->quoteName('p.name', 'product_name'))
-			->join('LEFT', $db->quoteName('#__foodman_products', 'p') . ' ON p.id = a.proid');
-
-		// Filter by list
-		$listid = $this->getState('filter.listid');
-
-		if (is_numeric($listid))
-		{
-			$query->where($db->quoteName('a.listid') . ' = ' . (int) $listid);
-		}
-
-		// Filter by product
-		$proid = $this->getState('filter.proid');
-
-		if (is_numeric($proid))
-		{
-			$query->where($db->quoteName('a.proid') . ' = ' . (int) $proid);
-		}
-
-		// Filter by process
-		$process = $this->getState('filter.process');
-
-		if (is_numeric($process))
-		{
-			$query->where($db->quoteName('a.process') . ' = ' . (int) $process);
-		}
+		$this->FilterProduct($query);
+		$this->FilterList($query);
+		$this->FilterProcess($query);
 
 		// Filter by search in name
 		$search = $this->getState('filter.search');

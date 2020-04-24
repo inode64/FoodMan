@@ -114,7 +114,7 @@ if ($saveOrder)
 								{
 									JHtml::_('actionsdropdown.' . ((int) $item->state === 2 ? 'un' : '') . 'archive', 'cb' . $i, 'stocks');
 									JHtml::_('actionsdropdown.' . ((int) $item->state === -2 ? 'un' : '') . 'trash', 'cb' . $i, 'stocks');
-									echo JHtml::_('actionsdropdown.render', $this->escape($item->product));
+									echo JHtml::_('actionsdropdown.render', $this->escape($item->product_name));
 								}
 								?>
                             </div>
@@ -128,7 +128,7 @@ if ($saveOrder)
 								<?php endif; ?>
 
                                 <a href="<?php echo JRoute::_('index.php?option=com_foodman&task=stock.edit&id=' . (int) $item->id); ?>">
-									<?php echo $this->escape($item->product); ?></a>
+									<?php echo $this->escape($item->product_name); ?></a>
 
                             </div>
                         </td>

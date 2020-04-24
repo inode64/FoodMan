@@ -140,10 +140,10 @@ if ($saveOrder)
                             </div>
                         </td>
                         <td class="small hidden-phone">
-							<?php echo $this->escape($item->product); ?>
+							<?php echo $this->escape($item->product_name); ?>
                         </td>
                         <td class="small hidden-phone">
-							<?php echo $this->escape($item->list); ?>
+							<?php echo $this->escape($item->list_name); ?>
                         </td>
                         <td class="small hidden-phone">
 							<?php echo $this->escape($item->shop); ?>

@@ -81,30 +81,8 @@ class FoodManModelStocks extends FoodMan\Models\ModelList
 		$this->GetUsers($query);
 		$this->FilterPublished($query);
 		$this->FilterGroup($query);
-
-		// Join over the product
-		$query->select($db->quoteName('p.name', 'product'))
-			->join('LEFT', $db->quoteName('#__foodman_products', 'p') . ' ON p.id = a.proid');
-
-		// Join over the location
-		$query->select($db->quoteName('n.name', 'location'))
-			->join('LEFT', $db->quoteName('#__foodman_locations', 'n') . ' ON n.id = a.locid');
-
-		// Filter by product.
-		$proid = $this->getState('filter.proid');
-
-		if (is_numeric($proid))
-		{
-			$query->where($db->quoteName('a.proid') . ' = ' . (int) $proid);
-		}
-
-		// Filter by location.
-		$locid = $this->getState('filter.locid');
-
-		if (is_numeric($locid))
-		{
-			$query->where($db->quoteName('a.locid') . ' = ' . (int) $locid);
-		}
+		$this->FilterProduct($query);
+		$this->FilterLocation($query);
 
 		// Add filter for registration ranges select list
 		$expiration = $this->getState('filter.expiration');

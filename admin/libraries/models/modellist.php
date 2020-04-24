@@ -172,4 +172,98 @@ abstract class ModelList extends \Joomla\CMS\MVC\Model\ListModel
 		$query->select($db->quoteName('u3.username', 'modified'))
 			->join('LEFT', $db->quoteName('#__users', 'u3') . ' ON u3.id = a.modified_by');
 	}
+
+	protected function FilterProduct(object &$query): void
+	{
+		$db = $this->getDbo();
+
+		// Join over the product
+		$query->select($db->quoteName('p.name', 'product_name'))
+			->join('LEFT', $db->quoteName('#__foodman_products', 'p') . ' ON p.id = a.proid');
+
+		// Filter by product
+		$proid = $this->getState('filter.proid');
+
+		if (is_numeric($proid))
+		{
+			$query->where($db->quoteName('a.proid') . ' = ' . (int) $proid);
+		}
+	}
+
+	protected function FilterList(object &$query): void
+	{
+		$db = $this->getDbo();
+
+		// Join over the list
+		$query->select($db->quoteName('t.name', 'list_name'))
+			->join('LEFT', $db->quoteName('#__foodman_lists', 't') . ' ON t.id = a.listid');
+
+		// Filter by list
+		$listid = $this->getState('filter.listid');
+
+		if (is_numeric($listid))
+		{
+			$query->where($db->quoteName('a.listid') . ' = ' . (int) $listid);
+		}
+	}
+
+	protected function FilterProcess(object &$query): void
+	{
+		$db = $this->getDbo();
+
+		// Filter by process
+		$process = $this->getState('filter.process');
+
+		if (is_numeric($process))
+		{
+			$query->where($db->quoteName('a.process') . ' = ' . (int) $process);
+		}
+	}
+
+	protected function FilterLocation(object &$query): void
+	{
+		$db = $this->getDbo();
+
+		// Join over the location
+		$query->select($db->quoteName('n.name', 'location'))
+			->join('LEFT', $db->quoteName('#__foodman_locations', 'n') . ' ON n.id = a.locid');
+
+		// Filter by location.
+		$locid = $this->getState('filter.locid');
+
+		if (is_numeric($locid))
+		{
+			$query->where($db->quoteName('a.locid') . ' = ' . (int) $locid);
+		}
+	}
+
+	protected function FilterShop(object &$query): void
+	{
+		$db = $this->getDbo();
+
+		// Join over the shop
+		$query->select($db->quoteName('s.name', 'shop'))
+			->join('LEFT', $db->quoteName('#__foodman_shops', 's') . ' ON s.id = a.shopid');
+
+		// Filter by shop.
+		$shopid = $this->getState('filter.shopid');
+
+		if (is_numeric($shopid))
+		{
+			$query->where($db->quoteName('a.shopid') . ' = ' . (int) $shopid);
+		}
+	}
+
+	protected function FilterMovement(object &$query): void
+	{
+		$db = $this->getDbo();
+
+		// Filter by type movement.
+		$type = $this->getState('filter.type');
+
+		if (is_numeric($type))
+		{
+			$query->where($db->quoteName('a.type') . ' = ' . (int) $type);
+		}
+	}
 }
