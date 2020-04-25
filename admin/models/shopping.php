@@ -222,7 +222,7 @@ class FoodManModelShopping extends FoodManModelAdmin
 		$db      = $this->getDbo();
 		$process = array(TYPE_PROCESS_BUY, TYPE_PROCESS_STORE);
 		$query   = $db->getQuery(true)
-			->select($db->quoteName(array('id', 'quantity', 'proid', 'price', 'bought', 'locid', 'process', 'groupid')))
+			->select($db->quoteName(array('id', 'quantity', 'proid', 'price', 'bought', 'locid', 'process', 'groupid', 'expiration')))
 			->from($db->quoteName('#__foodman_shopping'))
 			->where('state = 1')
 			->where('process IN (' . implode(',', $process) . ')')
@@ -325,7 +325,7 @@ class FoodManModelShopping extends FoodManModelAdmin
 
 		foreach ($data['products'] as $product)
 		{
-			foreach (array('proid', 'quantity', 'comments', 'locid', 'bought', 'process', 'price', 'id') as $key)
+			foreach (array('proid', 'quantity', 'comments', 'locid', 'bought', 'process', 'price', 'id', 'expiration') as $key)
 			{
 				$data[$key] = $product[$key];
 			}
@@ -395,7 +395,7 @@ class FoodManModelShopping extends FoodManModelAdmin
 			$result           = parent::getItem($listid);
 			$result->process  = $result->process ?? TYPE_PROCESS_CREATE;
 			$result->products = array();
-			foreach (array('bought', 'comments', 'price', 'id', 'quantity', 'locid', 'proid', 'process') as $key)
+			foreach (array('bought', 'comments', 'price', 'id', 'quantity', 'locid', 'proid', 'process', 'expiration') as $key)
 			{
 				if (isset($result->$key))
 				{
@@ -445,7 +445,7 @@ class FoodManModelShopping extends FoodManModelAdmin
 		}
 
 		$query = $db->getQuery(true)
-			->select($db->quoteName(array('id', 'quantity', 'comments', 'proid', 'price', 'bought', 'locid', 'process')))
+			->select($db->quoteName(array('id', 'quantity', 'comments', 'proid', 'price', 'bought', 'locid', 'process', 'expiration')))
 			->from($db->quoteName('#__foodman_shopping'))
 			->where('state = 1')
 			->where('process IN (' . implode(',', $process) . ')')

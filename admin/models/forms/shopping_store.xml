@@ -99,6 +99,19 @@
                 />
 
                 <field
+                        name="expiration"
+                        type="calendar"
+                        required="true"
+                        showtime="false"
+                        todaybutton="true"
+                        weeknumbers="true"
+                        translateformat="true"
+                        label="COM_FOODMAN_FIELD_EXPIRATION_LABEL"
+                        description="COM_FOODMAN_FIELD_EXPIRATION_DESC"
+                        class="btn-group btn-group-number"
+                />
+
+                <field
                         name="comments"
                         type="text"
                         label="COM_FOODMAN_FIELD_COMMENTS_LABEL"
