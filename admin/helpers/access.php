@@ -41,4 +41,9 @@ class FoodManHelperAccess
 
 		return empty($item['access'])|| $user->authorise($item['access'], 'com_foodman');
 	}
+
+	public static function canEditAllGroup(int $groupid): bool
+	{
+		return $groupid === 0 || JHelperContent::getActions('com_foodman')->get('group.manage');
+	}
 }

@@ -24,4 +24,31 @@ abstract class FoodManControllerForm extends \Joomla\CMS\MVC\Controller\FormCont
 	 * @since  1.6
 	 */
 	protected $text_prefix = 'COM_FOODMAN';
+
+	/**
+	 * Method to check if you can edit an existing record.
+	 *
+	 * Only edit.
+	 *
+	 * @param   array   $data  An array of input data.
+	 * @param   string  $key   The name of the key for the primary key; default is id.
+	 *
+	 * @return  boolean
+	 *
+	 * @since   1.6
+	 */
+	protected function allowEdit($data = array(), $key = 'id')
+	{
+		$recordId = (int) isset($data[$key]) ? $data[$key] : 0;
+
+		if ($recordId)
+		{
+			if (FoodManHelperAccess::canEditAllGroup((int) $this->getModel()->getItem($recordId)->groupid))
+			{
+				return false;
+			}
+		}
+
+		return parent::allowEdit($data, $key);
+	}
 }

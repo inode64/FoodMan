@@ -28,21 +28,6 @@ class FoodManModelStock extends FoodManModelAdmin
 	protected $text_prefix = 'COM_FOODMAN_STOCK';
 
 	/**
-	 * Method to test whether a record can have its state changed.
-	 *
-	 * @param   object  $record  A record object.
-	 *
-	 * @return  boolean  True if allowed to change the state of the record. Defaults to the permission set in the component.
-	 *
-	 * @since   1.6
-	 */
-	protected function canEditState($record)
-	{
-		// Default to component settings if stock not known.
-		return parent::canEditState($record);
-	}
-
-	/**
 	 * Returns a JTable object, always creating it.
 	 *
 	 * @param   string  $type    The table type to instantiate. [optional]
@@ -209,24 +194,6 @@ class FoodManModelStock extends FoodManModelAdmin
 		$this->cleanCache();
 
 		return true;
-	}
-
-
-	/**
-	 * Override JModelAdmin::preprocessForm to ensure the correct plugin group is loaded
-	 *
-	 * @param   JForm   $form   The form object
-	 * @param   array   $data   The data to be merged into the form object
-	 * @param   string  $group  The plugin group to be executed
-	 *
-	 * @return  void
-	 *
-	 * @throws Exception
-	 * @since    3.6.1
-	 */
-	protected function preprocessForm(JForm $form, $data, $group = 'content')
-	{
-		parent::preprocessForm($form, $data, $group);
 	}
 
 	/**

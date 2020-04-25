@@ -226,23 +226,6 @@ class FoodManModelMovement extends FoodManModelAdmin
 	}
 
 	/**
-	 * Override JModelAdmin::preprocessForm to ensure the correct plugin group is loaded
-	 *
-	 * @param   JForm   $form   The form object
-	 * @param   array   $data   The data to be merged into the form object
-	 * @param   string  $group  The plugin group to be executed
-	 *
-	 * @return  void
-	 *
-	 * @throws Exception
-	 * @since    3.6.1
-	 */
-	protected function preprocessForm(JForm $form, $data, $group = 'content')
-	{
-		parent::preprocessForm($form, $data, $group);
-	}
-
-	/**
 	 * Insert an item
 	 *
 	 * @param   object  $data
