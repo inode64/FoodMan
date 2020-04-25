@@ -66,6 +66,42 @@
         </field>
 
         <field
+                name="minstock"
+                type="number"
+                min="0"
+                max="1000"
+                default="1"
+                step="1"
+                label="COM_FOODMAN_FIELD_MINSTOCK_LABEL"
+                description="COM_FOODMAN_FIELD_MINSTOCK_DESC"
+                class="btn-group btn-group-number"
+        />
+
+        <field
+                name="maxstock"
+                type="number"
+                min="0"
+                max="1000"
+                default="1"
+                step="1"
+                label="COM_FOODMAN_FIELD_MAXSTOCK_LABEL"
+                description="COM_FOODMAN_FIELD_MAXSTOCK_DESC"
+                class="btn-group btn-group-number"
+        />
+
+        <field
+                name="daysopen"
+                type="number"
+                min="0"
+                max="1000"
+                default="1"
+                step="1"
+                label="COM_FOODMAN_FIELD_DAYSOPEN_LABEL"
+                description="COM_FOODMAN_FIELD_DAYSOPEN_DESC"
+                class="btn-group btn-group-number"
+        />
+
+        <field
                 name="description"
                 type="editor"
                 label="JGLOBAL_DESCRIPTION"
