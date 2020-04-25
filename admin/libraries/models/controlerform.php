@@ -43,7 +43,7 @@ abstract class FoodManControllerForm extends \Joomla\CMS\MVC\Controller\FormCont
 
 		if ($recordId)
 		{
-			if (FoodManHelperAccess::canEditAllGroup((int) $this->getModel()->getItem($recordId)->groupid))
+			if (!FoodManHelperAccess::canEditAllGroup((int) $this->getModel()->getItem($recordId)->groupid))
 			{
 				return false;
 			}

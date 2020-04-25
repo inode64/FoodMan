@@ -55,46 +55,6 @@ abstract class ViewForm extends AbstractView
 	protected $isNew;
 
 	/**
-	 * Method to test whether a record can have its state changed.
-	 *
-	 * @param   object  $record  A record object.
-	 *
-	 * @return  boolean  True if allowed to change the state of the record. Defaults to the permission for the component.
-	 *
-	 * @since   1.6
-	 */
-	protected function canEditState($record)
-	{
-		if (FoodManHelperAccess::canEditAllGroup($record->groupid))
-		{
-			return false;
-		}
-
-		return parent::canEditState($record);
-	}
-
-	/**
-	 * Method to test whether a record can be deleted.
-	 *
-	 * @param   object  $record  A record object.
-	 *
-	 * @return  boolean  True if allowed to delete the record. Defaults to the permission for the component.
-	 *
-	 * @since   1.6
-	 */
-	protected function canDelete($record)
-	{
-		if (empty($record->id) || $record->published != -2 || FoodManHelperAccess::canEditAllGroup($record->groupid))
-		{
-			return false;
-		}
-
-		return parent::canDelete($record);
-	}
-
-
-
-	/**
 	 * Method for run before display to initial variables.
 	 *
 	 * @param   string  $tpl  Template name
