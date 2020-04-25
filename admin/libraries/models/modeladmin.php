@@ -47,7 +47,7 @@ abstract class FoodManModelAdmin extends \Joomla\CMS\MVC\Model\AdminModel
 	 */
 	protected function canEditState($record)
 	{
-		if (!FoodManHelperAccess::canEditAllGroup($record->groupid))
+		if (isset($record->groupid) && !FoodManHelperAccess::canEditAllGroup($record->groupid))
 		{
 			return false;
 		}
