@@ -33,7 +33,7 @@
                 type="fmshop"
                 label="COM_FOODMAN_FIELD_SHOP_LABEL"
                 description="COM_FOODMAN_FIELD_SHOP_DESC"
-                require="true"
+                required="true"
         />
 
         <!-- State Finish, Joomla not permit const -->
