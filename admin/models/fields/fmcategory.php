@@ -41,7 +41,7 @@ class JFormFieldFMCategory extends JFormFMFieldList
 		$db    = JFactory::getDbo();
 		$query = $db->getQuery(true);
 		$query->select($db->quoteName(array('id', 'name')))
-			->from($db->quoteName('#__foodman_categories'))
+			->from($db->quoteName('#__foodman_categories', 'a'))
 			->order($db->quoteName('name'));
 
 		$this->FilterLang($query);

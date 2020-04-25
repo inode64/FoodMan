@@ -287,20 +287,37 @@ abstract class JFormFMFieldList extends JFormFieldList
 
 	public function FilterLang(object &$query): void
 	{
+		$db = JFactory::getDbo();
+
 		if ($this->lang !== null)
 		{
-			$db = JFactory::getDbo();
-
 			$query->where($db->quoteName('a.language') . ' IN (' . $db->quote($this->lang) . ',' . $db->quote('*') . ')');
+		}
+		else
+		{
+			if (!\JFactory::getUser()->authorise('core.admin'))
+			{
+				$query->where($db->quoteName('a.language') . ' IN (' . $db->quote(\JFactory::getLanguage()->getTag()) . ',' . $db->quote('*') . ')');
+			}
 		}
 	}
 
 	public function FilterGroup(object &$query): void
 	{
+		$db = JFactory::getDbo();
+
 		if ($this->groupId !== null)
 		{
-			$db = JFactory::getDbo();
 			$query->where($db->quoteName('a.groupid') . ' IN (0, ' . $this->groupId . ')');
+		}
+		else
+		{
+			$canDo = \JHelperContent::getActions('com_foodman');
+
+			if (!$canDo->get('group.manage'))
+			{
+				$query->where($db->quoteName('a.groupid') . ' IN (0, ' . \FoodManHelperAccess::getGroup() . ')');
+			}
 		}
 	}
 

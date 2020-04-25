@@ -75,7 +75,6 @@ JFactory::getDocument()->addScriptDeclaration('
 
 		<?php echo JHtml::_('bootstrap.addTab', 'productTab', 'otherparams', JText::_('COM_FOODMAN_PRODUCT_LABEL_DETAILS')); ?>
 		<?php echo $this->form->renderField('expiration'); ?>
-		<?php echo $this->form->renderField('catid'); ?>
 		<?php echo JHtml::_('bootstrap.endTab'); ?>
 
 
