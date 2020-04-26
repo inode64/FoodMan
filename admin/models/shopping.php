@@ -268,9 +268,12 @@ class FoodManModelShopping extends FoodManModelAdmin
 					$this->setError($table->getError());
 				}
 
-				// Update stock for complete
-				$stock->update($row);
-				$movement->insert($row, TYPE_MOVEMENT_BUY);
+				// Update stock for complete product
+				$stockId = $stock->update($row);
+				if ($stockId !== false)
+				{
+					$movement->insert($row, TYPE_MOVEMENT_BUY, $stockId);
+				}
 
 				continue;
 			}
@@ -297,10 +300,14 @@ class FoodManModelShopping extends FoodManModelAdmin
 				$result = JFactory::getDbo()->updateObject('#__foodman_shopping', $object, 'id');
 			}
 
-			// Update stock for imcomplete
+			// Update stock for imcomplete product
 			$row->quantity = $row->bought;
-			$stock->update($row);
-			$movement->insert($row, TYPE_MOVEMENT_BUY);
+			$stockId = $stock->update($row);
+
+			if ($stockId !== false)
+			{
+				$movement->insert($row, TYPE_MOVEMENT_BUY, $stockId);
+			}
 		}
 	}
 

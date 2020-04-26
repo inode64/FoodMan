@@ -221,15 +221,17 @@ class FoodManModelStock extends FoodManModelAdmin
 
 		JModelLegacy::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_foodman/models', 'FoodManModel');
 		$movement = JModelLegacy::getInstance('Movement', 'FoodManModel');
+		
+		$stockId = $this->getState('stock.id');
 
 		if ($isNew)
 		{
-			return $movement->insert((object) $data, TYPE_MOVEMENT_REGULARIZE);
+			return $movement->insert((object) $data, TYPE_MOVEMENT_REGULARIZE, $stockId);
 		}
 
 		if ($data['locid'] != $item_old->locid)
 		{
-			return $movement->insert((object) $data, TYPE_MOVEMENT_MOVE);
+			return $movement->insert((object) $data, TYPE_MOVEMENT_MOVE, $stockId);
 		}
 
 		return true;
@@ -238,11 +240,11 @@ class FoodManModelStock extends FoodManModelAdmin
 	/**
 	 * @param   object  $data
 	 *
-	 * @return bool
+	 * @return mixed
 	 *
 	 * @since version
 	 */
-	public function update(object $data): bool
+	public function update(object $data)
 	{
 		$db    = $this->getDbo();
 		$table = $this->getTable();
@@ -282,6 +284,18 @@ class FoodManModelStock extends FoodManModelAdmin
 
 		$this->prepareTable($table);
 
-		return $table->store($data);
+		$result = $table->store($data);
+
+		if ($result)
+		{
+			// Get ID for insert or update stock
+			$this->cleanCache();
+
+			$key = $table->getKeyName();
+
+			return $table->$key;
+		}
+
+		return $result;
 	}
 }

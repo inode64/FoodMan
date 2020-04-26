@@ -235,13 +235,14 @@ class FoodManModelMovement extends FoodManModelAdmin
 	 *
 	 * @since version
 	 */
-	public function insert(object $data, int $type): bool
+	public function insert(object $data, int $type, int $stockId): bool
 	{
 		$table = $this->getTable();
 
-		$data->state = 1;
-		$data->id    = 0;
-		$data->type  = $type;
+		$data->state   = 1;
+		$data->id      = 0;
+		$data->stockid = $stockId;
+		$data->type    = $type;
 
 		$table->bind((array) $data);
 

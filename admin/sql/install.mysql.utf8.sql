@@ -267,6 +267,7 @@ CREATE TABLE IF NOT EXISTS `#__foodman_movements`
     `listid`           int(11)                NOT NULL DEFAULT 0,
     `shopid`           int(11)                NOT NULL DEFAULT 0,
     `groupid`          int(11)                NOT NULL DEFAULT 0,
+    `stockid`          int(11)                NOT NULL DEFAULT 0,
     `quantity`         decimal(4, 3) unsigned NOT NULL DEFAULT 0,
     `price`            decimal(4, 3) unsigned NOT NULL DEFAULT '0.00',
     `expiration`       datetime               NOT NULL DEFAULT '0000-00-00 00:00:00',
