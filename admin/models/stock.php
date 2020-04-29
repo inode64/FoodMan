@@ -221,7 +221,7 @@ class FoodManModelStock extends FoodManModelAdmin
 
 		JModelLegacy::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_foodman/models', 'FoodManModel');
 		$movement = JModelLegacy::getInstance('Movement', 'FoodManModel');
-		
+
 		$stockId = $this->getState('stock.id');
 
 		if ($isNew)

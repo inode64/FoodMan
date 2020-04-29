@@ -266,4 +266,20 @@ abstract class ModelList extends \Joomla\CMS\MVC\Model\ListModel
 			$query->where($db->quoteName('a.type') . ' = ' . (int) $type);
 		}
 	}
+
+	protected function FilterCategory(object &$query): void
+	{
+		$db = $this->getDbo();
+
+		$query->select($db->quoteName('c.name', 'category_name'))
+			->join('LEFT', $db->quoteName('#__foodman_categories', 'c') . ' ON c.id = a.catid');
+
+		// Filter by type movement.
+		$category = $this->getState('filter.catid');
+
+		if (is_numeric($category))
+		{
+			$query->where($db->quoteName('a.catid') . ' = ' . (int) $category);
+		}
+	}
 }

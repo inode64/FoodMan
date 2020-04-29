@@ -59,6 +59,15 @@ if ($saveOrder)
 						<?php echo JHtml::_('searchtools.sort', 'COM_FOODMAN_HEADING_NAME', 'a.name', $listDirn, $listOrder); ?>
                     </th>
                     <th width="10%" class="nowrap hidden-phone">
+		                <?php echo JHtml::_('searchtools.sort', 'COM_FOODMAN_HEADING_CATEGORY', 'c.name', $listDirn, $listOrder); ?>
+                    </th>
+                    <th width="10%" class="nowrap hidden-phone">
+		                <?php echo JText::_('COM_FOODMAN_HEADING_MINSTOCK'); ?>
+                    </th>
+                    <th width="10%" class="nowrap hidden-phone">
+		                <?php echo JText::_('COM_FOODMAN_HEADING_MAXSTOCK'); ?>
+                    </th>
+                    <th width="10%" class="nowrap hidden-phone">
 						<?php echo JHtml::_('searchtools.sort', 'COM_FOODMAN_HEADING_GROUP', 'g.name', $listDirn, $listOrder); ?>
                     </th>
                     <th width="10%" class="nowrap hidden-phone">
@@ -71,7 +80,7 @@ if ($saveOrder)
                 </thead>
                 <tfoot>
                 <tr>
-                    <td colspan="7">
+                    <td colspan="10">
 						<?php echo $this->pagination->getListFooter(); ?>
                     </td>
                 </tr>
@@ -125,6 +134,15 @@ if ($saveOrder)
                             </div>
                         </td>
 
+                        <td class="small hidden-phone">
+		                    <?php echo $this->escape($item->category_name); ?>
+                        </td>
+                        <td class="small hidden-phone">
+		                    <?php echo $item->minstock; ?>
+                        </td>
+                        <td class="small hidden-phone">
+		                    <?php echo $item->maxstock; ?>
+                        </td>
                         <td class="small hidden-phone">
 							<?php echo JLayoutHelper::render('foodman.content.group', $item); ?>
                         </td>

@@ -39,6 +39,7 @@ class FoodManModelProducts extends FoodMan\Models\ModelList
 				'language', 'a.language',
 				'created', 'a.created',
 				'g.name', 'group_name',
+				'catid', 'a.catid',
 				'published'
 			);
 		}
@@ -69,6 +70,8 @@ class FoodManModelProducts extends FoodMan\Models\ModelList
 				. 'a.featured AS featured,'
 				. 'a.ordering AS ordering,'
 				. 'a.language,'
+				. 'a.minstock,'
+				. 'a.maxstock,'
 				. 'a.checked_out as checked_out,'
 				. 'a.checked_out_time as checked_out_time'
 			)
@@ -79,6 +82,7 @@ class FoodManModelProducts extends FoodMan\Models\ModelList
 		$this->FilterPublished($query);
 		$this->FilterGroup($query);
 		$this->FilterLang($query);
+		$this->FilterCategory($query);
 
 		// Filter by search in name
 		$search = $this->getState('filter.search');
@@ -122,6 +126,7 @@ class FoodManModelProducts extends FoodMan\Models\ModelList
 	{
 		// Compile the store id.
 		$id .= ':' . $this->getState('filter.groupid');
+		$id .= ':' . $this->getState('filter.catid');
 		$id .= ':' . $this->getState('filter.language');
 
 		return parent::getStoreId($id);
@@ -159,6 +164,7 @@ class FoodManModelProducts extends FoodMan\Models\ModelList
 	{
 		// Load the filter state.
 		$this->setState('filter.groupid', $this->getUserStateFromRequest($this->context . '.filter.groupid', 'filter_groupid', '', 'int'));
+		$this->setState('filter.catid', $this->getUserStateFromRequest($this->context . '.filter.catid', 'filter_catid', '', 'int'));
 		$this->setState('filter.language', $this->getUserStateFromRequest($this->context . '.filter.language', 'filter_language', '', 'string'));
 
 		// List state information.
