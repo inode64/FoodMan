@@ -10,9 +10,9 @@
 
 defined('_JEXEC') or die;
 
-foreach (FOODMAN_SUBMENU as $item)
+foreach (FOODMAN_SUBMENU as $key => $item)
 {
-	if (FoodManHelperAccess::AccessMenu($item))
+	if (FoodManHelperAccess::AccessMenu($item) && $key !== 'dashboard' )
 	{
 		?>
         <div class="dashboard-wrapper">
