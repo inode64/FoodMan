@@ -53,7 +53,10 @@ class JFormFieldFMTypeProcess extends JFormFieldList
 
 		foreach (TYPE_PROCESS as $key => $text)
 		{
-			$options[] = JHtml::_('select.option', $key, JText::_($text));
+			if ($key !== TYPE_PROCESS_FINISH)
+			{
+				$options[] = JHtml::_('select.option', $key, JText::_($text));
+			}
 		}
 
 		// Create a read-only list (no name) with hidden input(s) to store the value(s).
