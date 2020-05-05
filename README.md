@@ -33,3 +33,8 @@ Ideas
 
 - Use barcode detection API from chrome 83
 - USe NFC from chrome 81
+
+Limitations
+-------------
+
+- In multilingual the supervisors must used the same language what the elements to edit
