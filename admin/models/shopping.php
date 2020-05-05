@@ -240,7 +240,7 @@ class FoodManModelShopping extends FoodManModelAdmin
 	 *
 	 * @since version
 	 */
-	private function UpdateFinishItems(array $rows, array $data, int $shopid): void
+	private function UpdateFinishItems(array $rows, array $data, int $shopid, int $listid): void
 	{
 		$table    = $this->getTable();
 		$preserve = array();
@@ -257,6 +257,7 @@ class FoodManModelShopping extends FoodManModelAdmin
 		foreach ($rows as $row)
 		{
 			$row->shopid = $shopid;
+			$row->listid = $listid;
 
 			// Product buy completely
 			if ($row->bought >= $row->quantity)
@@ -325,7 +326,7 @@ class FoodManModelShopping extends FoodManModelAdmin
 		if (JFactory::getApplication()->getUserState('com_foodman.edit.shopping.task') == TASK_SHOPPING_FINISH)
 		{
 			$rows = self::GetFinishItems($data);
-			self::UpdateFinishItems($rows, $data['products'], $data['shopid']);
+			self::UpdateFinishItems($rows, $data['products'], $data['shopid'], $data['listid']);
 
 			return true;
 		}
