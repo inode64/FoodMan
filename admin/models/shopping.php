@@ -64,7 +64,7 @@ class FoodManModelShopping extends FoodManModelAdmin
 		$task   = $app->getUserState('com_foodman.edit.shopping.task');
 		$layout = $app->getUserState('com_foodman.edit.shopping.layout', TASK_SHOPPING_EDIT);
 
-		if (FoodManHelper::DefaultTask($task))
+		if (FoodManHelper::DefaultTask($task) && empty($layout))
 		{
 			$layout = 'edit';
 		}
@@ -397,7 +397,7 @@ class FoodManModelShopping extends FoodManModelAdmin
 
 		$task = $app->getUserState('com_foodman.edit.shopping.task');
 
-		if (FoodManHelper::DefaultTask($task))
+		if (FoodManHelper::DefaultTask($task) && empty($layout))
 		{
 			$result           = parent::getItem($listid);
 			$result->process  = $result->process ?? TYPE_PROCESS_CREATE;

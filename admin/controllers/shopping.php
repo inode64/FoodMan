@@ -49,7 +49,7 @@ class FoodManControllerShopping extends FoodManControllerForm
 		$app->setUserState($context, $listid);
 		$layout = $app->input->get('layout', TASK_SHOPPING_EDIT, 'string');
 
-		if (FoodManHelper::DefaultTask($task))
+		if (FoodManHelper::DefaultTask($task) && empty($layout))
 		{
 			$layout = 'edit';
 		}
