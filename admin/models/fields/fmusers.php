@@ -33,6 +33,14 @@ class JFormFieldFMUsers extends JFormFMFieldList
 	 */
 	protected $FieldSelectText = 'USER';
 
+	/**
+	 * Method to get the field input markup for a generic list.
+	 * Use the multiple attribute to enable multiselect.
+	 *
+	 * @return  string  The field input markup.
+	 *
+	 * @since   3.7.0
+	 */
 	protected function getInput()
 	{
 		$options = $this->preInput();

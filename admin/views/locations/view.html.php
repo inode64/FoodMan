@@ -50,8 +50,8 @@ class FoodManViewLocations extends FoodMan\Models\ViewList
 			{
 				JToolbarHelper::publish('locations.publish', 'JTOOLBAR_PUBLISH', true);
 				JToolbarHelper::unpublish('locations.unpublish', 'JTOOLBAR_UNPUBLISH', true);
-				JToolbarHelper::custom('locations.featured', 'featured.png', 'featured_f2.png', 'JFEATURE', true);
-				JToolbarHelper::custom('locations.unfeatured', 'unfeatured.png', 'featured_f2.png', 'JUNFEATURE', true);
+				JToolbarHelper::custom('locations.featured', 'featured.png', 'featured_f2.png', 'JFEATURE');
+				JToolbarHelper::custom('locations.unfeatured', 'unfeatured.png', 'featured_f2.png', 'JUNFEATURE');
 			}
 
 			if ($this->state->get('filter.published') != -2)

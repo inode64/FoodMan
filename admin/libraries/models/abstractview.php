@@ -91,7 +91,7 @@ abstract class AbstractView extends \Joomla\CMS\MVC\View\HtmlView
 
 	/**
 	 * Method for generate permission.
-	 * @todo Select correct view an incliude levels (create, view, edit, delete, etc..)
+	 * @todo Select correct view an include levels (create, view, edit, delete, etc..)
 	 *
 	 * @return  void
 	 *

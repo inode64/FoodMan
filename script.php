@@ -10,6 +10,11 @@
 
 defined('_JEXEC') or die();
 
+/**
+ * @package     ${NAMESPACE}
+ *
+ * @since       version
+ */
 class com_FoodManInstallerScript extends \Joomla\CMS\Installer\InstallerScript
 {
 	protected $minimumPhp = '7.2.0';

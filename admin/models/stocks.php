@@ -53,6 +53,7 @@ class FoodManModelStocks extends FoodMan\Models\ModelList
 	 *
 	 * @return  JDatabaseQuery
 	 *
+	 * @throws Exception
 	 * @since   1.6
 	 */
 	protected function getListQuery()
@@ -203,7 +204,7 @@ class FoodManModelStocks extends FoodMan\Models\ModelList
 
 		// Reset the start time to be the beginning of today, local time.
 		$dStart = new JDate('now', $offset);
-		$dStart->setTime(0, 0, 0);
+		$dStart->setTime(0, 0);
 
 		// Now change the timezone back to UTC.
 		$tz = new DateTimeZone('GMT');

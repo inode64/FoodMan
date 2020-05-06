@@ -42,21 +42,6 @@ class FoodManModelMovement extends FoodManModelAdmin
 	}
 
 	/**
-	 * Method to test whether a record can have its state changed.
-	 *
-	 * @param   object  $record  A record object.
-	 *
-	 * @return  boolean  True if allowed to change the state of the record. Defaults to the permission set in the component.
-	 *
-	 * @since   1.6
-	 */
-	protected function canEditState($record)
-	{
-		// Default to component settings if movement not known.
-		return parent::canEditState($record);
-	}
-
-	/**
 	 * Returns a JTable object, always creating it.
 	 *
 	 * @param   string  $type    The table type to instantiate. [optional]
@@ -230,6 +215,8 @@ class FoodManModelMovement extends FoodManModelAdmin
 	 *
 	 * @param   object  $data
 	 * @param   int     $type
+	 *
+	 * @param   int     $stockId
 	 *
 	 * @return bool
 	 *

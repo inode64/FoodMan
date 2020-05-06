@@ -50,8 +50,8 @@ class FoodManViewStocks extends FoodMan\Models\ViewList
 			{
 				JToolbarHelper::publish('stocks.publish', 'JTOOLBAR_PUBLISH', true);
 				JToolbarHelper::unpublish('stocks.unpublish', 'JTOOLBAR_UNPUBLISH', true);
-				JToolbarHelper::custom('stocks.featured', 'featured.png', 'featured_f2.png', 'JFEATURE', true);
-				JToolbarHelper::custom('stocks.unfeatured', 'unfeatured.png', 'featured_f2.png', 'JUNFEATURE', true);
+				JToolbarHelper::custom('stocks.featured', 'featured.png', 'featured_f2.png', 'JFEATURE');
+				JToolbarHelper::custom('stocks.unfeatured', 'unfeatured.png', 'featured_f2.png', 'JUNFEATURE');
 			}
 
 			if ($this->state->get('filter.published') != -2)

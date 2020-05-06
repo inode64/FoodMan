@@ -50,8 +50,8 @@ class FoodManViewLists extends FoodMan\Models\ViewList
 			{
 				JToolbarHelper::publish('lists.publish', 'JTOOLBAR_PUBLISH', true);
 				JToolbarHelper::unpublish('lists.unpublish', 'JTOOLBAR_UNPUBLISH', true);
-				JToolbarHelper::custom('lists.featured', 'featured.png', 'featured_f2.png', 'JFEATURE', true);
-				JToolbarHelper::custom('lists.unfeatured', 'unfeatured.png', 'featured_f2.png', 'JUNFEATURE', true);
+				JToolbarHelper::custom('lists.featured', 'featured.png', 'featured_f2.png', 'JFEATURE');
+				JToolbarHelper::custom('lists.unfeatured', 'unfeatured.png', 'featured_f2.png', 'JUNFEATURE');
 			}
 
 			if ($this->state->get('filter.published') != -2)
@@ -66,7 +66,7 @@ class FoodManViewLists extends FoodMan\Models\ViewList
 				}
 			}
 
-			JToolbarHelper::custom('finish.list', 'finish.png', 'finish_h2.png', 'COM_FOODMAN_FINISH_LIST', true);
+			JToolbarHelper::custom('finish.list', 'finish.png', 'finish_h2.png', 'COM_FOODMAN_FINISH_LIST');
 		}
 		if ($canDo->get('core.edit') || JFactory::getUser()->authorise('core.manage', 'com_checkin'))
 		{
