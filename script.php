@@ -39,4 +39,66 @@ class com_FoodManInstallerScript extends \Joomla\CMS\Installer\InstallerScript
 
 		return true;
 	}
+
+	/**
+	 * Called after any type of action
+	 *
+	 * @param   string      $action     Which action is happening (install|uninstall|discover_install|update)
+	 * @param   JInstaller  $installer  The class calling this method
+	 *
+	 * @return  boolean  True on success
+	 *
+	 * @since   3.7.0
+	 */
+	function postflight($type, $parent)
+	{
+		if ($type !== 'install')
+		{
+			return true;
+		}
+
+		$languages = JLanguageHelper::getLanguages();
+
+		foreach ($languages as $lang)
+		{
+			$file = JPATH_ADMINISTRATOR . '/components/com_foodman//sql/samples/' . $lang->lang_code . '.php';
+
+			if (file_exists($file))
+			{
+				require_once($file);
+
+				$class  = str_replace('-', '', $lang->lang_code);
+				$sample = new $class;
+
+				$this->InsertSample($sample->counter, '#__foodman_locations', $sample->locations(), $lang);
+				$this->InsertSample($sample->counter, '#__foodman_shops', $sample->shops(), $lang);
+				$this->InsertSample($sample->counter, '#__foodman_categories', $sample->categories(), $lang);
+				$this->InsertSample($sample->counter, '#__foodman_products', $sample->products(), $lang);
+			}
+		}
+
+		return true;
+	}
+
+	private function InsertSample($counter, $db, $samples, $lang)
+	{
+		$id = $counter;
+		foreach ($samples as $sample)
+		{
+			$item = (object) $sample;
+			$item->id       = $id;
+			$item->language = $lang->lang_code;
+			$item->state    = 1;
+
+			if (isset($item->catid))
+			{
+				$item->catid += $counter;
+			}
+
+			JFactory::getDbo()->insertObject($db, $item);
+
+			++$id;
+		}
+
+	}
 }
