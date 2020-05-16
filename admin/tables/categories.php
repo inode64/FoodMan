@@ -19,7 +19,7 @@ class FoodManTableCategories extends FoodManTable
 {
 
 	public $name = '';
-	public $expiration;
+	public $expires;
 	public $state;
 	public $groupid;
 	public $description = '';

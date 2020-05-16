@@ -95,7 +95,7 @@ CREATE TABLE IF NOT EXISTS `#__foodman_categories`
 (
     `id`               int(11)             NOT NULL AUTO_INCREMENT,
     `name`             varchar(255)        NOT NULL DEFAULT '',
-    `expiration`       tinyint(3)          NOT NULL DEFAULT 0,
+    `expires`          tinyint(3)          NOT NULL DEFAULT 0,
     `state`            tinyint(3)          NOT NULL DEFAULT 0,
     `groupid`          int(11)             NOT NULL DEFAULT 0,
     `description`      text                NOT NULL DEFAULT '',
@@ -159,7 +159,7 @@ CREATE TABLE IF NOT EXISTS `#__foodman_products`
     `catid`            int(11)             NOT NULL DEFAULT 0,
     `description`      text                NOT NULL DEFAULT '',
     `ordering`         int(11)             NOT NULL DEFAULT 0,
-    `expiration`       tinyint(3)          NOT NULL DEFAULT 0,
+    `expires`          tinyint(3)          NOT NULL DEFAULT 0,
     `params`           text                NOT NULL DEFAULT '',
     `language`         char(7)             NOT NULL DEFAULT '',
     `minstock`         int(4) unsigned     NOT NULL DEFAULT 0,

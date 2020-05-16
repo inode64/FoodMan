@@ -54,7 +54,7 @@
         </field>
 
         <field
-                name="expiration"
+                name="expires"
                 type="radio"
                 label="COM_FOODMAN_FIELD_EXPIRATION_LABEL"
                 description="COM_FOODMAN_FIELD_EXPIRATION_DESC"
