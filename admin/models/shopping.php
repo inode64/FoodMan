@@ -370,6 +370,12 @@ class FoodManModelShopping extends FoodManModelAdmin
 					break;
 			}
 
+			// Force a create new item to enabled
+			if ($data['state'] === null)
+			{
+				$data['state'] = 1;
+			}
+
 			if (!parent::save($data))
 			{
 				return false;
