@@ -313,7 +313,7 @@ class FoodManModelShopping extends FoodManModelAdmin
 	}
 
 	/**
-	 * Method to save category
+	 * Method to save a item for shopping
 	 *
 	 * @param   array  $data  The form data.
 	 *
@@ -335,8 +335,13 @@ class FoodManModelShopping extends FoodManModelAdmin
 		{
 			foreach (array('proid', 'quantity', 'comments', 'locid', 'bought', 'process', 'price', 'id', 'expiration') as $key)
 			{
-				$data[$key] = $product[$key];
+				if (isset($product[$key]))
+				{
+					$data[$key] = $product[$key];
+				}
 			}
+
+			//FoodManHelper::DateToSQL($data['expiration']);
 
 			if ($data['process'] == TYPE_PROCESS_CREATE && $data['bought'] > 0)
 			{
@@ -371,7 +376,7 @@ class FoodManModelShopping extends FoodManModelAdmin
 			}
 
 			// Force a create new item to enabled
-			if ($data['state'] === null)
+			if (isset($data['state']) && $data['state'] === null)
 			{
 				$data['state'] = 1;
 			}

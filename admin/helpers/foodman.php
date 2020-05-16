@@ -10,6 +10,8 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Date\Date;
+
 /**
  * FoodMan component helper.
  *
@@ -75,5 +77,34 @@ class FoodManHelper extends JHelperContent
 		{
 			return 0;
 		}
+	}
+
+	/**
+	 *
+	 * Convert Date with locale format to SQL format
+	 *
+	 * @param   string|null  $string
+	 * @param   bool         $tz
+	 *
+	 * @return string|null
+	 *
+	 * @since version
+	 */
+	public static function DateToSQL(?string &$string, bool $tz = false): void
+	{
+		if (empty($string))
+		{
+			return;
+		}
+
+		$date = new Date($string);
+
+		if ($tz)
+		{
+			$offset = new \DateTimeZone(Factory::getApplication()->get('offset'));
+			$date->setTimezone($offset);
+		}
+
+		$string = $date->toSql(true);
 	}
 }

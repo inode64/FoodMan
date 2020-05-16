@@ -197,7 +197,7 @@ class FoodManModelStock extends FoodManModelAdmin
 	}
 
 	/**
-	 * Method to save category
+	 * Method to save a stock
 	 *
 	 * @param   array  $data  The form data.
 	 *

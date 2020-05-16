@@ -106,6 +106,11 @@ abstract class FoodManTable extends \Joomla\CMS\Table\Table
 	 */
 	public function store($updateNulls = false)
 	{
+		if (isset($this->expiration))
+		{
+			FoodManHelper::DateToSQL($this->expiration);
+		}
+
 		// Store the new row
 		parent::store($updateNulls);
 

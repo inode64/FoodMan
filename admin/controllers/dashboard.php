@@ -11,7 +11,7 @@
 defined('_JEXEC') or die;
 
 /**
- * Category controller class.
+ * Dashboard controller class.
  *
  * @since  1.6
  */
