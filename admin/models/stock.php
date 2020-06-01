@@ -255,6 +255,7 @@ class FoodManModelStock extends FoodManModelAdmin
 			->where('state = 1')
 			->where('proid = ' . $data->proid)
 			->where('groupid = ' . $data->groupid)
+			->where('expiration = ' . $db->quote($data->expiration))
 			->where('locid = ' . $data->locid);
 
 		$db->setQuery($query);
